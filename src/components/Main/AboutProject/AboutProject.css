@@ -1,5 +1,96 @@
 .about {
-    width: 1280px;
-    height: 608px;
-    background-color: #ffffff;
+  width: 1280px;
+  height: 608px;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  font-family: Inter;
+}
+.about__title {
+  margin: 0 0 23px 0;
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.17;
+  letter-spacing: -0.04em;
+}
+
+.about__title-container {
+  max-width: 1140px;
+  width: 100%;
+  margin: 110px 0 70px 0;
+  border-bottom: 1px #000000 solid;
+}
+
+.about__info-container {
+  max-width: 1140px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin: 0 0 110px 0;
+  /* background-color: tomato; */
+}
+
+.about__info-block {
+  max-width: 550px;
+  width: 100%;
+}
+
+.about__diagram {
+  display: grid;
+  grid-template-columns: 228px 912px;
+  grid-template-rows: repeat(2, 36px);
+}
+
+.about__subtitle {
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -0.04em;
+  margin: 0 0 26px 0;
+}
+
+.about_paragraph {
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.42;
+  letter-spacing: 0em;
+  margin: 0;
+}
+.about__diagram-block {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.about__diagram-block_size_s {
+  background-color: #2be080;
+}
+.about__diagram-block_size_l {
+  background-color: #f2f2f2;
+}
+
+.about__diagram-subtitle {
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.21;
+  letter-spacing: 0em;
+  margin: 0;
+}
+
+.about__diagram-caption {
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.21;
+  letter-spacing: 0px;
+  color: #A0A0A0;
 }

@@ -1,0 +1,10 @@
+.portfolio {
+  width: 1280px;
+  height: 1079px;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  font-family: Inter;
+}
