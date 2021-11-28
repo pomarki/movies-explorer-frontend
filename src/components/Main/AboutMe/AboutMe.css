@@ -1,4 +1,4 @@
-.portfolio {
+.about-me {
   width: 1280px;
   height: 1079px;
   background-color: #ffffff;
@@ -7,4 +7,72 @@
   justify-content: flex-start;
   align-items: center;
   font-family: Inter;
+}
+
+.about-me__title-container {
+  max-width: 1140px;
+  width: 100%;
+  margin: 110px 0 66px 0;
+  border-bottom: 1px #000000 solid;
+}
+
+.about-me__title {
+  margin: 0 0 23px 0;
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.17;
+  letter-spacing: -0.04em;
+}
+
+.about-me__name {
+  font-size: 50px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.16;
+  letter-spacing: -0.04em;
+  text-align: left;
+  margin: 0 0 18px 0;
+}
+
+.about-me__info-container {
+  width: 1140px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.about-me__subtitle {
+  font-family: Inter;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.11;
+  letter-spacing: 0px;
+  text-align: left;
+  margin: 0 0 26px 0;
+}
+
+.about-me__text {
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: 0px;
+  text-align: left;
+  margin: 0 0 99px 0;
+}
+
+.about-me__paragraph {
+  width: 600px;
+}
+
+.about-me__photo {
+  max-width: 270px;
+  border-radius: 10px;
+}
+
+.about-me__contact-links {
+  margin: 0 0 100px 0;
 }

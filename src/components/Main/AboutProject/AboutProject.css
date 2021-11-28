@@ -1,4 +1,4 @@
-.about {
+.about-project {
   width: 1280px;
   height: 608px;
   background-color: #ffffff;
@@ -8,7 +8,7 @@
   align-items: center;
   font-family: Inter;
 }
-.about__title {
+.about-project__title {
   margin: 0 0 23px 0;
   font-size: 22px;
   font-style: normal;
@@ -17,14 +17,14 @@
   letter-spacing: -0.04em;
 }
 
-.about__title-container {
+.about-project__title-container {
   max-width: 1140px;
   width: 100%;
   margin: 110px 0 70px 0;
   border-bottom: 1px #000000 solid;
 }
 
-.about__info-container {
+.about-project__info-container {
   max-width: 1140px;
   width: 100%;
   display: flex;
@@ -32,21 +32,20 @@
   justify-content: space-between;
   align-items: flex-start;
   margin: 0 0 110px 0;
-  /* background-color: tomato; */
 }
 
-.about__info-block {
+.about-project__info-block {
   max-width: 550px;
   width: 100%;
 }
 
-.about__diagram {
+.about-project__diagram {
   display: grid;
   grid-template-columns: 228px 912px;
   grid-template-rows: repeat(2, 36px);
 }
 
-.about__subtitle {
+.about-project__subtitle {
   font-size: 20px;
   font-style: normal;
   font-weight: 400;
@@ -55,7 +54,7 @@
   margin: 0 0 26px 0;
 }
 
-.about_paragraph {
+.about-project_paragraph {
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -63,21 +62,21 @@
   letter-spacing: 0em;
   margin: 0;
 }
-.about__diagram-block {
+.about-project__diagram-block {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
 }
 
-.about__diagram-block_size_s {
+.about-project__diagram-block_size_s {
   background-color: #2be080;
 }
-.about__diagram-block_size_l {
+.about-project__diagram-block_size_l {
   background-color: #f2f2f2;
 }
 
-.about__diagram-subtitle {
+.about-project__diagram-subtitle {
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -86,7 +85,7 @@
   margin: 0;
 }
 
-.about__diagram-caption {
+.about-project__diagram-caption {
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
