@@ -4,9 +4,9 @@ import den from "../../../images/den.jpg";
 
 function AboutMe(props) {
   return (
-    <section id="aboutMe" className="about-me">
-      <div className="about-me__title-container">
-        <h2 className="about-me__title">Студент</h2>
+    <section id="aboutMe" className="about-me page__section">
+      <div className="about-me__title-container page__section-title-container">
+        <h2 className="page__section-title">Студент</h2>
       </div>
       <div className="about-me__info-container">
         <div className="about-me__paragraph">
@@ -23,11 +23,11 @@ function AboutMe(props) {
           <div className="about-me__contact-links">
             <a
               href="https://www.facebook.com/pomarki"
-              className="about-me__link"
+              className="about-me__link page__link"
             >
               Facebook
             </a>
-            <a href="https://github.com/pomarki" className="about-me__link">
+            <a href="https://github.com/pomarki" className="about-me__link page__link">
               Github
             </a>
           </div>

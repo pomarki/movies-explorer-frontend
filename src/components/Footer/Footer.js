@@ -10,16 +10,16 @@ function Footer(props) {
       <div className="footer__container">
         <p className="footer__copyright">&copy; {new Date().getFullYear()}</p>
         <div className="footer__links-block">
-          <a href="https://practicum.yandex.ru" className="footer__link">
+          <a href="https://practicum.yandex.ru" className="footer__link page__link">
             Яндекс.Практикум
           </a>
           <a
             href="https://github.com/yandex-praktikum"
-            className="footer__link"
+            className="footer__link page__link"
           >Github</a>
           <a
             href="https://www.facebook.com/yandex.practicum"
-            className="footer__link"
+            className="footer__link page__link"
           >
             Facebook
           </a>

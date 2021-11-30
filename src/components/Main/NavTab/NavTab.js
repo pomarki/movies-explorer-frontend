@@ -5,9 +5,9 @@ import "./NavTab.css";
 function NavTab(props) {
   return (
     <section className="main__navigation">
-      <a className="main__link" href="#aboutProject">О проекте</a>
-      <a className="main__link" href="#techs">Технологии</a>
-      <a className="main__link" href="#aboutMe">Студент</a>
+      <a className="page__link main__link" href="#aboutProject">О проекте</a>
+      <a className="page__link main__link" href="#techs">Технологии</a>
+      <a className="page__link main__link" href="#aboutMe">Студент</a>
     </section>
   );
 }

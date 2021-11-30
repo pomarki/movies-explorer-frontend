@@ -1,27 +1,10 @@
 .about-me {
-  width: 1280px;
   background-color: #ffffff;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  font-family: Inter;
+  padding: 110px 0 100px 0;
 }
 
 .about-me__title-container {
-  max-width: 1140px;
-  width: 100%;
-  margin: 110px 0 66px 0;
-  border-bottom: 1px #000000 solid;
-}
-
-.about-me__title {
-  margin: 0 0 23px 0;
-  font-size: 22px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 1.17;
-  letter-spacing: -0.04em;
+  margin: 0 0 66px 0;
 }
 
 .about-me__name {
@@ -73,30 +56,18 @@
 }
 
 .about-me__contact-links {
-  margin: 0 0 100px 0;
+  margin: 0;
   width: 600px;
 }
 
 .about-me__link {
+  padding: 0;
   margin: 0 20px 0 0;
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
   line-height: 1.21px;
   letter-spacing: 0em;
-  text-align: left;
-  text-decoration: none;
-  color: #000000;
-}
-
-.about-me__link:hover {
-  opacity: 0.6;
-  cursor: pointer;
-  transition: opacity 0.4s linear;
-}
-
-.about-me__link:visited {
-  text-decoration: none;
   color: #000000;
 }
 

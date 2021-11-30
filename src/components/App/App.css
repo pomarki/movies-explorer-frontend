@@ -2,7 +2,7 @@
 @import url(../../vendor/fonts/fonts.css);
 
 .page {
-  background-color: #E5E5E5;
+  background-color: #e5e5e5;
   font-family: "Inter", "Arial", "Helvetica", sans-serif;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
@@ -18,4 +18,36 @@
   font-family: Inter;
 }
 
+.page__link {
+  text-decoration: none;
+}
 
+.page__link:hover {
+  opacity: 0.6;
+  cursor: pointer;
+  transition: opacity 0.4s linear;
+}
+
+.page__section {
+  width: 1280px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  font-family: Inter;
+}
+
+.page__section-title {
+  margin: 0 0 23px 0;
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: -0.04em;
+}
+
+.page__section-title-container {
+  max-width: 1140px;
+  width: 100%;
+  border-bottom: 1px #000000 solid;
+  line-height: 1.17;
+}

@@ -3,9 +3,9 @@ import "./Techs.css";
 
 function Techs(props) {
   return (
-    <section id="techs" className="techs">
-      <div className="tech__title-container">
-        <h2 class="tech__title">Технологии</h2>
+    <section id="techs" className="techs page__section">
+      <div className="tech__title-container page__section-title-container">
+        <h2 class="page__section-title tech__title">Технологии</h2>
       </div>
       <p className="tech__main-text">7 технологий</p>
       <div className="tech__paragraph-container">
@@ -15,13 +15,29 @@ function Techs(props) {
         </p>
       </div>
       <div className="tech__diagram">
-        <div className="tech__diagram-block">HTML</div>
-        <div className="tech__diagram-block">CSS</div>
-        <div className="tech__diagram-block">JS</div>
-        <div className="tech__diagram-block">React</div>
-        <div className="tech__diagram-block">Git</div>
-        <div className="tech__diagram-block">Express.js</div>
-        <div className="tech__diagram-block">MongoDB</div>
+        <ul className="tech__diagram-list">
+          <li className="tech__diagram-list-element">
+            <div className="tech__diagram-block">HTML</div>
+          </li>
+          <li className="tech__diagram-list-element">
+            <div className="tech__diagram-block">CSS</div>
+          </li>
+          <li className="tech__diagram-list-element">
+            <div className="tech__diagram-block">JS</div>
+          </li>
+          <li className="tech__diagram-list-element">
+            <div className="tech__diagram-block">React</div>
+          </li>
+          <li className="tech__diagram-list-element">
+            <div className="tech__diagram-block">Git</div>
+          </li>
+          <li className="tech__diagram-list-element">
+            <div className="tech__diagram-block">Express.js</div>
+          </li>
+          <li className="tech__diagram-list-element">
+            <div className="tech__diagram-block">MongoDB</div>
+          </li>
+        </ul>
       </div>
     </section>
   );

@@ -7,13 +7,13 @@ function Header(props) {
     <header className="header">
       <div className="header__top">
         <a href="#aboutProject">
-          <div className="header__logo"></div>
+          <div className="header__logo page__link"></div>
         </a>
         <div className="header__authorization-container">
-          <Link to="/" className="header__link">
+          <Link to="/" className="header__link page__link">
             Регистрация
           </Link>
-          <button type="button" className="header__authorization-button">
+          <button type="button" className="header__authorization-button page__link">
             Войти
           </button>
         </div>
