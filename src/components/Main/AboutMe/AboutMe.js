@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import "./AboutMe.css";
 import den from "../../../images/den.jpg";
 
@@ -22,15 +21,15 @@ function AboutMe(props) {
             уменьшив, Золото овса давать кобыле.
           </div>
           <div className="about-me__contact-links">
-            <Link
-              to="https://www.facebook.com/pomarki"
+            <a
+              href="https://www.facebook.com/pomarki"
               className="about-me__link"
             >
               Facebook
-            </Link>
-            <Link to="https://github.com/pomarki" className="about-me__link">
+            </a>
+            <a href="https://github.com/pomarki" className="about-me__link">
               Github
-            </Link>
+            </a>
           </div>
         </div>
 

@@ -14,6 +14,7 @@ function App() {
     <div className="page">
       <Header />
       <Main />
+      <Footer />
     </div>
   );
 }
