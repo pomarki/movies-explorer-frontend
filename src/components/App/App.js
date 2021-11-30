@@ -12,9 +12,10 @@ import SavedMovies from "../SavedMovies/SavedMovies";
 function App() {
   return (
     <div className="page">
-      <Header />
-      <Main />
-      <Footer />
+      {/* <Header /> */}
+      <Main isOpen={false} />
+      <Footer isOpen={false} />
+      <Movies />
     </div>
   );
 }

@@ -1,29 +1,17 @@
-import React from "react";
 import "./Header.css";
-import { Link } from "react-router-dom";
+import Navigation from "../Navigation/Navigation";
 
 function Header(props) {
   return (
-    <header className="header">
-      <div className="header__top">
-        <a href="#aboutProject">
-          <div className="header__logo page__link"></div>
-        </a>
-        <div className="header__authorization-container">
-          <Link to="/" className="header__link page__link">
-            Регистрация
-          </Link>
-          <button type="button" className="header__authorization-button page__link">
-            Войти
-          </button>
-        </div>
+    <header className="header page__section">
+      <div className="header__container">
+        <div className="page__logo"></div>
+        <Navigation isOpen={true} />
+        <div className="header__user">Аккаунт</div>
       </div>
-      <div className="header__central">
-        <h1 className="header__title">
-          Учебный&nbsp;проект&nbsp;студента факультета Веб-разработки
-        </h1>
-      </div>
+      
     </header>
   );
 }
+
 export default Header;

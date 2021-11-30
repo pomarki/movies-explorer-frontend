@@ -1,0 +1,23 @@
+.navigation {
+  background-color: tomato;
+}
+
+.navigation__links-list {
+  display: flex;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.navigation__popup {
+  display: flex;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 520px;
+  height: 100vh;
+}
+
+.navigation__close-button {
+  display: none;
+}

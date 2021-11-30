@@ -1,0 +1,7 @@
+.main {
+  display: none;
+}
+
+.main_closed {
+  display: block;
+}
