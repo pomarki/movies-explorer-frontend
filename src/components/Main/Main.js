@@ -8,7 +8,7 @@ import Techs from "./Techs/Techs";
 import AboutMe from "./AboutMe/AboutMe";
 import Portfolio from "./Portfolio/Portfolio";
 
-function Main({ isOpen }) {
+function Main({isOpen}) {
   return (
     <main className={`main ${isOpen && "main_opened"}`}>
       <Promo />

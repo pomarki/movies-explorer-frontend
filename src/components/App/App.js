@@ -5,6 +5,7 @@ import Login from "../Login/Login";
 import Main from "../Main/Main";
 import Movies from "../Movies/Movies";
 import Navigation from "../Navigation/Navigation";
+import Popup from "../Popup/Popup";
 import Profile from "../Profile/Profile";
 import Register from "../Register/Register";
 import SavedMovies from "../SavedMovies/SavedMovies";
@@ -12,7 +13,7 @@ import SavedMovies from "../SavedMovies/SavedMovies";
 function App() {
   return (
     <div className="page">
-      {/* <Header /> */}
+      <Popup isOpen={false} />
       <Main isOpen={false} />
       <Footer isOpen={false} />
       <Movies />

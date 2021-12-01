@@ -30,6 +30,7 @@
 
 .page__section {
   width: 1280px;
+  /* width: 100%; */
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -54,6 +55,21 @@
 
 .page__logo {
   width: 38px;
-    height: 38px;
-    background: url(../../images/logo.svg) no-repeat center;
+  height: 38px;
+  background: url(../../images/logo.svg) no-repeat center;
 }
+
+/* .page__logo_header {
+  margin: 0 0 0 70px;
+} */
+/* .page__overlay {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  opacity: 0.3;
+  background-color: #000000;
+  top: 0;
+  left: 0;
+  position: fixed;
+
+} */

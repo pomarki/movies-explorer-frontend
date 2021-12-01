@@ -1,9 +1,9 @@
 import React from "react";
 import "./Footer.css";
 
-function Footer(props) {
+function Footer({ isOpen }) {
   return (
-    <section className="footer">
+    <section className={`footer ${isOpen && "footer_opened"}`}>
       <p className="footer__title">
         Учебный проект Яндекс.Практикум х BeatFilm.
       </p>
