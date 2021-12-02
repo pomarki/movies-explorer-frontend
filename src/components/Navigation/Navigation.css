@@ -1,5 +1,4 @@
 .navigation {
-  
   width: 520px;
   height: 100vh;
   display: none;
@@ -13,7 +12,6 @@
   width: 100%;
   height: 100%;
   flex-direction: row;
-  
 }
 
 .navigation_type_big {
@@ -24,7 +22,6 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
- 
 }
 
 .navigation__links-list_type_small {
@@ -81,8 +78,16 @@
   display: none;
 }
 
-.navigation__link_actual {
+.navigation__link_actual-big {
   border-bottom: 2px #000000 solid;
+}
+
+.navigation__link_actual-small {
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.38;
+  letter-spacing: 0em;
 }
 
 .navigation__link_type_small {
@@ -109,7 +114,6 @@
 
 .navigation__user_type_small {
   margin: 0;
-  
 }
 
 .navigation__user_type_big {

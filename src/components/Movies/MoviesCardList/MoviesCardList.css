@@ -4,6 +4,10 @@
 }
 
 .movies-card-list__container {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+  text-decoration: none;
   max-width: 1140px;
   width: 100%;
   display: grid;
