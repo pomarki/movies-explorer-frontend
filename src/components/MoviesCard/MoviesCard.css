@@ -42,11 +42,11 @@
   width: 14px;
   height: 12px;
   margin: 0 0 0 22px;
-  background: center no-repeat url(../../../images/like-icon-inactive.svg);
+  background: center no-repeat url(../../images/like-icon-inactive.svg);
 }
 
 .movies-card__like-ikon_type_active {
-  background: center no-repeat url(../../../images/like-icon-active.svg);
+  background: center no-repeat url(../../images/like-icon-active.svg);
 }
 
 .movies-card__pic {
