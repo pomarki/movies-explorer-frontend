@@ -1,4 +1,4 @@
-const initialCards = [
+const initialMovies = [
     {
         "id": 1,
         "nameRU": "«Роллинг Стоунз» в изгнании",
@@ -5551,4 +5551,205 @@ const initialCards = [
     }
 ];
 
-export { initialCards };
+const savedMovies = [
+    {
+        "id": 35,
+        "nameRU": "Заткнись и играй хиты",
+        "nameEN": "Shut Up and Play the Hits",
+        "director": "Уилл Лавлейс, Дилан Сотерн",
+        "country": "Великобритания",
+        "year": "2012",
+        "duration": 108,
+        "description": "2 апреля 2011 года в нью-йоркском Мэдисон-сквер-гарден LCD Soundsystem сыграли последний концерт, уйдя со сцены на самом пике славы. Это выступление неповторимо само по себе: три с половиной часа музыки, члены The Arcade Fire на бэк-вокале, слившаяся в едином эйфорическом танце многотысячная толпа. Документалисты Саутерн и Лавлейс (вместе со Спайком Джонзи за камерой) не стали ограничиваться этим первоклассным материалом, а решили его дополнить интимным портретом лидера группы Джеймса Мерфи. Двое поворотных суток из его жизни, день выступления и день после; грандиозная вечеринка и неминуемое похмелье. История Мерфи, неудачливого эрудита, ставшего архитектором популярнейшего диско-панк-бенда, — еще одно воплощение американской мечты в декорациях нулевых годов, про которые LCD Soundsystem многое объясняют. Теперь самое время с этим десятилетием распрощаться. Приготовьтесь, будет громко",
+        "trailerLink": "https://www.youtube.com/watch?v=_FAUyrFWDvw",
+        "created_at": "2020-12-03T10:22:34.805Z",
+        "updated_at": "2020-12-03T10:22:34.805Z",
+        "image": {
+            "id": 35,
+            "name": "Shut Up Hits poster",
+            "alternativeText": "",
+            "caption": "",
+            "width": 628,
+            "height": 463,
+            "formats": {
+                "thumbnail": {
+                    "hash": "thumbnail_Shut_Up_Hits_poster_f5bb0d6e83",
+                    "ext": ".jpeg",
+                    "mime": "image/jpeg",
+                    "width": 212,
+                    "height": 156,
+                    "size": 9.31,
+                    "path": null,
+                    "url": "/uploads/thumbnail_Shut_Up_Hits_poster_f5bb0d6e83.jpeg"
+                },
+                "small": {
+                    "hash": "small_Shut_Up_Hits_poster_f5bb0d6e83",
+                    "ext": ".jpeg",
+                    "mime": "image/jpeg",
+                    "width": 500,
+                    "height": 369,
+                    "size": 34.41,
+                    "path": null,
+                    "url": "/uploads/small_Shut_Up_Hits_poster_f5bb0d6e83.jpeg"
+                }
+            },
+            "hash": "Shut_Up_Hits_poster_f5bb0d6e83",
+            "ext": ".jpeg",
+            "mime": "image/jpeg",
+            "size": 45.12,
+            "url": "/uploads/Shut_Up_Hits_poster_f5bb0d6e83.jpeg",
+            "previewUrl": null,
+            "provider": "local",
+            "provider_metadata": null,
+            "created_at": "2020-12-03T10:22:18.570Z",
+            "updated_at": "2020-12-03T10:22:18.570Z"
+        }
+    },
+    {
+        "id": 36,
+        "nameRU": "Опасайтесь мистера Бейкера",
+        "nameEN": "Beware of Mr. Baker",
+        "director": "Джей Балджер",
+        "country": "США",
+        "year": "2012",
+        "duration": 100,
+        "description": "Немолодой мужчина умелым ударом разбивает нос режиссеру Джею Балгеру. Знакомьтесь: легендарный барабанщик Джинджер Бейкер, участник групп Cream и Blind Faith, и от него впрямь следует держаться подальше, недаром он озаглавил свою автобиографию «Восставший из ада». Он из тех пионеров рок-музыки, кто коренным образом изменил ландшафт шестидесятых и семидесятых. Балгер поговорил с парой десятков человек — от Эрика Клэптона, Карлоса Сантаны и Джонни Роттена до брошенных жен и непризнанных детей Бейкера. Эксцентричный, харизматичный и резкий 73-летний музыкант, много лет сидевший на героине, — практически соавтор фильма. На момент съемок он жил в Африке с юной женой и держал 39 пони для игры в поло. Можно вовсе не интересоваться музыкой, чтобы заслушаться историей его жизни. В разговоре о том, можно ли его считать отцом хеви-метала, Бейкер афористично замечает, что лучше бы вовремя был сделан аборт. Неудивительно: несмотря на статус одного из величайших барабанщиков ever, он очевидным образом тоскует по тем временам, когда занимался джазом, а еще по тому, чего мог бы достигнуть, если бы не саморазрушительные повадки и адский характер.",
+        "trailerLink": "https://www.youtube.com/watch?v=bz4C3djygWo",
+        "created_at": "2020-12-03T10:25:17.742Z",
+        "updated_at": "2020-12-03T10:25:17.742Z",
+        "image": {
+            "id": 36,
+            "name": "Art Cinema Webslug - Mr Baker",
+            "alternativeText": "",
+            "caption": "",
+            "width": 1500,
+            "height": 1307,
+            "formats": {
+                "thumbnail": {
+                    "hash": "thumbnail_Art_Cinema_Webslug_Mr_Baker_de10be970f",
+                    "ext": ".jpeg",
+                    "mime": "image/jpeg",
+                    "width": 179,
+                    "height": 156,
+                    "size": 6.49,
+                    "path": null,
+                    "url": "/uploads/thumbnail_Art_Cinema_Webslug_Mr_Baker_de10be970f.jpeg"
+                },
+                "large": {
+                    "hash": "large_Art_Cinema_Webslug_Mr_Baker_de10be970f",
+                    "ext": ".jpeg",
+                    "mime": "image/jpeg",
+                    "width": 1000,
+                    "height": 871,
+                    "size": 113.79,
+                    "path": null,
+                    "url": "/uploads/large_Art_Cinema_Webslug_Mr_Baker_de10be970f.jpeg"
+                },
+                "medium": {
+                    "hash": "medium_Art_Cinema_Webslug_Mr_Baker_de10be970f",
+                    "ext": ".jpeg",
+                    "mime": "image/jpeg",
+                    "width": 750,
+                    "height": 654,
+                    "size": 73.06,
+                    "path": null,
+                    "url": "/uploads/medium_Art_Cinema_Webslug_Mr_Baker_de10be970f.jpeg"
+                },
+                "small": {
+                    "hash": "small_Art_Cinema_Webslug_Mr_Baker_de10be970f",
+                    "ext": ".jpeg",
+                    "mime": "image/jpeg",
+                    "width": 500,
+                    "height": 436,
+                    "size": 38.54,
+                    "path": null,
+                    "url": "/uploads/small_Art_Cinema_Webslug_Mr_Baker_de10be970f.jpeg"
+                }
+            },
+            "hash": "Art_Cinema_Webslug_Mr_Baker_de10be970f",
+            "ext": ".jpeg",
+            "mime": "image/jpeg",
+            "size": 234.79,
+            "url": "/uploads/Art_Cinema_Webslug_Mr_Baker_de10be970f.jpeg",
+            "previewUrl": null,
+            "provider": "local",
+            "provider_metadata": null,
+            "created_at": "2020-12-03T10:24:59.280Z",
+            "updated_at": "2020-12-03T10:24:59.280Z"
+        }
+    },
+    {
+        "id": 38,
+        "nameRU": " Город звука",
+        "nameEN": "Sound City",
+        "director": "Дэйв Грол",
+        "country": null,
+        "year": "2013",
+        "duration": 108,
+        "description": "С лос-анджелесской звукозаписывающей студией Sound City работали Нил Янг, Fleetwood Mac, Том Петти, Metallica и, конечно, Nirvana — именно здесь записывался альбом «Nevermind». Дэвид Грол, барабанщик Nirvana и лидер Foo Fighters, дебютировал в режиссуре влюбленным посвящением этому месту. «Город звука» — обстоятельный рассказ о студии от начала семидесятых до момента ее закрытия в 2011 году. Множество интервью: в бесценных свидетельствах и прямой речи знаменитых музыкантов находится место не только воспоминаниям, но и интереснейшим размышлениям о природе музыки вообще. Этим фильм не ограничивается: в финале Грол собирает уже в своей студии друзей, среди которых Пол Маккартни и Трент Резнор, чтобы в рамках специальной сессии записать саундтрек к «Городу звука» как дань памяти легендарной студии.",
+        "trailerLink": "https://www.youtube.com/watch?v=h6xkkx4a1IY",
+        "created_at": "2020-12-03T10:32:07.800Z",
+        "updated_at": "2020-12-03T10:32:07.800Z",
+        "image": {
+            "id": 37,
+            "name": "embed-still-available-now",
+            "alternativeText": "",
+            "caption": "",
+            "width": 1148,
+            "height": 646,
+            "formats": {
+                "thumbnail": {
+                    "hash": "thumbnail_embed_still_available_now_8e4038f1f6",
+                    "ext": ".jpeg",
+                    "mime": "image/jpeg",
+                    "width": 245,
+                    "height": 138,
+                    "size": 7.86,
+                    "path": null,
+                    "url": "/uploads/thumbnail_embed_still_available_now_8e4038f1f6.jpeg"
+                },
+                "large": {
+                    "hash": "large_embed_still_available_now_8e4038f1f6",
+                    "ext": ".jpeg",
+                    "mime": "image/jpeg",
+                    "width": 1000,
+                    "height": 563,
+                    "size": 123.44,
+                    "path": null,
+                    "url": "/uploads/large_embed_still_available_now_8e4038f1f6.jpeg"
+                },
+                "medium": {
+                    "hash": "medium_embed_still_available_now_8e4038f1f6",
+                    "ext": ".jpeg",
+                    "mime": "image/jpeg",
+                    "width": 750,
+                    "height": 422,
+                    "size": 69.18,
+                    "path": null,
+                    "url": "/uploads/medium_embed_still_available_now_8e4038f1f6.jpeg"
+                },
+                "small": {
+                    "hash": "small_embed_still_available_now_8e4038f1f6",
+                    "ext": ".jpeg",
+                    "mime": "image/jpeg",
+                    "width": 500,
+                    "height": 281,
+                    "size": 30.57,
+                    "path": null,
+                    "url": "/uploads/small_embed_still_available_now_8e4038f1f6.jpeg"
+                }
+            },
+            "hash": "embed_still_available_now_8e4038f1f6",
+            "ext": ".jpeg",
+            "mime": "image/jpeg",
+            "size": 166.51,
+            "url": "/uploads/embed_still_available_now_8e4038f1f6.jpeg",
+            "previewUrl": null,
+            "provider": "local",
+            "provider_metadata": null,
+            "created_at": "2020-12-03T10:31:59.071Z",
+            "updated_at": "2020-12-03T10:31:59.071Z"
+        }
+    },
+]
+export { initialMovies, savedMovies };

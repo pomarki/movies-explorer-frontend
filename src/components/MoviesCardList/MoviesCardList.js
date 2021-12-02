@@ -1,12 +1,11 @@
 import "./MoviesCardList.css";
 import MoviesCard from "../MoviesCard/MoviesCard";
-import { initialCards } from "../../consts/initial-cards";
 
-function MoviesCardList(props) {
+function MoviesCardList({isOpen, movies}) {
   return (
-    <section className="movies-card-list page__section">
+    <section className={`movies-card-list ${isOpen && "movies-card-list_opened"} page__section`}>
       <ul className="movies-card-list__container">
-        {initialCards.map(({ id, ...card }) => (
+        {movies.map(({ id, ...card }) => (
           <MoviesCard key={id} card={card} cardId={id} />
         ))}
       </ul>

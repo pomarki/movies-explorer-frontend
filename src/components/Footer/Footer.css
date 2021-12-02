@@ -7,6 +7,7 @@
   align-items: center;
   font-family: Inter;
   padding: 79px 0 20px 0;
+  flex-grow: 0;
 }
 
 .footer__copyright {

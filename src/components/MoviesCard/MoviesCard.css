@@ -49,6 +49,12 @@
   background: center no-repeat url(../../images/like-icon-active.svg);
 }
 
+.movies-card__delete-icon {
+  width: 14px;
+  height: 12px;
+  background: center no-repeat url(../../images/delete-icon.svg);
+}
+
 .movies-card__pic {
   width: 220px;
   height: 122px;

@@ -1,6 +1,8 @@
 .movies-card-list {
   background-color: #ffffff;
   padding: 80px 0 0 0;
+  display: none;
+  flex-grow: 1;
 }
 
 .movies-card-list__container {
@@ -29,4 +31,8 @@
   line-height: 1.25;
   letter-spacing: 0px;
   margin: 60px 0 0 0;
+}
+
+.movies-card-list_opened {
+  display: flex;
 }

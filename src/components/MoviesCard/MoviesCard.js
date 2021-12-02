@@ -12,7 +12,7 @@ function MoviesCard({ card, cardId }) {
       <div className="movies-card__info">
         <p className="movies-card__title">{nameRU}</p>
         <p className="movies-card__duration">{duration}</p>
-        <div className="movies-card__like-ikon page__link movies-card__like-ikon_type_active"></div>
+        <div className="movies-card__like-ikon page__link movies-card__delete-icon"></div>
       </div>
       <div
         className="movies-card__pic"
