@@ -6,6 +6,8 @@ import Popup from "../Popup/Popup";
 import SavedMovies from "../SavedMovies/SavedMovies";
 import Profile from "../Profile/Profile";
 import Register from "../Register/Register";
+import Login from "../Login/Login";
+import PageNotFound from "../PageNotFound/PageNotFound";
 
 function App() {
   return (
@@ -16,7 +18,9 @@ function App() {
       <Movies isOpen={false} />
       <SavedMovies isOpen={false} />
       <Profile isOpen={false} />
-      <Register isOpen={true} />
+      <Register isOpen={false} />
+      <Login isOpen={false} />
+      <PageNotFound isOpen={true} />
     </div>
   );
 }
