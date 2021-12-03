@@ -5,6 +5,7 @@ import Movies from "../Movies/Movies";
 import Popup from "../Popup/Popup";
 import SavedMovies from "../SavedMovies/SavedMovies";
 import Profile from "../Profile/Profile";
+import Register from "../Register/Register";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <Movies isOpen={false} />
       <SavedMovies isOpen={false} />
       <Profile isOpen={false} />
+      <Register isOpen={true} />
     </div>
   );
 }
