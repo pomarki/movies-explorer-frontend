@@ -3,11 +3,11 @@ import Header from "../Header/Header";
 const userName = "Денис";
 const userEmail = "denis.shalaew@yandex.ru";
 
-function Profile(props) {
+function Profile({isOpen}) {
   return (
-    <section className="profile page__section">
+    <section className={`profile ${isOpen && "profile_opened"} page__section`}>
       <Header isOpen={true} navTypeSmall={true} />
-      <div className="profile__container profile__container_opened">
+      <div className="profile__container">
         <p className="profile__title">Привет, {userName}</p>
         <div className="profile__info-container">
           <div className="profile__info-block">
@@ -31,22 +31,26 @@ function Profile(props) {
           </div>
         </div>
       </div>
-      <div className="profile__container">
+      <div className="profile__container profile__container_opened">
+      <p className="profile__title">Привет, {userName}</p>
         <div className="profile__edit-form">
           <div className="profile__info-block">
-            <p className="prfile__info-subtitle">Имя</p>
+            <p className="profile__info-subtitle">Имя</p>
             <input
-              className="profile__input"
+              className="profile__input profile__info-subtitle"
               id="profile-name"
               type="text"
+              placeholder={userName}
             ></input>
           </div>
+          <div className="profile__break_line"></div>
           <div className="profile__info-block">
-            <p className="prfile__info-subtitle">Почта</p>
+            <p className="profile__info-subtitle">Почта</p>
             <input
-              className="profile__input"
+              className="profile__input profile__info-subtitle"
               id="profile-email"
               type="text"
+              placeholder={userEmail}
             ></input>
           </div>
         </div>
@@ -55,7 +59,7 @@ function Profile(props) {
           <button
             className="profile__save-button page__link"
             id="profile-save-button"
-          ></button>
+          >Сохранить</button> {/* убирать page__link для неактивной кнопки*/}
         </div>
       </div>
     </section>

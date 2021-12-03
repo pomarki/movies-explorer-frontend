@@ -14,7 +14,7 @@ function App() {
       <Footer isOpen={false} />
       <Movies isOpen={false} />
       <SavedMovies isOpen={false} />
-      <Profile />
+      <Profile isOpen={false} />
     </div>
   );
 }

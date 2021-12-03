@@ -2,8 +2,12 @@
   background-color: #ffffff;
   height: 100vh;
   font-family: Inter;
+  display: none;
 }
 
+.profile_opened {
+display: flex;
+}
 .profile__container {
   display: none;
   flex-direction: column;
@@ -79,4 +83,30 @@
   height: 1px;
   background-color: #e8e8e8;
   margin: 16px 0 17px 0;
+}
+
+.profile__input {
+  border: 0;
+  outline: 0;
+  text-align: right;
+}
+
+.profile__save-button {
+  width: 410px;
+  height: 45px;
+  background-color: #3456f3;
+  color: #ffffff;
+  border: 0;
+  border-radius: 3px;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.21;
+  letter-spacing: 0em;
+  margin: 223px 0 0 0;
+}
+
+.profile__save-button_type_inactive {
+  background-color: #f8f8f8;
+  color: #c2c2c2;
 }
