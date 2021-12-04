@@ -1,5 +1,5 @@
 .navigation {
-  width: 520px;
+  max-width: 520px;
   height: 100vh;
   display: none;
   font-family: Inter;

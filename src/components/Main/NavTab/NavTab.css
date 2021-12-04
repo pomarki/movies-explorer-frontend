@@ -1,8 +1,8 @@
 .main__navigation {
-  width: 1280px;
+  max-width: 1280px;
+  width: 100%;
   height: 66px;
   background-color: #000000;
-  margin: 0;
   padding: 0;
   display: flex;
   flex-direction: row;

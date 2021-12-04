@@ -1,12 +1,13 @@
 .footer {
-  width: 1280px;
+  max-width: 1280px;
+  width: 100%;
   background-color: #ffffff;
   display: none;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
   font-family: Inter;
-  padding: 79px 0 20px 0;
+  padding: 59px 0 20px 0;
   flex-grow: 0;
 }
 
@@ -20,7 +21,8 @@
 }
 
 .footer__container {
-  width: 1140px;
+  max-width: 1140px;
+  width: 100%;
   border-top: 1px #e5e5e5 solid;
   display: flex;
   flex-direction: row;

@@ -35,7 +35,7 @@ function Techs(props) {
             <div className="techs__diagram-block">Express.js</div>
           </li>
           <li className="techs__diagram-list-element">
-            <div className="techs__diagram-block">MongoDB</div>
+            <div className="techs__diagram-block">mongoDB</div>
           </li>
         </ul>
       </div>

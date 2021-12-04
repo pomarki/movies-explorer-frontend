@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 function Promo(props) {
   return (
-    <section className="promo">
+    <section className="promo page__section">
       <div className="promo__top">
         <a href="#aboutProject">
           <div className="page__logo page__link"></div>
@@ -20,7 +20,7 @@ function Promo(props) {
       </div>
       <div className="promo__central">
         <h1 className="promo__title">
-          Учебный&nbsp;проект&nbsp;студента факультета Веб-разработки
+          Учебный&nbsp;проект&nbsp;студента факультета Веб-разработки.
         </h1>
       </div>
     </section>

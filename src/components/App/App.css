@@ -3,6 +3,7 @@
 
 .page {
   background-color: #e5e5e5;
+  /* background-color: tomato; */
   font-family: "Inter", "Arial", "Helvetica", sans-serif;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
@@ -11,10 +12,10 @@
   -moz-text-size-adjust: 100%;
   text-rendering: optimizeLegibility;
   width: 100%;
-  display: flex;
+  /* display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  align-items: center;
+  align-items: center; */
   font-family: Inter;
   min-height: 100vh;
 }
@@ -30,13 +31,14 @@
 }
 
 .page__section {
-  width: 1280px;
-  /* width: 100%; */
+  max-width: 1280px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
   font-family: Inter;
+  margin: 0 auto;
 }
 
 .page__section-title {
@@ -52,6 +54,7 @@
   width: 100%;
   border-bottom: 1px #000000 solid;
   line-height: 1.17;
+  
 }
 
 .page__logo {

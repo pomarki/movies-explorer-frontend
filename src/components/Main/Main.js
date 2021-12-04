@@ -7,8 +7,9 @@ import AboutProject from "./AboutProject/AboutProject";
 import Techs from "./Techs/Techs";
 import AboutMe from "./AboutMe/AboutMe";
 import Portfolio from "./Portfolio/Portfolio";
+import Footer from "../Footer/Footer";
 
-function Main({isOpen}) {
+function Main({ isOpen }) {
   return (
     <main className={`main ${isOpen && "main_opened"}`}>
       <Promo />
@@ -17,6 +18,7 @@ function Main({isOpen}) {
       <Techs />
       <AboutMe />
       <Portfolio />
+      <Footer isOpen={true} />
     </main>
   );
 }

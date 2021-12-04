@@ -3,7 +3,7 @@ import "./Footer.css";
 
 function Footer({ isOpen }) {
   return (
-    <section className={`footer ${isOpen && "footer_opened"}`}>
+    <section className={`footer ${isOpen && "footer_opened"} page__section`}>
       <p className="footer__title">
         Учебный проект Яндекс.Практикум х BeatFilm.
       </p>

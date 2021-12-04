@@ -4,7 +4,7 @@ import "./NavTab.css";
 
 function NavTab(props) {
   return (
-    <section className="main__navigation">
+    <section className="main__navigation page__section">
       <a className="page__link main__link" href="#aboutProject">О проекте</a>
       <a className="page__link main__link" href="#techs">Технологии</a>
       <a className="page__link main__link" href="#aboutMe">Студент</a>

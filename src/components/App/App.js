@@ -13,14 +13,14 @@ function App() {
   return (
     <div className="page">
       <Popup isOpen={false} />
-      <Main isOpen={false} />
+      <Main isOpen={true} />
       <Footer isOpen={false} />
       <Movies isOpen={false} />
       <SavedMovies isOpen={false} />
       <Profile isOpen={false} />
       <Register isOpen={false} />
       <Login isOpen={false} />
-      <PageNotFound isOpen={true} />
+      <PageNotFound isOpen={false} />
     </div>
   );
 }
