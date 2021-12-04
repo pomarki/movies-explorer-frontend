@@ -10,14 +10,18 @@ function SearchForm(props) {
           <input
             className="search-form__input"
             id="find-film"
-            required
             type="text"
             placeholder="Фильм"
           ></input>
-          <button className="search-form__button page__link" type="button"></button>
-          <div className="search-form__break-line"></div>
-          <div className="search-form__filter-container">
-            <FilterCheckbox />
+          <div className="search-form__find-block">
+            <button
+              className="search-form__button page__link"
+              type="button"
+            ></button>
+            <div className="search-form__break-line"></div>
+            <div className="search-form__filter-container">
+              <FilterCheckbox />
+            </div>
           </div>
         </div>
       </div>

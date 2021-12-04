@@ -13,9 +13,9 @@ function App() {
   return (
     <div className="page">
       <Popup isOpen={false} />
-      <Main isOpen={true} />
+      <Main isOpen={false} />
       <Footer isOpen={false} />
-      <Movies isOpen={false} />
+      <Movies isOpen={true} />
       <SavedMovies isOpen={false} />
       <Profile isOpen={false} />
       <Register isOpen={false} />

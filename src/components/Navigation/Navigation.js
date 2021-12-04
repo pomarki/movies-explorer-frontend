@@ -20,7 +20,10 @@ function Navigation({ isOpen, navTypeSmall }) {
     ? "navigation__link_type_small"
     : "navigation__link_type_big";
 
-  const navLinkListType = navTypeSmall ? "navigation__links-list_type_small" : "";
+  const navLinkListType = navTypeSmall
+    ? "navigation__links-list_type_small"
+    : "";
+
   return (
     <div className={`navigation ${sectionVisible} ${navigationType}`}>
       <button
@@ -36,7 +39,7 @@ function Navigation({ isOpen, navTypeSmall }) {
           </NavLink>
           <NavLink
             to="/"
-            className={`navigation__link navigation__link page__link ${navLinkType}`}
+            className={`navigation__link navigation__link navigation__link_actual-small page__link ${navLinkType}`}
           >
             Фильмы
           </NavLink>
