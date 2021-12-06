@@ -15,8 +15,8 @@ function App() {
       <Popup isOpen={false} />
       <Main isOpen={false} />
       <Footer isOpen={false} />
-      <Movies isOpen={true} />
-      <SavedMovies isOpen={false} />
+      <Movies isOpen={false} />
+      <SavedMovies isOpen={true} />
       <Profile isOpen={false} />
       <Register isOpen={false} />
       <Login isOpen={false} />

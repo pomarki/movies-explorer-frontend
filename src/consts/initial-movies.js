@@ -491,77 +491,68 @@ const savedMovies = [
         }
     },
     {
-        "id": 38,
-        "nameRU": " Город звука",
-        "nameEN": "Sound City",
-        "director": "Дэйв Грол",
-        "country": null,
-        "year": "2013",
-        "duration": 108,
-        "description": "С лос-анджелесской звукозаписывающей студией Sound City работали Нил Янг, Fleetwood Mac, Том Петти, Metallica и, конечно, Nirvana — именно здесь записывался альбом «Nevermind». Дэвид Грол, барабанщик Nirvana и лидер Foo Fighters, дебютировал в режиссуре влюбленным посвящением этому месту. «Город звука» — обстоятельный рассказ о студии от начала семидесятых до момента ее закрытия в 2011 году. Множество интервью: в бесценных свидетельствах и прямой речи знаменитых музыкантов находится место не только воспоминаниям, но и интереснейшим размышлениям о природе музыки вообще. Этим фильм не ограничивается: в финале Грол собирает уже в своей студии друзей, среди которых Пол Маккартни и Трент Резнор, чтобы в рамках специальной сессии записать саундтрек к «Городу звука» как дань памяти легендарной студии.",
-        "trailerLink": "https://www.youtube.com/watch?v=h6xkkx4a1IY",
-        "created_at": "2020-12-03T10:32:07.800Z",
-        "updated_at": "2020-12-03T10:32:07.800Z",
+        "id": 7,
+        "nameRU": "Постеры, сошедшие со стен",
+        "nameEN": "The Posters Came from the Walls",
+        "director": "Джереми Деллер, Николас Абрахамс",
+        "country": "Великобритания",
+        "year": "2008",
+        "duration": 72,
+        "description": "**Depeche Mode как смысл жизни**\nКругосветная панорама, показывающая обычаи и традиции поклонников Depeche Mode по всему миру: от России до Ирана. Отправившись снимать парадную картину, рассказывающую о том, как любят группу Depeche Mode за пределами Британии, авторы фильма столкнулись с тем, что любовь эта подчас носит очень личный — и в то же время общенациональный — характер.\n",
+        "trailerLink": "https://www.youtube.com/watch?v=VFMU3crg0sM",
+        "created_at": "2020-12-02T20:40:08.342Z",
+        "updated_at": "2020-12-02T20:40:08.342Z",
         "image": {
-            "id": 37,
-            "name": "embed-still-available-now",
+            "id": 7,
+            "name": "posters-came-from-the-walls-2009-001-posters",
             "alternativeText": "",
             "caption": "",
-            "width": 1148,
-            "height": 646,
+            "width": 1000,
+            "height": 750,
             "formats": {
                 "thumbnail": {
-                    "hash": "thumbnail_embed_still_available_now_8e4038f1f6",
+                    "hash": "thumbnail_posters_came_from_the_walls_2009_001_posters_180fe1a19f",
                     "ext": ".jpeg",
                     "mime": "image/jpeg",
-                    "width": 245,
-                    "height": 138,
-                    "size": 7.86,
+                    "width": 208,
+                    "height": 156,
+                    "size": 10.53,
                     "path": null,
-                    "url": "/uploads/thumbnail_embed_still_available_now_8e4038f1f6.jpeg"
-                },
-                "large": {
-                    "hash": "large_embed_still_available_now_8e4038f1f6",
-                    "ext": ".jpeg",
-                    "mime": "image/jpeg",
-                    "width": 1000,
-                    "height": 563,
-                    "size": 123.44,
-                    "path": null,
-                    "url": "/uploads/large_embed_still_available_now_8e4038f1f6.jpeg"
+                    "url": "/uploads/thumbnail_posters_came_from_the_walls_2009_001_posters_180fe1a19f.jpeg"
                 },
                 "medium": {
-                    "hash": "medium_embed_still_available_now_8e4038f1f6",
+                    "hash": "medium_posters_came_from_the_walls_2009_001_posters_180fe1a19f",
                     "ext": ".jpeg",
                     "mime": "image/jpeg",
                     "width": 750,
-                    "height": 422,
-                    "size": 69.18,
+                    "height": 563,
+                    "size": 92.16,
                     "path": null,
-                    "url": "/uploads/medium_embed_still_available_now_8e4038f1f6.jpeg"
+                    "url": "/uploads/medium_posters_came_from_the_walls_2009_001_posters_180fe1a19f.jpeg"
                 },
                 "small": {
-                    "hash": "small_embed_still_available_now_8e4038f1f6",
+                    "hash": "small_posters_came_from_the_walls_2009_001_posters_180fe1a19f",
                     "ext": ".jpeg",
                     "mime": "image/jpeg",
                     "width": 500,
-                    "height": 281,
-                    "size": 30.57,
+                    "height": 375,
+                    "size": 46.34,
                     "path": null,
-                    "url": "/uploads/small_embed_still_available_now_8e4038f1f6.jpeg"
+                    "url": "/uploads/small_posters_came_from_the_walls_2009_001_posters_180fe1a19f.jpeg"
                 }
             },
-            "hash": "embed_still_available_now_8e4038f1f6",
+            "hash": "posters_came_from_the_walls_2009_001_posters_180fe1a19f",
             "ext": ".jpeg",
             "mime": "image/jpeg",
-            "size": 166.51,
-            "url": "/uploads/embed_still_available_now_8e4038f1f6.jpeg",
+            "size": 153.63,
+            "url": "/uploads/posters_came_from_the_walls_2009_001_posters_180fe1a19f.jpeg",
             "previewUrl": null,
             "provider": "local",
             "provider_metadata": null,
-            "created_at": "2020-12-03T10:31:59.071Z",
-            "updated_at": "2020-12-03T10:31:59.071Z"
+            "created_at": "2020-12-02T20:39:50.486Z",
+            "updated_at": "2020-12-02T20:39:50.486Z"
         }
     },
+
 ]
 export { initialMovies, savedMovies };

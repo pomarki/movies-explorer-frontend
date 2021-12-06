@@ -11,6 +11,10 @@
   margin: 0;
 }
 
+.movies-card:last-of-type {
+  margin: 0 0 10px 0;
+}
+
 .movies-card__info {
   display: flex;
   flex-direction: column;
@@ -62,5 +66,4 @@
   margin: 6px 6px 6px 0;
   display: flex;
   background-color: #ffffff;
-  
 }
