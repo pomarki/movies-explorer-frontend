@@ -1,0 +1,69 @@
+.button-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  height: 100%;
+  
+}
+
+.button-container__button {
+  border: 0;
+  font-size: 13px;
+  font-style: normal;
+  line-height: 1.23;
+  letter-spacing: 0px;
+  padding: 0;
+  margin: 0;
+}
+
+.button-container__button_type_edit {
+  background-color: #ffffff;
+  font-weight: 400;
+  margin: 0;
+}
+
+.button-container__button_type_out {
+  color: #ff004d;
+  font-weight: 500;
+  background-color: #ffffff;
+  margin: 16px 0 50px 0;
+}
+
+.button-container__type_inactive {
+  display: none;
+}
+
+.button-container__save-button {
+  width: 410px;
+  height: 45px;
+  background-color: #3456f3;
+  color: #ffffff;
+  border: 0;
+  border-radius: 3px;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.21;
+  letter-spacing: 0em;
+  margin: 20px 0 50px 0;
+}
+
+.button-container__save-button_type_inactive {
+  background-color: #f8f8f8;
+  color: #c2c2c2;
+}
+
+.button-container__error-message {
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.18;
+  letter-spacing: 0px;
+  color: #ff004c;
+  margin: 0;
+}
+
+.button-container__error-message_type_inactive {
+  display: none;
+}
