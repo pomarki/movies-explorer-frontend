@@ -38,13 +38,13 @@ function Navigation({ isOpen, navTypeSmall }) {
             Главная
           </NavLink>
           <NavLink
-            to="/"
+            to="/movies"
             className={`navigation__link navigation__link navigation__link_actual-small page__link ${navLinkType}`}
           >
             Фильмы
           </NavLink>
           <NavLink
-            to="/"
+            to="/saved-movies"
             className={`navigation__link navigation__link page__link ${navLinkType}`}
           >
             Сохранённые фильмы

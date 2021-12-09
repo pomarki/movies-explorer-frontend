@@ -1,4 +1,5 @@
 import "./App.css";
+import { Routes, Route } from "react-router";
 import Footer from "../Footer/Footer";
 import Main from "../Main/Main";
 import Movies from "../Movies/Movies";
@@ -12,15 +13,15 @@ import PageNotFound from "../PageNotFound/PageNotFound";
 function App() {
   return (
     <div className="page">
-      <Popup isOpen={false} />
-      <Main isOpen={false} />
-      <Footer isOpen={false} />
-      <Movies isOpen={false} />
-      <SavedMovies isOpen={false} />
-      <Profile isOpen={false} />
-      <Register isOpen={false} />
-      <Login isOpen={false} />
-      <PageNotFound isOpen={true} />
+      <Routes>
+        <Route exact path="/" element={<Main isOpen={true} />} />
+        <Route path="/movies" element={<Movies isOpen={true} />} />
+        <Route path="/saved-movies" element={<SavedMovies isOpen={true} />} />
+        <Route path="/profile" element={<Profile isOpen={true} />} />
+        <Route path="/signup" element={<Register isOpen={true} />} />
+        <Route path="/signin" element={<Login isOpen={true} />} />
+        <Route path="*" element={<PageNotFound isOpen={true} />} />
+      </Routes>
     </div>
   );
 }
