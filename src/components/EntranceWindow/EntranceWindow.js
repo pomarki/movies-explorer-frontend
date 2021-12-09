@@ -7,14 +7,17 @@ function EntranceWindow({ name, children }) {
   let linkName;
   let buttonTitle;
   let greeting;
+  let buttonId;
 
   name === "register"
     ? (linkDirection = "/sign-in")
     : (linkDirection = "/sign-up");
+
   name === "register"
     ? (linkSubtitle = "Уже зарегистрированы?")
     : (linkSubtitle = "Ещё не зарегистрированы?");
   name === "register" ? (linkName = "Войти") : (linkName = "Регистрация");
+
   name === "register"
     ? (buttonTitle = "Зарегистрироваться")
     : (buttonTitle = "Войти");
@@ -23,6 +26,10 @@ function EntranceWindow({ name, children }) {
     ? (greeting = "Добро пожаловать!")
     : (greeting = "Рады видеть!");
 
+  name === "register"
+    ? (buttonId = "register-button")
+    : (buttonId = "login-button");
+
   return (
     <div className="entrance-window__container">
       <Link to="/">
@@ -30,7 +37,7 @@ function EntranceWindow({ name, children }) {
       </Link>
       <p className="entrance-window__title">{greeting}</p>
       <div className="entrance-window__form-container">{children}</div>
-      <button className="entrance-window__reg-button page__link">
+      <button className="entrance-window__reg-button page__link" id={buttonId}>
         {buttonTitle}
       </button>
       <div className="entrance-window__link-container">

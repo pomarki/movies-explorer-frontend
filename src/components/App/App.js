@@ -18,9 +18,9 @@ function App() {
       <Movies isOpen={false} />
       <SavedMovies isOpen={false} />
       <Profile isOpen={false} />
-      <Register isOpen={true} />
+      <Register isOpen={false} />
       <Login isOpen={false} />
-      <PageNotFound isOpen={false} />
+      <PageNotFound isOpen={true} />
     </div>
   );
 }

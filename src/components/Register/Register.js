@@ -10,34 +10,34 @@ function Register({ isOpen }) {
       className={`register ${isOpen && "register_opened"} page__section`}
     >
       <EntranceWindow name="register">
-        <label className="register__label" for="register-user">
+        <label className="entrance-window__label" for="register-user">
           Имя
         </label>
         <input
           type="text"
           id="register-user"
-          className="register__input"
+          className="entrance-window__input"
         ></input>
-        <div className="register__breakline"></div>
-        <label className="register__label" for="register-email">
+        <div className="entrance-window__breakline"></div>
+        <label className="entrance-window__label" for="register-email">
           E-mail
         </label>
         <input
           type="email"
           id="register-email"
-          className="register__input"
+          className="entrance-window__input register__input"
         ></input>
-        <div className="register__breakline"></div>
-        <label className="register__label" for="register-password">
+        <div className="entrance-window__breakline"></div>
+        <label className="entrance-window__label" for="register-password">
           Пароль
         </label>
         <input
           type="password"
           id="register-password"
-          className="register__input"
+          className="entrance-window__input register__input"
         ></input>
-        <div className="register__breakline"></div>
-        <p className="register__error-message redister__error-message_inactive">Что-то пошло не так</p>
+        <div className="entrance-window__breakline"></div>
+        <p className="entrance-window__error-message">Что-то пошло не так...</p>
       </EntranceWindow>
     </section>
   );
