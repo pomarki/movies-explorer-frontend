@@ -14,9 +14,7 @@ function EntranceWindow({ name, children }) {
   name === "register"
     ? (linkSubtitle = "Уже зарегистрированы?")
     : (linkSubtitle = "Ещё не зарегистрированы?");
-  name === "register"
-    ? (linkName = "Войти")
-    : (linkName = "Регистрация");
+  name === "register" ? (linkName = "Войти") : (linkName = "Регистрация");
   name === "register"
     ? (buttonTitle = "Зарегистрироваться")
     : (buttonTitle = "Войти");
@@ -31,17 +29,15 @@ function EntranceWindow({ name, children }) {
         <div className="page__logo page__link"></div>
       </Link>
       <p className="entrance-window__title">{greeting}</p>
-      <div className="entrance-window__form-container">
-        {children}
-        <button className="entrance-window__reg-button page__link">
-          {buttonTitle}
-        </button>
-        <div className="entrance-window__link-container">
-          <p className="entrance-window__subtitle">{linkSubtitle}</p>
-          <Link to={linkDirection} className="entrance-window__link page__link">
-            {linkName}
-          </Link>
-        </div>
+      <div className="entrance-window__form-container">{children}</div>
+      <button className="entrance-window__reg-button page__link">
+        {buttonTitle}
+      </button>
+      <div className="entrance-window__link-container">
+        <p className="entrance-window__subtitle">{linkSubtitle}</p>
+        <Link to={linkDirection} className="entrance-window__link page__link">
+          {linkName}
+        </Link>
       </div>
     </div>
   );
