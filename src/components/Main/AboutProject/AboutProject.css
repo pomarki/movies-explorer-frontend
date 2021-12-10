@@ -21,7 +21,6 @@
 .about-project__info-block {
   max-width: 550px;
   width: 100%;
-  /* padding: 0 70px 0 70px; */
 }
 
 .about-project__diagram {
@@ -54,7 +53,6 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  
 }
 
 .about-project__diagram-block_size_s {

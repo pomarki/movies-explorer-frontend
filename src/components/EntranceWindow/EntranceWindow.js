@@ -8,7 +8,6 @@ function EntranceWindow({ name, children }) {
   let buttonTitle;
   let greeting;
   let buttonId;
-  let linkToMovies;
 
   name === "register"
     ? (linkDirection = "/signin")

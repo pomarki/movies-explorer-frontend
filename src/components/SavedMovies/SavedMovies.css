@@ -1,8 +1,8 @@
 .saved-movies {
-    min-height: 100vh;
-    display: none;
+  min-height: 100vh;
+  display: none;
 }
 
 .saved-movies_opened {
-    display: flex;
+  display: flex;
 }

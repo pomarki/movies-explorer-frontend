@@ -1,7 +1,6 @@
 .movies-card-list {
   background-color: #ffffff;
   padding: 80px 0 0 0;
-  /* min-height: 100vh; */
   display: none;
   flex-grow: 1;
 }
@@ -30,8 +29,6 @@
   padding: 50px 0 80px 0;
   box-sizing: border-box;
 }
-
-
 
 .movies-card-list__more-button {
   width: 320px;

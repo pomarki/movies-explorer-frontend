@@ -5,9 +5,9 @@ function Popup({ isOpen }) {
   return (
     <section className={`popup ${isOpen && "popup_opened"}`}>
       <div className="popup__container">
-          <div className="popup__section">
-              <Navigation isOpen={true} />
-          </div>
+        <div className="popup__section">
+          <Navigation isOpen={true} />
+        </div>
       </div>
     </section>
   );

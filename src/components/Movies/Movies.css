@@ -1,7 +1,7 @@
 .movies {
-    display: none;
+  display: none;
 }
 
 .movies_opened {
-    display: flex;
+  display: flex;
 }

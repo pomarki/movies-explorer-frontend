@@ -1,9 +1,7 @@
 import "./App.css";
 import { Routes, Route } from "react-router";
-import Footer from "../Footer/Footer";
 import Main from "../Main/Main";
 import Movies from "../Movies/Movies";
-import Popup from "../Popup/Popup";
 import SavedMovies from "../SavedMovies/SavedMovies";
 import Profile from "../Profile/Profile";
 import Register from "../Register/Register";

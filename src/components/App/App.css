@@ -54,7 +54,6 @@
   width: 100%;
   border-bottom: 1px #000000 solid;
   line-height: 1.17;
-  
 }
 
 .page__logo {
@@ -62,18 +61,3 @@
   height: 38px;
   background: url(../../images/logo.svg) no-repeat center;
 }
-
-/* .page__logo_header {
-  margin: 0 0 0 70px;
-} */
-/* .page__overlay {
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  opacity: 0.3;
-  background-color: #000000;
-  top: 0;
-  left: 0;
-  position: fixed;
-
-} */
