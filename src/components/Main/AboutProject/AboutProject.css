@@ -80,3 +80,116 @@
   color: #a0a0a0;
   margin: 9px 0 0 0;
 }
+
+@media screen and (max-width: 1200px) {
+  .about-project__info-container {
+    max-width: 990px;
+  }
+  .about-project__diagram {
+    max-width: 990px;
+  }
+}
+
+@media screen and (max-width: 1025px) {
+  .about-project__info-container {
+    max-width: 910px;
+  }
+  .about-project__diagram {
+    max-width: 910px;
+  }
+}
+
+@media screen and (max-width: 950px) {
+  .about-project__info-container {
+    max-width: 855px;
+  }
+  .about-project__diagram {
+    max-width: 855px;
+  }
+}
+
+@media screen and (max-width: 895px) {
+  .about-project__info-container {
+    max-width: 815px;
+  }
+  .about-project__diagram {
+    max-width: 815px;
+  }
+}
+
+@media screen and (max-width: 842px) {
+  .about-project__info-container {
+    max-width: 668px;
+  }
+  .about-project__diagram {
+    max-width: 668px;
+  }
+}
+
+@media screen and (max-width: 790px) {
+  .about-project {
+    padding: 90px 0 90px 0;
+  }
+  .about-project__title-container {
+    margin: 0 0 70px 0;
+  }
+  .about-project_paragraph {
+    font-size: 12px;
+    line-height: 1.5;
+  }
+  .about-project__info-block {
+    max-width: 319px;
+  }
+  .about-project__info-container {
+    max-width: 668px;
+    margin: 0 0 90px 0;
+  }
+  .about-project__diagram {
+    max-width: 668px;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .about-project {
+    padding: 70px 0 70px 0;
+  }
+
+  .about-project__title-container {
+    margin: 0 0 60px 0;
+  }
+
+  .about-project__info-container {
+    max-width: 284px;
+    flex-direction: column;
+    margin: 0 0 60px 0;
+  }
+  .about-project__subtitle {
+    margin: 0 0 16px 0;
+    font-size: 18px;
+    line-height: 1.22;
+  }
+  .about-project_paragraph {
+    font-size: 11px;
+    line-height: 1.45;
+  }
+
+  .about-project__info-block {
+    max-width: 284px;
+    margin: 0 0 56px 0;
+  }
+  .about-project__info-block:last-of-type {
+    margin: 0;
+  }
+  .about-project__diagram {
+    max-width: 284px;
+  }
+  .about-project__diagram-subtitle {
+    font-size: 11px;
+    line-height: 1.18;
+  }
+  .about-project__diagram-caption {
+    font-size: 11px;
+    font-weight: 400;
+    line-height: 1.18;
+  }
+}

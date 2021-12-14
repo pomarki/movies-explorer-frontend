@@ -25,7 +25,7 @@ function Promo(props) {
       </div>
       <div className="promo__central">
         <h1 className="promo__title">
-          Учебный&nbsp;проект&nbsp;студента факультета Веб-разработки.
+          Учебный&nbsp;проект студента факультета Веб-разработки.
         </h1>
       </div>
     </section>

@@ -4,8 +4,8 @@ import "./Portfolio.css";
 function Portfolio(props) {
   return (
     <section className="portfolio page__section">
-      <h2 className="portfolio__title">Портфолио</h2>
       <div className="portfolio__example-container">
+      <h2 className="portfolio__title">Портфолио</h2>
         <ul className="portfolio__links-list">
           <li className="portfolio__links-list-element">
             <div className="portfolio__example-block page__link">

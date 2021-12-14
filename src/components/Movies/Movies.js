@@ -9,9 +9,9 @@ import { initialMovies } from "../../consts/initial-movies";
 function Movies({isOpen}) {
     return (
       <section className={`movies page__section ${isOpen && "movies_opened"}`}>
-        <Header isOpen={true} navOpen={false} />
+        <Header isOpen={true} navOpen={true} />
         <SearchForm />
-        <Popup isOpen={true} />
+        <Popup isOpen={false} />
         <MoviesCardList isOpen={true} movies={initialMovies} />
         <Footer isOpen={true} />
       </section>
