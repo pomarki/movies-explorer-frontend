@@ -117,6 +117,7 @@
 @media screen and (max-width: 350px) {
   .portfolio {
     max-width: 320px;
+    padding: 2px 0 50px 0;
   }
   .portfolio__title {
     margin: 0 0 40px 0;
@@ -133,5 +134,10 @@
   .portfolio__example-button {
     width: 18px;
     height: 18px;
+    background-position-y: top;
+    background-size: 10px 10px;
+  }
+  .portfolio__links-list-element {
+    margin: 18px 0 19px 0;
   }
 }

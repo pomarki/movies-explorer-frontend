@@ -79,7 +79,6 @@
     max-width: 768px;
     height: 858px;
     padding: 0 30px 0 30px;
-    margin: 0;
   }
   .promo__central {
     height: 100%;
@@ -103,8 +102,9 @@
   }
 
   .promo__central {
-    max-width: 320px;
+    max-width: 300px;
     height: 570px;
+    background-position: left 50% top 44%;
     background-size: 248px 248px;
   }
   .promo__authorization-button {
