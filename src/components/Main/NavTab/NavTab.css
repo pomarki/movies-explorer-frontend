@@ -31,7 +31,7 @@
   }
 }
 
-@media screen and (max-width: 350px) {
+@media screen and (max-width: 360px) {
   .main__navigation {
     max-width: 320px;
   }

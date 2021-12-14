@@ -149,7 +149,104 @@
   }
 }
 
-@media screen and (max-width: 350px) {
+@media screen and (max-width: 720px) {
+  .about-project__info-container {
+    max-width: 648px;
+  }
+  .about-project__diagram {
+    max-width: 648px;
+  }
+}
+
+@media screen and (max-width: 690px) {
+  .about-project__info-container {
+    max-width: 628px;
+  }
+  .about-project__diagram {
+    max-width: 628px;
+  }
+}
+
+@media screen and (max-width: 670px) {
+  .about-project__info-container {
+    max-width: 608px;
+  }
+  .about-project__diagram {
+    max-width: 608px;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .about-project__info-container {
+    max-width: 578px;
+  }
+  .about-project__diagram {
+    max-width: 578px;
+  }
+}
+
+@media screen and (max-width: 620px) {
+  .about-project__info-container {
+    max-width: 558px;
+  }
+  .about-project__diagram {
+    max-width: 558px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .about-project__info-container {
+    max-width: 538px;
+  }
+  .about-project__diagram {
+    max-width: 538px;
+  }
+}
+
+@media screen and (max-width: 570px) {
+  .about-project__info-container {
+    max-width: 508px;
+    flex-direction: column;
+    margin: 0 0 60px 0;
+  }
+  .about-project__info-block {
+    max-width: 508px;
+    margin: 0 0 56px 0;
+  }
+  .about-project__diagram {
+    max-width: 508px;
+  }
+
+}
+@media screen and (max-width: 540px) {
+  .about-project__info-container {
+    max-width: 478px;
+  }
+  .about-project__diagram {
+    max-width: 478px;
+  }
+}
+
+@media screen and (max-width: 520px) {
+  .about-project__info-container {
+    max-width: 400px;
+  }
+  .about-project__diagram {
+    max-width: 400px;
+  }
+}
+
+@media screen and (max-width: 435px) {
+  .about-project__info-container {
+    max-width: 340px;
+  }
+  .about-project__diagram {
+    max-width: 340px;
+  }
+}
+
+
+@media screen and (max-width: 360px) {
   .about-project {
     padding: 70px 0 70px 0;
   }
@@ -160,8 +257,6 @@
 
   .about-project__info-container {
     max-width: 284px;
-    flex-direction: column;
-    margin: 0 0 60px 0;
   }
   .about-project__subtitle {
     margin: 0 0 16px 0;
@@ -175,7 +270,7 @@
 
   .about-project__info-block {
     max-width: 284px;
-    margin: 0 0 56px 0;
+    
   }
   .about-project__info-block:last-of-type {
     margin: 0;
