@@ -29,6 +29,9 @@
   .main__navigation {
     max-width: 768px;
   }
+  .main__link {
+    margin-top: -2px;
+  }
 }
 
 @media screen and (max-width: 360px) {

@@ -7,7 +7,7 @@
   justify-content: flex-start;
   align-items: center;
   font-family: Inter;
-  padding: 2px 0 103px 0;
+  padding: 2px 0 107px 0;
 }
 
 .portfolio__title {
@@ -38,7 +38,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  margin: 0 0 20px 0;
+  margin: 0 0 18px 0;
 }
 
 .portfolio__links-list-element:last-of-type {
@@ -112,6 +112,12 @@
     font-size: 28px;
     line-height: 1.78;
   }
+  .portfolio__example-button {
+    background-position-y: 65%;
+   
+  }
+
+
 }
 
 @media screen and (max-width: 720px) {

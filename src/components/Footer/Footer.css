@@ -97,11 +97,8 @@
 }
 
 @media screen and (max-width: 790px) {
-  .footer {
-    max-width: 768px;
-  }
   .footer__container {
-    max-width: 668px;
+    max-width: 708px;
   }
 }
 
