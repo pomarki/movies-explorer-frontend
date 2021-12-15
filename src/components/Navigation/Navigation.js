@@ -1,5 +1,4 @@
 import "./Navigation.css";
-
 import { NavLink } from "react-router-dom";
 
 function Navigation({ isOpen, onClose }) {
@@ -9,8 +8,10 @@ function Navigation({ isOpen, onClose }) {
       : "navigation__link page__link";
 
   return (
-    <section className={`popup ${isOpen && "popup_opened"}`}>
-      <div className="popup__container">
+    <section
+      className={`navigation__popup ${isOpen && "navigation__popup_opened"}`}
+    >
+      <div className="navigation__popup-container">
         <div className={`navigation ${isOpen && "navigation_opened"}`}>
           <button
             onClick={onClose}

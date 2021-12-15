@@ -13,7 +13,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: start;
 }
 
 .navigation__close-button {
@@ -68,7 +68,7 @@
 }
 
 
-.popup {
+.navigation__popup {
   display: flex;
   width: 100%;
   height: 100vh;
@@ -81,7 +81,7 @@
   left: 0;
   position: fixed;
 }
-.popup__container {
+.navigation__popup-container {
   top: 0;
   right: 0;
   position: absolute;
@@ -92,7 +92,7 @@
   
 }
 
-.popup_opened {
+.navigation__popup_opened {
   opacity: 1;
   visibility: visible;
   transition: all 0.4s linear;

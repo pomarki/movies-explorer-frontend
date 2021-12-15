@@ -5,7 +5,7 @@ function Techs(props) {
   return (
     <section id="techs" className="techs page__section">
       <div className="techs__title-container page__section-title-container">
-        <h2 class="page__section-title techs__title">Технологии</h2>
+        <h2 className="page__section-title techs__title">Технологии</h2>
       </div>
       <p className="techs__main-text">7 технологий</p>
       <div className="techs__paragraph-container">

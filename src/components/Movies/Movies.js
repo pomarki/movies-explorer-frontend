@@ -10,9 +10,9 @@ function Movies({ isOpen }) {
   
   return (
     <section className={`movies page__section ${isOpen && "movies_opened"}`}>
-      <Header isOpen={true} navOpen={true} />
+      <Header />
       <SearchForm />
-      <MoviesCardList isOpen={true} movies={initialMovies} />
+      <MoviesCardList isOpen={true} movies={initialMovies} listTypeSaved={false}/>
       <Footer isOpen={true} />
     </section>
   );

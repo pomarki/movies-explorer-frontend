@@ -1,7 +1,7 @@
 import "./MoviesCardList.css";
 import MoviesCard from "../MoviesCard/MoviesCard";
 
-function MoviesCardList({ isOpen, movies }) {
+function MoviesCardList({ isOpen, movies, listTypeSaved }) {
   return (
     <section
       className={`movies-card-list ${
@@ -10,11 +10,16 @@ function MoviesCardList({ isOpen, movies }) {
     >
       <ul className="movies-card-list__container">
         {movies.map(({ id, ...card }) => (
-          <MoviesCard key={id} card={card} cardId={id} />
+          <MoviesCard
+            key={id}
+            card={card}
+            cardId={id}
+            listTypeSaved={listTypeSaved}
+          />
         ))}
       </ul>
       <div className="movies-card-list__button-container">
-        <button className="movies-card-list__more-button movies-card-list__more-button_type_inactive page__link">
+        <button className="movies-card-list__more-button page__link">
           Ещё
         </button>
       </div>

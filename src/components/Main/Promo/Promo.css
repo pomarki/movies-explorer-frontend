@@ -24,7 +24,7 @@
 .promo__central {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: start;
   align-items: center;
   width: 730px;
   height: 524px;

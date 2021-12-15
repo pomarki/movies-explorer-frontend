@@ -22,7 +22,7 @@
 
 .filter-checkbox__button_type_inactive {
   background-color: #ebebeb;
-  justify-content: flex-start;
+  justify-content: start;
 }
 
 .filter-checkbox__toggle {

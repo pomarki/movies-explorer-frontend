@@ -2,15 +2,12 @@ import "./Register.css";
 import EntranceWindow from "../EntranceWindow/EntranceWindow";
 
 function Register({ isOpen }) {
-  let userName = "Виталий";
-  let userEmail = "pochta@yandex.ru";
-
   return (
     <section
       className={`register ${isOpen && "register_opened"} page__section`}
     >
       <EntranceWindow name="register">
-        <label className="entrance-window__label" for="register-user">
+        <label className="entrance-window__label" htmlFor="register-user">
           Имя
         </label>
         <input
@@ -19,7 +16,7 @@ function Register({ isOpen }) {
           className="entrance-window__input"
         ></input>
         <div className="entrance-window__breakline"></div>
-        <label className="entrance-window__label" for="register-email">
+        <label className="entrance-window__label" htmlFor="register-email">
           E-mail
         </label>
         <input
@@ -28,7 +25,7 @@ function Register({ isOpen }) {
           className="entrance-window__input register__input"
         ></input>
         <div className="entrance-window__breakline"></div>
-        <label className="entrance-window__label" for="register-password">
+        <label className="entrance-window__label" htmlFor="register-password">
           Пароль
         </label>
         <input

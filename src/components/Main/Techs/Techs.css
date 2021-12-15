@@ -153,7 +153,7 @@
     max-width: 292px;
   }
   .techs__diagram-list {
-    justify-content: flex-start;
+    justify-content: start;
     width: 188px;
     height: 270px;
     padding: 0;
