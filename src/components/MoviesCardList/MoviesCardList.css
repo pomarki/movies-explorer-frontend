@@ -52,3 +52,13 @@
 .movies-card-list_opened {
   display: flex;
 }
+
+@media screen and (max-width: 790px) {
+  .movies-card-list {
+    padding: 70px 0 0 0;
+  }
+  .movies-card-list__container {
+    max-width: 708px;
+  }
+
+}
