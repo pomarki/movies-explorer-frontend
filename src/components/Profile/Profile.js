@@ -31,7 +31,7 @@ function Profile({ isOpen }) {
             ></input>
           </div>
         </div>
-        <ButtonContainer type={true} />
+        <ButtonContainer type={false} />
       </div>
     </section>
   );
