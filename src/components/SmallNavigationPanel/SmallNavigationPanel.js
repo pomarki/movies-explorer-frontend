@@ -1,7 +1,7 @@
 import "./SmallNavigationPanel.css";
 import { NavLink } from "react-router-dom";
 
-function SmallPanel({ isOpen }) {
+function SmallNavigationPanel({ isOpen }) {
   const setActive = ({ isActive }) =>
     isActive
       ? "small-panel__link page__link small-panel__link_actual"
@@ -26,4 +26,4 @@ function SmallPanel({ isOpen }) {
   );
 }
 
-export default SmallPanel;
+export default SmallNavigationPanel;

@@ -37,8 +37,7 @@
   justify-content: start;
 }
 .search-form__input {
-  max-width: 748px;
-  width: 100%;
+  width: calc(100% - 419px);
   border: 0;
   font-size: 18px;
   font-style: normal;
@@ -67,4 +66,11 @@
 
 .search-form__filter-container {
   max-width: 197px;
+}
+
+@media screen and (max-width: 1190px) {
+  .search-form__container {
+    padding: 0 30px 69px 30px;
+    box-sizing: border-box;
+  }
 }

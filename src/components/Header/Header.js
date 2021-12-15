@@ -1,22 +1,40 @@
+import { useState } from "react";
 import "./Header.css";
-import SmallPanel from "../SmallNavigationPanel/SmallNavigationPanel";
+import SmallNavigationPanel from "../SmallNavigationPanel/SmallNavigationPanel";
 import { Link } from "react-router-dom";
+import Navigation from "../Navigation/Navigation";
 
-function Header({ isOpen, navOpen }) {
+function Header() {
+  const [isPopupNavigationOpen, setStateNavigate] = useState(false);
+
+  function handleNavigationOpen() {
+    setStateNavigate(true);
+  }
+
+  function handleNavigationClose() {
+    setStateNavigate(false);
+  }
+
   return (
-    <header className={`header page__section ${isOpen && "header_opened"}`}>
+    <header className="header page__section">
       <div className="header__container">
         <Link to="/">
           <div className="page__logo page__link"></div>
         </Link>
         <div
           className={`header__navigation-container ${
-            !navOpen && "header__navigation-container_inactive"
+            isPopupNavigationOpen && "header__navigation-container_inactive"
           }`}
         >
-          <SmallPanel isOpen={navOpen} />
+          <SmallNavigationPanel isOpen={!isPopupNavigationOpen} />
         </div>
+        <button
+          id="header-navigation-button"
+          className="header__navigation-button page__link"
+          onClick={handleNavigationOpen}
+        ></button>
       </div>
+      <Navigation isOpen={isPopupNavigationOpen} onClose={handleNavigationClose} />
     </header>
   );
 }
