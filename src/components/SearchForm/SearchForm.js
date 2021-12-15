@@ -19,10 +19,13 @@ function SearchForm(props) {
               type="button"
             ></button>
             <div className="search-form__break-line"></div>
-            <div className="search-form__filter-container">
+            <div className="search-form__filter-container search-form__filter-container_type_in">
               <FilterCheckbox />
             </div>
           </div>
+        </div>
+        <div className="search-form__filter-container search-form__filter-container_type_out">
+        <FilterCheckbox />
         </div>
       </div>
     </section>

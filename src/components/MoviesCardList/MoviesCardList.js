@@ -19,7 +19,7 @@ function MoviesCardList({ isOpen, movies, listTypeSaved }) {
         ))}
       </ul>
       <div className="movies-card-list__button-container">
-        <button className="movies-card-list__more-button page__link">
+        <button className="movies-card-list__more-button page__link movies-card-list__more-button_type_inactive">
           Ещё
         </button>
       </div>

@@ -45,3 +45,24 @@
   letter-spacing: 0em;
 }
 
+@media screen and (max-width: 740px) {
+  .filter-checkbox__subtitle {
+    margin: 0;
+  }
+  .filter-checkbox__button {
+    margin: 0 13px 0 0;
+  }
+}
+
+@media screen and (max-width: 440px) {
+  .filter-checkbox {
+    justify-content: center;
+  }
+  .filter-checkbox__subtitle {
+    font-size: 11px;
+    line-height: 1.63;
+  }
+
+  
+
+}
