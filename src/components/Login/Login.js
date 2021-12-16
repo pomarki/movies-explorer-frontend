@@ -9,14 +9,14 @@ function Login({ isOpen }) {
         <input
           type="text"
           id="login-email"
-          className="entrance-window__input"
+          className="entrance-window__text entrance-window__text_input"
         ></input>
         <div className="entrance-window__breakline"></div>
         <label className="entrance-window__label">Пароль</label>
         <input
           type="password"
           id="login-password"
-          className="entrance-window__input"
+          className="entrance-window__text entrance-window__text_input"
         ></input>
         <div className="entrance-window__breakline"></div>
         <p className="entrance-window__error-message">Что-то пошло не так...</p>

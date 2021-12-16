@@ -4,7 +4,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
+  height: 100vh;
 }
 
 .register_opened {
@@ -13,4 +13,13 @@
 
 .register__input:focus + .entrance-window__breakline {
   background-color: #3456f3;
+}
+
+@media screen and (max-width: 450px) {
+  .register {
+    justify-content: flex-start;
+/*     min-height: calc(100vh - 56px);
+    height: 800px;
+    padding: 56px 0 0 0; */
+  }
 }

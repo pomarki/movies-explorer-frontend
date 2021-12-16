@@ -13,7 +13,7 @@ function Register({ isOpen }) {
         <input
           type="text"
           id="register-user"
-          className="entrance-window__input"
+          className="entrance-window__text entrance-window__text_input"
         ></input>
         <div className="entrance-window__breakline"></div>
         <label className="entrance-window__label" htmlFor="register-email">
@@ -22,7 +22,7 @@ function Register({ isOpen }) {
         <input
           type="email"
           id="register-email"
-          className="entrance-window__input register__input"
+          className="entrance-window__text entrance-window__text_input register__input"
         ></input>
         <div className="entrance-window__breakline"></div>
         <label className="entrance-window__label" htmlFor="register-password">
@@ -31,7 +31,7 @@ function Register({ isOpen }) {
         <input
           type="password"
           id="register-password"
-          className="entrance-window__input register__input"
+          className="entrance-window__text entrance-window__text_input register__input"
         ></input>
         <div className="entrance-window__breakline"></div>
         <p className="entrance-window__error-message">Что-то пошло не так...</p>

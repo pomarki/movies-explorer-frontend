@@ -8,6 +8,7 @@ function EntranceWindow({ name, children }) {
   let buttonTitle;
   let greeting;
   let buttonId;
+  let loginContainer;
 
   name === "register"
     ? (linkDirection = "/signin")
@@ -30,24 +31,35 @@ function EntranceWindow({ name, children }) {
     ? (buttonId = "register-button")
     : (buttonId = "login-button");
 
+  name === "register"
+    ? (loginContainer = false)
+    : (loginContainer = true);
+
   return (
     <div className="entrance-window__container">
       <Link to="/">
         <div className="page__logo page__link"></div>
       </Link>
       <p className="entrance-window__title">{greeting}</p>
-      <div className="entrance-window__form-container">{children}</div>
-      <Link to="/movies">
-        <button
-          className="entrance-window__reg-button page__link"
-          id={buttonId}
-        >
-          {buttonTitle}
-        </button>
-      </Link>
+      <div className={`entrance-window__form-container ${loginContainer && "entrance-window__form-container_login"}`}>{children}</div>
+      <div className={`entrance-window__button-container ${loginContainer && "entrance-window__button-container_login"}`}>
+        <Link to="/movies">
+          <button
+            className="entrance-window__reg-button page__link"
+            id={buttonId}
+          >
+            {buttonTitle}
+          </button>
+        </Link>
+      </div>
       <div className="entrance-window__link-container">
-        <p className="entrance-window__subtitle">{linkSubtitle}</p>
-        <Link to={linkDirection} className="entrance-window__link page__link">
+        <p className="entrance-window__text entrance-window__text_subtitle">
+          {linkSubtitle}
+        </p>
+        <Link
+          to={linkDirection}
+          className="entrance-window__text entrance-window__text_link page__link"
+        >
           {linkName}
         </Link>
       </div>

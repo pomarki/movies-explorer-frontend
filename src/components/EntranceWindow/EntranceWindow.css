@@ -20,7 +20,19 @@
   align-items: flex-start;
   justify-content: flex-start;
   width: 396px;
-  height: 266px;
+  min-height: 266px;
+}
+
+.entrance-window__form-container_login {
+  min-height: 156px;
+}
+
+.entrance-window__button-container {
+  margin: 69px 0 16px 0;
+}
+
+.entrance-window__button-container_login {
+  margin: 179px 0 16px 0;
 }
 
 .entrance-window__reg-button {
@@ -35,7 +47,6 @@
   font-weight: 500;
   line-height: 1.21;
   letter-spacing: 0em;
-  margin: 69px 0 16px 0;
 }
 
 .entrance-window__link-container {
@@ -46,26 +57,25 @@
   align-items: center;
   margin: 0;
 }
-.entrance-window__subtitle {
+
+.entrance-window__text {
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
   line-height: 1.21;
   letter-spacing: 0em;
+}
+
+.entrance-window__text_subtitle {
   color: #a0a0a0;
   margin: 0 6px 0 0;
 }
 
-.entrance-window__link {
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 1.21;
-  letter-spacing: 0em;
+.entrance-window__text_link {
   color: #3456f3;
 }
 
-.entrance-window__input {
+.entrance-window__text_input {
   border: none;
   max-width: 396px;
   width: 100%;
@@ -73,11 +83,6 @@
   outline: none;
   margin: 0 0 10px 0;
   padding: 0;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 1.21;
-  letter-spacing: 0em;
   box-sizing: border-box;
 }
 
@@ -113,4 +118,40 @@
 
 .entrance-window__error-message_type_inactive {
   display: none;
+}
+
+@media screen and (max-width: 510px) {
+  .entrance-window__container {
+    margin: 56px 0 0 0;
+    align-items: center;
+  }
+  .entrance-window__reg-button {
+    width: 260px;
+    font-size: 12px;
+    line-height: 1.25;
+  }
+  .entrance-window__text {
+    font-size: 12px;
+    line-height: 1.25;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .entrance-window__text_input {
+    max-width: 260px;
+  }
+  .entrance-window__breakline {
+    max-width: 260px;
+  }
+  .entrance-window__form-container {
+    max-width: 320px;
+    padding: 0 30px 0 30px;
+    margin: 0 0 50px 0;
+  }
+  .entrance-window__title {
+    margin: 50px 0 81px 0;
+  }
+  .entrance-window__breakline {
+    margin: 0 0 70px 0;
+  }
 }
