@@ -17,7 +17,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: start;
+  justify-content: flex-start;
   border-radius: 9px;
   box-shadow: 0px 3px 14px 0px rgba(0, 0, 0, 0.08);
 }
@@ -34,7 +34,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: start;
+  justify-content: flex-start;
 }
 .search-form__input {
   width: calc(100% - 394px);

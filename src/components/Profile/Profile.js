@@ -1,15 +1,15 @@
 import "./Profile.css";
 import Header from "../Header/Header";
 import ButtonContainer from "./ButtonContainer/ButtonContainer";
-const userName = "Денис";
-const userEmail = "denis.shalaew@yandex.ru";
+const userName = "Виталий";
+const userEmail = "pochta@yandex.ru";
 
 function Profile({ isOpen }) {
   return (
     <section className={`profile ${isOpen && "profile_opened"} page__section`}>
       <Header isOpen={true} navTypeSmall={true} />
       <div className="profile__container profile__container_opened">
-        <p className="profile__title">Привет, {userName}</p>
+        <p className="profile__title">Привет, {userName}!</p>
         <div className="profile__edit-form">
           <div className="profile__info-block">
             <p className="profile__info-subtitle">Имя</p>

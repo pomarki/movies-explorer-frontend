@@ -19,7 +19,7 @@
 .profile__info-container {
   display: flex;
   flex-direction: column;
-  justify-content: start;
+  justify-content: flex-start;
   align-items: center;
 }
 
@@ -68,4 +68,28 @@
 }
 .profile__input_type_inactive {
   pointer-events: none;
+}
+
+@media screen and (max-width: 510px) {
+  .profile__info-block {
+    width: 260px;
+  }
+  .profile__break_line {
+    width: 260px;
+  }
+  .profile__info-subtitle {
+    font-weight: 500;
+  }
+  .profile__input {
+    font-weight: 400;
+  }
+}
+
+@media screen and (max-width: 410px) {
+  .profile__title {
+    margin: 68px 0 80px 0;
+  }
+  .profile__container {
+    height: 715px;
+  }
 }

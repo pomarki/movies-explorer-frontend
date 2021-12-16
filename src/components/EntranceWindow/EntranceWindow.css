@@ -1,9 +1,8 @@
 .entrance-window__container {
-  margin: 70px 0 0 0;
   display: flex;
   flex-direction: column;
-  justify-content: start;
-  align-items: start;
+  justify-content: flex-start;
+  align-items: flex-start;
 }
 
 .entrance-window__title {
@@ -18,8 +17,8 @@
 .entrance-window__form-container {
   display: flex;
   flex-direction: column;
-  align-items: start;
-  justify-content: start;
+  align-items: flex-start;
+  justify-content: flex-start;
   width: 396px;
   height: 266px;
 }
