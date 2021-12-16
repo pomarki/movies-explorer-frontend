@@ -28,8 +28,9 @@
   width: 44px;
   height: 41px;
   border: 0;
-  background: url(../../images/icon__burger.png);
+  background: url(../../images/icon__burger.svg);
   background-position-y: bottom;
+  background-position-x: left;
 }
 
 @media screen and (max-width: 1190px) {
@@ -40,6 +41,12 @@
 }
 
 @media screen and (max-width: 790px) {
+  .header {
+    padding: 18px 20px 18px 23px;
+  }
+  .header__container {
+    max-width: 768px;
+  }
   .header__navigation-button {
     display: flex;
   }
