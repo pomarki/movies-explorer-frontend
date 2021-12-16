@@ -12,6 +12,7 @@ function Register({ isOpen }) {
         </label>
         <input
           type="text"
+          required
           id="register-user"
           className="entrance-window__text entrance-window__text_input register__input"
         ></input>
@@ -22,6 +23,7 @@ function Register({ isOpen }) {
         <input
           type="email"
           id="register-email"
+          required
           className="entrance-window__text entrance-window__text_input register__input"
         ></input>
         <div className="entrance-window__breakline"></div>
@@ -31,6 +33,7 @@ function Register({ isOpen }) {
         <input
           type="password"
           id="register-password"
+          required
           className="entrance-window__text entrance-window__text_input register__input"
         ></input>
         <div className="entrance-window__breakline"></div>

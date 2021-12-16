@@ -7,8 +7,9 @@ function Login({ isOpen }) {
       <EntranceWindow name="login">
         <label className="entrance-window__label">E-mail</label>
         <input
-          type="text"
+          type="email"
           id="login-email"
+          required
           className="entrance-window__text entrance-window__text_input"
         ></input>
         <div className="entrance-window__breakline"></div>
@@ -16,6 +17,7 @@ function Login({ isOpen }) {
         <input
           type="password"
           id="login-password"
+          required
           className="entrance-window__text entrance-window__text_input"
         ></input>
         <div className="entrance-window__breakline"></div>
