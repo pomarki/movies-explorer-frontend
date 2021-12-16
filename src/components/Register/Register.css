@@ -1,4 +1,5 @@
 .register {
+  font-family: "Inter", "Arial", "Helvetica", sans-serif;
   display: none;
   background-color: #ffffff;
   flex-direction: column;
@@ -18,8 +19,5 @@
 @media screen and (max-width: 450px) {
   .register {
     justify-content: flex-start;
-/*     min-height: calc(100vh - 56px);
-    height: 800px;
-    padding: 56px 0 0 0; */
   }
 }

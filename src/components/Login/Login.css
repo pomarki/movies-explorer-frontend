@@ -1,4 +1,5 @@
 .login {
+  font-family: "Inter", "Arial", "Helvetica", sans-serif;
   display: none;
   background-color: #ffffff;
   flex-direction: column;
@@ -9,4 +10,10 @@
 
 .login_opened {
   display: flex;
+}
+
+@media screen and (max-width: 450px) {
+  .login {
+    justify-content: flex-start;
+  }
 }

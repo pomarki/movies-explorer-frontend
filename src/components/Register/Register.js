@@ -13,7 +13,7 @@ function Register({ isOpen }) {
         <input
           type="text"
           id="register-user"
-          className="entrance-window__text entrance-window__text_input"
+          className="entrance-window__text entrance-window__text_input register__input"
         ></input>
         <div className="entrance-window__breakline"></div>
         <label className="entrance-window__label" htmlFor="register-email">

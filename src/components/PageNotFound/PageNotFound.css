@@ -3,7 +3,7 @@
   height: 100vh;
   background-color: #ffffff;
   display: none;
-  font-family: Inter;
+  font-family: "Inter", "Arial", "Helvetica", sans-serif;
   color: #000000;
 }
 
@@ -27,7 +27,7 @@
   font-weight: 400;
   line-height: 1.2;
   letter-spacing: 0em;
-  margin: 0 0 5px 0;
+  margin: 3px 0 8px 0;
 }
 
 .page-not-found__subtitle {
@@ -46,4 +46,15 @@
   line-height: 1.21;
   letter-spacing: 0em;
   color: #3456f3;
+}
+
+@media screen and (max-width: 450px) {
+  .page-not-found__title {
+    font-size: 80px;
+    line-height: 1.21;
+  }
+  .page-not-found__subtitle {
+    font-size: 12px;
+    line-height: 1.25;
+  }
 }

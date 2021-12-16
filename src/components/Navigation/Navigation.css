@@ -2,7 +2,7 @@
   width: 520px;
   height: 100vh;
   display: flex;
-  font-family: Inter;
+  font-family: "Inter", "Arial", "Helvetica", sans-serif;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
