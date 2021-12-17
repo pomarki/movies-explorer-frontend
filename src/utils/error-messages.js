@@ -7,6 +7,7 @@ const errorMessages = {
   "updateProfileError": "При обновлении профиля произошла ошибка.",
   "serverError": "500 На сервере произошла ошибка.",
   "notFoundError": "404 Страница по указанному маршруту не найдена.",
+  "successfulRegistration": "Поздравляю, вы успешно зарегистрировались!",
 };
 
 export default errorMessages;

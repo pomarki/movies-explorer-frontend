@@ -1,15 +1,11 @@
 .register {
   font-family: "Inter", "Arial", "Helvetica", sans-serif;
-  display: none;
+  display: flex;
   background-color: #ffffff;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 100vh;
-}
-
-.register_opened {
-  display: flex;
 }
 
 .register__input:focus + .entrance-window__breakline {
