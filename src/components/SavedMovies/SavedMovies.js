@@ -9,19 +9,17 @@ function SavedMovies({ isOpen }) {
   return (
     <>
       <Header />
-      <main>
-        <section
-          className={`saved-movies ${
-            isOpen && "saved-movies_opened"
-          } page__section`}
-        >
-          <SearchForm />
-          <MoviesCardList
-            isOpen={true}
-            movies={savedMovies}
-            listTypeSaved={true}
-          />
-        </section>
+      <main
+        className={`saved-movies ${
+          isOpen && "saved-movies_opened"
+        } page__section`}
+      >
+        <SearchForm />
+        <MoviesCardList
+          isOpen={true}
+          movies={savedMovies}
+          listTypeSaved={true}
+        />
       </main>
       <Footer isOpen={true} />
     </>
