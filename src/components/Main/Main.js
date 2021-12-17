@@ -11,7 +11,7 @@ import Footer from "../Footer/Footer";
 
 function Main({ isOpen }) {
   return (
-    <main className={`main ${isOpen && "main_opened"}`}>
+    <section className={`main ${isOpen && "main_opened"}`}>
       <Promo />
       <NavTab />
       <AboutProject />
@@ -19,7 +19,7 @@ function Main({ isOpen }) {
       <AboutMe />
       <Portfolio />
       <Footer isOpen={true} />
-    </main>
+    </section>
   );
 }
 export default Main;
