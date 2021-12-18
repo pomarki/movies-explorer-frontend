@@ -1,12 +1,12 @@
 import "./InfoMessage.css";
-import errorMessages from "../../utils/error-messages";
 
-function InfoMessage({ avf }) {
 
-   
+function InfoMessage({ isRegisterDone }) {
+
+  
 
   return (
-    <p className="info-message__error">{mes}</p>
+    <p className="info-message__text info-message__text_error">{isRegisterDone}</p>
   );
 }
 export default InfoMessage;

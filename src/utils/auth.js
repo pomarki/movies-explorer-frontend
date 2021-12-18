@@ -4,7 +4,7 @@ function checkRequestResult(response) {
   if (response.ok) {
     return response.json();
   }
-  return Promise.reject(response.status);
+  return Promise.reject(response);
 }
 
 export const register = (name, password, email) => {

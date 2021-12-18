@@ -65,8 +65,8 @@ function Register({ registerUser, isRegisterDone }) {
           className="entrance-window__text entrance-window__text_input register__input"
         ></input>
         <div className="entrance-window__breakline"></div>
-        <InfoMessage avf={isRegisterDone}/>
       </EntranceWindow>
+      <InfoMessage isRegisterDone={isRegisterDone}/>
     </section>
   );
 }

@@ -8,19 +8,26 @@ import Profile from "../Profile/Profile";
 import Register from "../Register/Register";
 import Login from "../Login/Login";
 import PageNotFound from "../PageNotFound/PageNotFound";
+import resMessages from "../../utils/response-messages";
 import * as auth from "../../utils/auth";
 
 function App() {
-  
+  const [isRegisterDone, setRegisterDone] = useState("");
 
   function registerUser(name, password, email) {
     auth
       .register(name, password, email)
       .then((res) => {
-        console.log(res);
+        setRegisterDone(resMessages.successfulRegistration);
       })
       .catch((err) => {
-        console.log(err);
+        if (err.status === 400) {
+          setRegisterDone(resMessages.registrationError);
+        }
+        if (err.status === 409) {
+          setRegisterDone(resMessages.conflictEmailError);
+        }
+        console.log(`ERROR: ${err.status}`);
       });
   }
   return (
@@ -35,7 +42,7 @@ function App() {
           element={
             <Register
               registerUser={registerUser}
-              
+              isRegisterDone={isRegisterDone}
             />
           }
         />

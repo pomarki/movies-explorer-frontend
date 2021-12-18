@@ -1,5 +1,5 @@
 import "./ButtonContainer.css";
-import errorMessages from "../../../utils/error-messages";
+import resMessages from "../../../utils/response-messages";
 
 function ButtonContainer({ type }) {
   return (
@@ -28,7 +28,7 @@ function ButtonContainer({ type }) {
           !type && "button-container__type_inactive"
         }`}
       >
-        <p className="button-container__error-message">{errorMessages.updateProfileError}</p>
+        <p className="button-container__error-message">{resMessages.updateProfileError}</p>
 
         <button
           className="button-container__save-button page__link"

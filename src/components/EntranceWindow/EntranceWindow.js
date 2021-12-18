@@ -1,5 +1,6 @@
 import "./EntranceWindow.css";
 import { Link } from "react-router-dom";
+import InfoMessage from "../InfoMessage/InfoMessage";
 
 function EntranceWindow({
   windowType,
@@ -8,6 +9,7 @@ function EntranceWindow({
   name,
   password,
   email,
+  isRegisterDone,
 }) {
   function handleSubmit(e) {
     e.preventDefault();
@@ -64,6 +66,7 @@ function EntranceWindow({
         }`}
       >
         {children}
+        
       </div>
       <div
         className={`entrance-window__button-container ${

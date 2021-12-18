@@ -1,4 +1,4 @@
-const errorMessages = {
+const resMessages = {
   "unauthorizedError": "Вы ввели неправильный логин или пароль.",
   "tokenFormatError": "При авторизации произошла ошибка. Токен не передан или передан не в том формате.",
   "invalidTokenError": "При авторизации произошла ошибка. Переданный токен некорректен.",
@@ -10,5 +10,5 @@ const errorMessages = {
   "successfulRegistration": "Поздравляю, вы успешно зарегистрировались!",
 };
 
-export default errorMessages;
+export default resMessages;
 
