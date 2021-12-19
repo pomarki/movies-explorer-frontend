@@ -33,13 +33,8 @@ function MoviesCard({ card, cardId, listTypeSaved }) {
           }`}
         ></button>
       </div>
-      <div
-        className="movies-card__pic"
-        alt={nameRU}
-        style={{
-          backgroundImage: `url(${baseUrl + imgUrl})`,
-        }}
-      ></div>
+
+      <img src={`${baseUrl + imgUrl}`} alt={nameRU} className="movies-card__pic" />
     </li>
   );
 }

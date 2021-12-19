@@ -23,49 +23,51 @@ function Profile({ handleLogout, handleUpdateUser }) {
   }
 
   return (
-    <section className="profile page__section">
+    <>
       <Header isOpen={true} navTypeSmall={true} />
-      <div className="profile__container profile__container_opened">
-        <p className="profile__title">Привет, {currentUser.name}!</p>
-        <div className="profile__edit-form">
-          <div className="profile__info-block">
-            <p className="profile__info-subtitle">Имя</p>
-            <input
-              className={`profile__input profile__info-subtitle ${
-                isUpdateFormOpen && "profile__input_type_inactive"
-              }`}
-              id="profile-name"
-              type="text"
-              value={name}
-              onChange={handleChangeName}
-              placeholder={currentUser.name}
-            ></input>
+      <section className="profile page__section">
+        <div className="profile__container profile__container_opened">
+          <p className="profile__title">Привет, {currentUser.name}!</p>
+          <div className="profile__edit-form">
+            <div className="profile__info-block">
+              <p className="profile__info-subtitle">Имя</p>
+              <input
+                className={`profile__input profile__info-subtitle ${
+                  isUpdateFormOpen && "profile__input_type_inactive"
+                }`}
+                id="profile-name"
+                type="text"
+                value={name}
+                onChange={handleChangeName}
+                placeholder={currentUser.name}
+              ></input>
+            </div>
+            <div className="profile__break_line"></div>
+            <div className="profile__info-block">
+              <p className="profile__info-subtitle">E-mail</p>
+              <input
+                className={`profile__input profile__info-subtitle ${
+                  isUpdateFormOpen && "profile__input_type_inactive"
+                }`}
+                id="profile-email"
+                type="text"
+                value={email}
+                onChange={handleChangeEmail}
+                placeholder={currentUser.email}
+              ></input>
+            </div>
           </div>
-          <div className="profile__break_line"></div>
-          <div className="profile__info-block">
-            <p className="profile__info-subtitle">E-mail</p>
-            <input
-              className={`profile__input profile__info-subtitle ${
-                isUpdateFormOpen && "profile__input_type_inactive"
-              }`}
-              id="profile-email"
-              type="text"
-              value={email}
-              onChange={handleChangeEmail}
-              placeholder={currentUser.email}
-            ></input>
-          </div>
+          <ButtonContainer
+            type={!isUpdateFormOpen}
+            handleLogout={handleLogout}
+            handleUpdateUser={handleUpdateUser}
+            handleUpdateForm={handleUpdateForm}
+            email={email}
+            name={name}
+          />
         </div>
-        <ButtonContainer
-          type={!isUpdateFormOpen}
-          handleLogout={handleLogout}
-          handleUpdateUser={handleUpdateUser}
-          handleUpdateForm={handleUpdateForm}
-          email={email}
-          name={name}
-        />
-      </div>
-    </section>
+      </section>
+    </>
   );
 }
 

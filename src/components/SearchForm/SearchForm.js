@@ -9,6 +9,7 @@ function SearchForm(props) {
           <div className="search-form__info-icon"></div>
           <input
             className="search-form__input"
+            required
             id="find-film"
             type="text"
             placeholder="Фильм"
