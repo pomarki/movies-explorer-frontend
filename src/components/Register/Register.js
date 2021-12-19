@@ -1,7 +1,6 @@
 import { useState } from "react";
 import "./Register.css";
 import EntranceWindow from "../EntranceWindow/EntranceWindow";
-import InfoMessage from "../InfoMessage/InfoMessage";
 
 function Register({ registerUser, isRegisterDone }) {
   const [name, setName] = useState("");
@@ -66,7 +65,6 @@ function Register({ registerUser, isRegisterDone }) {
         ></input>
         <div className="entrance-window__breakline"></div>
       </EntranceWindow>
-      <InfoMessage isRegisterDone={isRegisterDone}/>
     </section>
   );
 }

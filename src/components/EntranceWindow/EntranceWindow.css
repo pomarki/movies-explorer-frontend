@@ -29,11 +29,12 @@
 }
 
 .entrance-window__button-container {
-  margin: 69px 0 16px 0;
+  padding: 69px 0 16px 0;
+  box-sizing: border-box;
 }
 
 .entrance-window__button-container_login {
-  margin: 179px 0 16px 0;
+  padding: 179px 0 16px 0;
 }
 
 .entrance-window__reg-button {
@@ -48,6 +49,7 @@
   font-weight: 500;
   line-height: 1.21;
   letter-spacing: 0em;
+  margin: 20px 0 0 0;
 }
 
 .entrance-window__link-container {

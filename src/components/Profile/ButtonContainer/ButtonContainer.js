@@ -1,7 +1,7 @@
 import "./ButtonContainer.css";
 import resMessages from "../../../utils/response-messages";
 
-function ButtonContainer({ type }) {
+function ButtonContainer({ type, handleLogout }) {
   return (
     <>
       <div
@@ -18,6 +18,7 @@ function ButtonContainer({ type }) {
         <button
           className="button-container__button button-container__button_type_out page__link"
           id="profile-out-button"
+          onClick={handleLogout}
         >
           Выйти из аккаунта
         </button>
