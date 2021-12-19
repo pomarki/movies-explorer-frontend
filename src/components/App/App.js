@@ -25,7 +25,7 @@ function App() {
     setLoggedIn(true);
   }
   function handleLogout() {
-    localStorage.removeItem('_id');
+    localStorage.removeItem("_id");
     setCurrentUser({});
     setLoggedIn(false);
     navigate("/signin", { replace: true });
@@ -63,15 +63,24 @@ function App() {
       });
   }
 
+  function handleUpdateUser(data) {
+    console.log(data);
+    api
+      .changeUserInfo(data)
+      .then((newData) => {
+        setCurrentUser(newData);
+      })
+      .catch((err) => console.log(err));
+  }
+
   useEffect(() => {
     if (loggedIn) {
-      
       const promises = [api.getUserInfo()];
       Promise.all(promises)
         .then((result) => {
           setCurrentUser(result[0]);
-          console.log(result)
- /*          setCards(
+          
+          /*          setCards(
             result[1].cards.map((card) => ({
               name: card.name,
               link: card.link,
@@ -85,9 +94,6 @@ function App() {
     }
   }, [loggedIn]);
 
-
-
-
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
@@ -95,7 +101,10 @@ function App() {
           <Route exact path="/" element={<Main isOpen={true} />} />
           <Route path="/movies" element={<Movies isOpen={true} />} />
           <Route path="/saved-movies" element={<SavedMovies isOpen={true} />} />
-          <Route path="/profile" element={<Profile handleLogout={handleLogout} />} />
+          <Route
+            path="/profile"
+            element={<Profile handleLogout={handleLogout} handleUpdateUser={handleUpdateUser} />}
+          />
           <Route
             path="/signup"
             element={

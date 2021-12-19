@@ -14,6 +14,7 @@ function Register({ registerUser, isRegisterDone }) {
   function handleChangeEmail(e) {
     setEmail(e.target.value);
   }
+  
   function handleChangePassword(e) {
     setPassword(e.target.value);
   }

@@ -27,7 +27,7 @@ export class Api {
       },
     }).then(this._checkResponse);
   }
-/* 
+ 
   changeUserInfo(data) {
     return fetch(`${this._address}/users/me`, {
       method: "PATCH",
@@ -37,11 +37,11 @@ export class Api {
       },
       body: JSON.stringify({
         name: data.name,
-        about: data.about,
+        email: data.email,
       }),
     }).then(this._checkResponse);
   }
-
+/*
   sendNewCard(data) {
     return fetch(`${this._address}/cards`, {
       method: "POST",
