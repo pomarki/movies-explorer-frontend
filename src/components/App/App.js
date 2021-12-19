@@ -79,7 +79,7 @@ function App() {
       Promise.all(promises)
         .then((result) => {
           setCurrentUser(result[0]);
-          
+
           /*          setCards(
             result[1].cards.map((card) => ({
               name: card.name,
@@ -103,7 +103,12 @@ function App() {
           <Route path="/saved-movies" element={<SavedMovies isOpen={true} />} />
           <Route
             path="/profile"
-            element={<Profile handleLogout={handleLogout} handleUpdateUser={handleUpdateUser} />}
+            element={
+              <Profile
+                handleLogout={handleLogout}
+                handleUpdateUser={handleUpdateUser}
+              />
+            }
           />
           <Route
             path="/signup"
@@ -117,7 +122,7 @@ function App() {
           <Route
             path="/signin"
             element={
-              <Login isOpen={true} authorizationUser={authorizationUser} />
+              <Login authorizationUser={authorizationUser} />
             }
           />
           <Route path="*" element={<PageNotFound isOpen={true} />} />

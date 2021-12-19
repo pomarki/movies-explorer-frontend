@@ -42,7 +42,7 @@ function Login({ authorizationUser }) {
           className="entrance-window__text entrance-window__text_input"
         ></input>
         <div className="entrance-window__breakline"></div>
-        <p className="entrance-window__error-message">Что-то пошло не так...</p>
+        <p className="entrance-window__error-message"></p>
       </EntranceWindow>
     </section>
   );
