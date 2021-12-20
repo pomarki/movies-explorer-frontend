@@ -1,0 +1,7 @@
+.movies {
+  display: none;
+}
+
+.movies_opened {
+  display: flex;
+}
