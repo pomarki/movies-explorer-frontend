@@ -1,17 +1,19 @@
 import "./Login.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import EntranceWindow from "../EntranceWindow/EntranceWindow";
+import useFormValidation from "../../hooks/useFormValidation";
 
 function Login({ authorizationUser }) {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
 
-  function handleChangePassword(e) {
-    setPassword(e.target.value);
-  }
+  const { values, errors, isValid, handleChange, resetForm } =
+    useFormValidation();
 
-  function handleChangeEmail(e) {
-    setEmail(e.target.value);
+  useEffect(() => {
+    resetForm();
+  }, [resetForm]);
+
+  function handleSubmit(e) {
+    e.preventDefault();
   }
 
   return (
@@ -19,30 +21,37 @@ function Login({ authorizationUser }) {
       <EntranceWindow
         windowType="login"
         authorizationUser={authorizationUser}
-        email={email}
-        password={password}
+        values={values}
+        errors={errors}
+        isValid={isValid}
+        handleSubmit={handleSubmit}
       >
-        <label className="entrance-window__label">E-mail</label>
-        <input
-          type="email"
-          id="login-email"
-          value={email}
-          onChange={handleChangeEmail}
-          required
-          className="entrance-window__text entrance-window__text_input"
-        ></input>
-        <div className="entrance-window__breakline"></div>
-        <label className="entrance-window__label">Пароль</label>
-        <input
-          type="password"
-          id="login-password"
-          value={password}
-          onChange={handleChangePassword}
-          required
-          className="entrance-window__text entrance-window__text_input"
-        ></input>
-        <div className="entrance-window__breakline"></div>
-        <p className="entrance-window__error-message"></p>
+        <form className="entrance-window__container">
+          <label className="entrance-window__label">E-mail</label>
+          <input
+            type="email"
+            name="email"
+            id="login-email"
+            value={values.email || ""}
+            onChange={handleChange}
+            required
+            className="entrance-window__text entrance-window__text_input"
+          ></input>
+          <div className="entrance-window__breakline"></div>
+          <span className="entrance-window__error-message">{errors.email || ""}</span>
+          <label className="entrance-window__label">Пароль</label>
+          <input
+            type="password"
+            name="password"
+            id="login-password"
+            value={values.password || ""}
+            onChange={handleChange}
+            required
+            className="entrance-window__text entrance-window__text_input"
+          ></input>
+          <div className="entrance-window__breakline"></div>
+          <span className="entrance-window__error-message">{errors.password || ""}</span>
+        </form>
       </EntranceWindow>
     </section>
   );

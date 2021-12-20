@@ -11,6 +11,7 @@ function EntranceWindow({
   password,
   email,
   isRegisterDone,
+  
 }) {
   function handleSubmitRegister(e) {
     e.preventDefault();
@@ -61,7 +62,7 @@ function EntranceWindow({
     : (buttonAction = handleSubmitLogin);
 
   return (
-    <div className="entrance-window__container">
+    <>
       <Link to="/">
         <div className="page__logo page__link"></div>
       </Link>
@@ -98,7 +99,7 @@ function EntranceWindow({
           {linkName}
         </Link>
       </div>
-    </div>
+    </>
   );
 }
 
