@@ -1,0 +1,23 @@
+.register {
+  font-family: "Inter", "Arial", "Helvetica", sans-serif;
+  display: none;
+  background-color: #ffffff;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.register_opened {
+  display: flex;
+}
+
+.register__input:focus + .entrance-window__breakline {
+  background-color: #3456f3;
+}
+
+@media screen and (max-width: 450px) {
+  .register {
+    justify-content: flex-start;
+  }
+}

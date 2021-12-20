@@ -1,0 +1,48 @@
+.main__navigation {
+  font-family: "Inter", "Arial", "Helvetica", sans-serif;
+  max-width: 1280px;
+  width: 100%;
+  height: 66px;
+  background-color: #000000;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.main__link {
+  color: #ffffff;
+  font-family: Inter;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.23;
+  letter-spacing: 0px;
+  margin-right: 40px;
+  text-decoration: underline;
+}
+
+.main__link:last-of-type {
+  margin-right: 0;
+}
+
+@media screen and (max-width: 790px) {
+  .main__navigation {
+    max-width: 768px;
+  }
+  .main__link {
+    margin-top: -2px;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .main__navigation {
+    max-width: 320px;
+  }
+  .main__link {
+    font-size: 11px;
+    line-height: 1.45;
+    margin-top: 2px;
+    margin-right: 24px;
+  }
+}
