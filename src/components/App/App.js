@@ -59,18 +59,20 @@ function App() {
         }
       })
       .catch((err) => {
-        console.log(err);
+        console.log(`Ошибка: ${err}`);
       });
   }
 
   function handleUpdateUser(data) {
-    console.log(data);
     api
       .changeUserInfo(data)
       .then((newData) => {
         setCurrentUser(newData);
+        
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+       /* console.log(err); */
+      });
   }
 
   useEffect(() => {
@@ -121,9 +123,7 @@ function App() {
           />
           <Route
             path="/signin"
-            element={
-              <Login authorizationUser={authorizationUser} />
-            }
+            element={<Login authorizationUser={authorizationUser} />}
           />
           <Route path="*" element={<PageNotFound isOpen={true} />} />
         </Routes>

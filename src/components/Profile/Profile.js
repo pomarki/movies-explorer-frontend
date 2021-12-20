@@ -1,14 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./Profile.css";
 import Header from "../Header/Header";
 import ButtonContainer from "./ButtonContainer/ButtonContainer";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 function Profile({ handleLogout, handleUpdateUser }) {
-  const currentUser = React.useContext(CurrentUserContext);
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
-  const [isUpdateFormOpen, setUpdateFormOpen] = useState(false);
+  const currentUser = useContext(CurrentUserContext);
+  const [isUpdateFormOpen, setUpdateFormOpen] = useState(true);
+
+  useEffect(() => {
+    setName(currentUser.name || "");
+    setEmail(currentUser.email || "");
+  }, [currentUser]);
 
   function handleChangeName(e) {
     setName(e.target.value);
@@ -39,7 +44,7 @@ function Profile({ handleLogout, handleUpdateUser }) {
                 type="text"
                 value={name}
                 onChange={handleChangeName}
-                placeholder={currentUser.name}
+                placeholder="Имя"
               ></input>
             </div>
             <div className="profile__break_line"></div>
@@ -53,7 +58,7 @@ function Profile({ handleLogout, handleUpdateUser }) {
                 type="text"
                 value={email}
                 onChange={handleChangeEmail}
-                placeholder={currentUser.email}
+                placeholder="email"
               ></input>
             </div>
           </div>
