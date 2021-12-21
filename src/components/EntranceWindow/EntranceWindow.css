@@ -6,13 +6,18 @@
   align-items: flex-start;
 }
 
+.entrance-window__form {
+  max-width: 396px;
+  height: 560px;
+}
+
 .entrance-window__title {
   font-size: 24px;
   font-style: normal;
   font-weight: 500;
   line-height: 1.2;
   letter-spacing: 0em;
-  margin: 40px 0 40px 0;
+  margin: 40px 0 35px 0;
 }
 
 .entrance-window__form-container {
@@ -20,7 +25,7 @@
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-  width: 396px;
+  width: 100%;
   min-height: 266px;
 }
 
@@ -28,13 +33,18 @@
   min-height: 156px;
 }
 
+.entrance-window__input-container {
+  width: 100%;
+  height: 70px;
+}
+
 .entrance-window__button-container {
-  padding: 69px 0 16px 0;
+  padding: 24px 0 16px 0;
   box-sizing: border-box;
 }
 
 .entrance-window__button-container_login {
-  padding: 179px 0 16px 0;
+  padding: 134px 0 16px 0;
 }
 
 .entrance-window__reg-button {
@@ -50,6 +60,15 @@
   line-height: 1.21;
   letter-spacing: 0em;
   margin: 20px 0 0 0;
+}
+
+.entrance-window__reg-button_inactive {
+  background-color: #f8f8f8;
+  color: #c2c2c2;
+}
+
+.entrance-window__reg-button_inactive:hover {
+  cursor: default;
 }
 
 .entrance-window__link-container {
@@ -84,9 +103,13 @@
   width: 100%;
   background-color: #ffffff;
   outline: none;
-  margin: 0 0 10px 0;
+  margin: 0 0 12px 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+.entrance-window__text_error {
+  color: #ff3055;
 }
 
 .entrance-window__breakline {
@@ -94,7 +117,7 @@
   width: 100%;
   height: 1px;
   background-color: #e8e8e8;
-  margin: 0 0 24px 0;
+  margin: 0 0 6px 0;
 }
 
 .entrance-window__breakline:last-of-type {
@@ -107,9 +130,10 @@
   font-weight: 400;
   line-height: 1.2;
   letter-spacing: 0em;
-  margin: 0 0 5px 0;
+  margin: 0 0 11px 0;
 }
 .entrance-window__error-message {
+  display: block;
   max-width: 396px;
   margin: 0;
   color: #ff3055;
@@ -119,8 +143,8 @@
   line-height: 1.2;
   letter-spacing: 0em;
   white-space: nowrap;
+  overflow: hidden;
   text-overflow: ellipsis;
-  background-color: bisque;
 }
 
 .entrance-window__error-message_type_inactive {

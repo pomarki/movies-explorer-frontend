@@ -14,15 +14,19 @@ import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import resMessages from "../../utils/response-messages";
 import * as auth from "../../utils/auth";
 import api from "../../utils/MainApi";
+import Preloader from "../Preloader/Preloader";
 
 function App() {
-  const [isRegisterDone, setRegisterDone] = useState("");
+  const [isRegisterMessage, setRegisterDone] = useState("");
+  const [isLoginMessage, setLoginMessage] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   function handleLogin() {
     setLoggedIn(true);
+    setLoginMessage("");
   }
   function handleLogout() {
     localStorage.removeItem("_id");
@@ -35,17 +39,16 @@ function App() {
     auth
       .register(name, password, email)
       .then((response) => {
-        setRegisterDone(resMessages.successfulRegistration);
-        console.log(response.headers);
+        setRegisterDone("");
       })
       .catch((err) => {
         if (err.status === 400) {
-          setRegisterDone(resMessages.registrationError);
+          return setRegisterDone(resMessages.registrationError);
         }
         if (err.status === 409) {
-          setRegisterDone(resMessages.conflictEmailError);
+          return setRegisterDone(resMessages.conflictEmailError);
         }
-        console.log(`ERROR: ${err.status}`);
+        return setRegisterDone(resMessages.serverError);
       });
   }
 
@@ -59,7 +62,10 @@ function App() {
         }
       })
       .catch((err) => {
-        console.log(`Ошибка: ${err}`);
+        if (err.status === 401) {
+          return setLoginMessage(resMessages.unauthorizedError);
+        }
+        return setRegisterDone(resMessages.serverError);
       });
   }
 
@@ -68,10 +74,9 @@ function App() {
       .changeUserInfo(data)
       .then((newData) => {
         setCurrentUser(newData);
-        
       })
       .catch((err) => {
-       /* console.log(err); */
+        /* console.log(err); */
       });
   }
 
@@ -117,13 +122,18 @@ function App() {
             element={
               <Register
                 registerUser={registerUser}
-                isRegisterDone={isRegisterDone}
+                isRegisterMessage={isRegisterMessage}
               />
             }
           />
           <Route
             path="/signin"
-            element={<Login authorizationUser={authorizationUser} />}
+            element={
+              <Login
+                authorizationUser={authorizationUser}
+                isLoginMessage={isLoginMessage}
+              />
+            }
           />
           <Route path="*" element={<PageNotFound isOpen={true} />} />
         </Routes>

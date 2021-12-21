@@ -3,11 +3,13 @@ import "./Profile.css";
 import Header from "../Header/Header";
 import ButtonContainer from "./ButtonContainer/ButtonContainer";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import useFormValidation from "../../hooks/useFormValidation";
 
 function Profile({ handleLogout, handleUpdateUser }) {
+  const currentUser = useContext(CurrentUserContext);
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
-  const currentUser = useContext(CurrentUserContext);
+  
   const [isUpdateFormOpen, setUpdateFormOpen] = useState(true);
 
   useEffect(() => {

@@ -1,10 +1,10 @@
 import "./InfoMessage.css";
 
-function InfoMessage({ isRegisterDone }) {
+function InfoMessage({ message }) {
   return (
-    <p className="info-message__text">
-      {isRegisterDone}
-    </p>
+    <div className="info-message__container">
+      <p className="info-message__text">{message}</p>
+    </div>
   );
 }
 export default InfoMessage;

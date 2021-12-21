@@ -10,19 +10,13 @@ function EntranceWindow({
   name,
   password,
   email,
-  isRegisterDone,
-  
+  message,
+  onLogin,
+  onRegister,
+  isLoginOpen,
+  isRegisterOpen,
+  isValid,
 }) {
-  function handleSubmitRegister(e) {
-    e.preventDefault();
-    registerUser(name, password, email);
-  }
-
-  function handleSubmitLogin(e) {
-    e.preventDefault();
-    authorizationUser(email, password);
-  }
-
   let linkDirection;
   let linkSubtitle;
   let linkName;
@@ -58,11 +52,11 @@ function EntranceWindow({
     : (loginContainer = true);
 
   windowType === "register"
-    ? (buttonAction = handleSubmitRegister)
-    : (buttonAction = handleSubmitLogin);
+    ? (buttonAction = onRegister)
+    : (buttonAction = onLogin);
 
   return (
-    <>
+    <form className="entrance-window__form">
       <Link to="/">
         <div className="page__logo page__link"></div>
       </Link>
@@ -79,11 +73,14 @@ function EntranceWindow({
           loginContainer && "entrance-window__button-container_login"
         }`}
       >
-        <InfoMessage isRegisterDone={isRegisterDone} />
+        <InfoMessage message={message} />
         <button
-          className="entrance-window__reg-button page__link"
+          className={`entrance-window__reg-button page__link ${
+            !isValid && "entrance-window__reg-button_inactive"
+          }`}
           id={buttonId}
           onClick={buttonAction}
+          disabled={!isValid}
         >
           {buttonTitle}
         </button>
@@ -99,7 +96,7 @@ function EntranceWindow({
           {linkName}
         </Link>
       </div>
-    </>
+    </form>
   );
 }
 
