@@ -6,7 +6,7 @@ export class Api {
   }
   _checkResponse(response) {
     if (!response.ok) {
-      return Promise.reject(`Error: ${response.status}`);
+      return Promise.reject(response);
     }
     return response.json();
   }

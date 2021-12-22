@@ -5,28 +5,27 @@ import ButtonContainer from "./ButtonContainer/ButtonContainer";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import useFormValidation from "../../hooks/useFormValidation";
 
-function Profile({ handleLogout, handleUpdateUser }) {
+function Profile({ handleLogout, updateUser, isUpdateMessage }) {
   const currentUser = useContext(CurrentUserContext);
-  const [email, setEmail] = useState("");
-  const [name, setName] = useState("");
-  
-  const [isUpdateFormOpen, setUpdateFormOpen] = useState(true);
+  const { values, errors, isValid, handleChange, resetForm } =
+    useFormValidation();
 
   useEffect(() => {
-    setName(currentUser.name || "");
-    setEmail(currentUser.email || "");
-  }, [currentUser]);
+    resetForm();
+  }, [resetForm]);
 
-  function handleChangeName(e) {
-    setName(e.target.value);
-  }
-
-  function handleChangeEmail(e) {
-    setEmail(e.target.value);
-  }
+  const [isUpdateFormOpen, setUpdateFormOpen] = useState(true);
 
   function handleUpdateForm() {
     setUpdateFormOpen(!isUpdateFormOpen);
+  }
+
+  function handleUpdateUser(e) {
+    e.preventDefault();
+    updateUser({
+      name: values.name || currentUser.name,
+      email: values.email || currentUser.email,
+    });
   }
 
   return (
@@ -35,18 +34,21 @@ function Profile({ handleLogout, handleUpdateUser }) {
       <section className="profile page__section">
         <div className="profile__container profile__container_opened">
           <p className="profile__title">Привет, {currentUser.name}!</p>
-          <div className="profile__edit-form">
+          <form className="profile__edit-form">
             <div className="profile__info-block">
               <p className="profile__info-subtitle">Имя</p>
               <input
                 className={`profile__input profile__info-subtitle ${
                   isUpdateFormOpen && "profile__input_type_inactive"
                 }`}
+                name="name"
                 id="profile-name"
                 type="text"
-                value={name}
-                onChange={handleChangeName}
+                value={values.name || currentUser.name}
+                onChange={handleChange}
                 placeholder="Имя"
+                required
+                minLength="2"
               ></input>
             </div>
             <div className="profile__break_line"></div>
@@ -57,20 +59,25 @@ function Profile({ handleLogout, handleUpdateUser }) {
                   isUpdateFormOpen && "profile__input_type_inactive"
                 }`}
                 id="profile-email"
-                type="text"
-                value={email}
-                onChange={handleChangeEmail}
+                name="email"
+                type="email"
+                value={values.email || currentUser.email}
+                onChange={handleChange}
                 placeholder="email"
+                required
               ></input>
             </div>
-          </div>
+            <span className="profile__error-message">
+            {errors.email || ""}
+          </span>
+          </form>
           <ButtonContainer
             type={!isUpdateFormOpen}
+            isValid={isValid}
             handleLogout={handleLogout}
             handleUpdateUser={handleUpdateUser}
             handleUpdateForm={handleUpdateForm}
-            email={email}
-            name={name}
+            message={isUpdateMessage}
           />
         </div>
       </section>

@@ -17,8 +17,9 @@ import api from "../../utils/MainApi";
 import Preloader from "../Preloader/Preloader";
 
 function App() {
-  const [isRegisterMessage, setRegisterDone] = useState("");
+  const [isRegisterMessage, setRegisterMessage] = useState("");
   const [isLoginMessage, setLoginMessage] = useState("");
+  const [isUpdateMessage, setUpdateMessage] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
   const [isLoading, setIsLoading] = useState(false);
@@ -34,25 +35,32 @@ function App() {
     setLoggedIn(false);
     navigate("/signin", { replace: true });
   }
+  function messageTimer(message, messageSetter) {
+    messageSetter(message);
+    setTimeout(() => messageSetter(""), 5000);
+  }
 
   function registerUser(name, password, email) {
+    setRegisterMessage(resMessages.waitingForUpdate);
     auth
       .register(name, password, email)
       .then((response) => {
-        setRegisterDone("");
+        setRegisterMessage(resMessages.successfulRegister);
+        setTimeout(() => navigate("/signin", { replace: true }), 5000);
       })
       .catch((err) => {
         if (err.status === 400) {
-          return setRegisterDone(resMessages.registrationError);
+          return messageTimer(resMessages.registrationError, setRegisterMessage);
         }
         if (err.status === 409) {
-          return setRegisterDone(resMessages.conflictEmailError);
+          return messageTimer(resMessages.conflictEmailError, setRegisterMessage);
         }
-        return setRegisterDone(resMessages.serverError);
+        return messageTimer(resMessages.serverError, setRegisterMessage);
       });
   }
 
   function authorizationUser(password, email) {
+    setLoginMessage(resMessages.waitingForUpdate);
     auth
       .authorize(password, email)
       .then((token) => {
@@ -63,20 +71,28 @@ function App() {
       })
       .catch((err) => {
         if (err.status === 401) {
-          return setLoginMessage(resMessages.unauthorizedError);
+          return messageTimer(resMessages.unauthorizedError, setLoginMessage);
         }
-        return setRegisterDone(resMessages.serverError);
+        return messageTimer(resMessages.serverError, setLoginMessage);
       });
   }
 
-  function handleUpdateUser(data) {
+  function updateUser(data) {
+    setUpdateMessage(resMessages.waitingForUpdate);
     api
       .changeUserInfo(data)
       .then((newData) => {
         setCurrentUser(newData);
+        messageTimer(resMessages.successfulUpdate, setUpdateMessage);
       })
       .catch((err) => {
-        /* console.log(err); */
+        if (err.status === 400) {
+          return messageTimer(resMessages.registrationError, setUpdateMessage);
+        }
+        if (err.status === 409) {
+          return messageTimer(resMessages.conflictEmailError, setUpdateMessage);
+        }
+        return messageTimer(resMessages.serverError, setUpdateMessage);
       });
   }
 
@@ -113,7 +129,8 @@ function App() {
             element={
               <Profile
                 handleLogout={handleLogout}
-                handleUpdateUser={handleUpdateUser}
+                updateUser={updateUser}
+                isUpdateMessage={isUpdateMessage}
               />
             }
           />

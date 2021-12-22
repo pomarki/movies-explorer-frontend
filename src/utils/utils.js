@@ -8,15 +8,4 @@ const timeConverter = (timeVolume) => {
   return `${hours} ч ${min} м`;
 };
 
-/* const undefinedCheck = (value) => {
-
-  if (typeof(value) === "undefined") {
-    
-  }
-  
-  return value;
-
-} */
-
-
 export { timeConverter };

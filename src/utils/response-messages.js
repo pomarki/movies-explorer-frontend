@@ -9,6 +9,9 @@ const resMessages = {
   updateProfileError: "При обновлении профиля произошла ошибка.",
   serverError: "500 На сервере произошла ошибка.",
   notFoundError: "404 Страница по указанному маршруту не найдена.",
+  successfulUpdate: "Вы успешно изменили данные пользователя!",
+  successfulRegister: "Вы успешно зарегистрировались!",
+  waitingForUpdate: "Ждите. Отправляем данные на сервер.",
 };
 
 export default resMessages;

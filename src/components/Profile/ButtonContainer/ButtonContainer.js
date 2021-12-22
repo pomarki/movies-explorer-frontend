@@ -1,20 +1,13 @@
 import "./ButtonContainer.css";
-import resMessages from "../../../utils/response-messages";
 
 function ButtonContainer({
   type,
+  message,
   handleLogout,
   handleUpdateUser,
   handleUpdateForm,
-  email,
-  name,
+  isValid,
 }) {
-  function handleSubmitUpdate(e) {
-    e.preventDefault();
-    handleUpdateUser({ name, email });
-    handleUpdateForm();
-  }
-
   return (
     <>
       <div
@@ -43,14 +36,15 @@ function ButtonContainer({
           !type && "button-container__type_inactive"
         }`}
       >
-        <p className="button-container__error-message">
-          {resMessages.updateProfileError}
-        </p>
+        <p className="button-container__error-message">{message}</p>
 
         <button
-          className="button-container__save-button page__link"
+          className={`button-container__save-button page__link ${
+            !isValid && "button-container__save-button_type_inactive"
+          }`}
           id="profile-save-button"
-          onClick={handleSubmitUpdate}
+          onClick={handleUpdateUser}
+          disabled={!isValid}
         >
           Сохранить
         </button>
