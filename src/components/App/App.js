@@ -9,7 +9,7 @@ import Profile from "../Profile/Profile";
 import Register from "../Register/Register";
 import Login from "../Login/Login";
 import PageNotFound from "../PageNotFound/PageNotFound";
-/* import ProtectedRoute from "../ProtectedRoute/ProtectedRoute"; */
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import resMessages from "../../utils/response-messages";
 import * as auth from "../../utils/auth";
@@ -24,6 +24,35 @@ function App() {
   const [currentUser, setCurrentUser] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+
+  /*   useEffect(() => {
+    if (loggedIn) {
+      navigate("/movies", { replace: true });
+    }
+  }, [navigate, loggedIn]); */
+
+  useEffect(() => {
+    tokenCheck();
+  }, []);
+
+  function tokenCheck() {
+    const jwt = localStorage.getItem("_id");
+    if (jwt) {
+      auth
+        .getUser(jwt)
+        .then((res) => {
+          if (res) {
+            setCurrentUser(res);
+            setLoggedIn(true);
+          }
+        })
+        .catch((err) => {
+          console.log(`вот такая ошибка:${err} ${jwt}`);
+          localStorage.removeItem("token");
+          navigate("/", { replace: true });
+        });
+    }
+  }
 
   function handleLogin() {
     setLoggedIn(true);
@@ -50,10 +79,16 @@ function App() {
       })
       .catch((err) => {
         if (err.status === 400) {
-          return messageTimer(resMessages.registrationError, setRegisterMessage);
+          return messageTimer(
+            resMessages.registrationError,
+            setRegisterMessage
+          );
         }
         if (err.status === 409) {
-          return messageTimer(resMessages.conflictEmailError, setRegisterMessage);
+          return messageTimer(
+            resMessages.conflictEmailError,
+            setRegisterMessage
+          );
         }
         return messageTimer(resMessages.serverError, setRegisterMessage);
       });
@@ -122,7 +157,14 @@ function App() {
       <div className="page">
         <Routes>
           <Route exact path="/" element={<Main isOpen={true} />} />
-          <Route path="/movies" element={<Movies isOpen={true} />} />
+          <Route
+            path="/movies"
+            element={
+              <ProtectedRoute>
+                <Movies isOpen={true} />
+              </ProtectedRoute>
+            }
+          />
           <Route path="/saved-movies" element={<SavedMovies isOpen={true} />} />
           <Route
             path="/profile"
