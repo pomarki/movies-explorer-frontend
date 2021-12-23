@@ -5,17 +5,11 @@ import InfoMessage from "../InfoMessage/InfoMessage";
 function EntranceWindow({
   windowType,
   children,
-  registerUser,
-  authorizationUser,
-  name,
-  password,
-  email,
   message,
   onLogin,
   onRegister,
-  isLoginOpen,
-  isRegisterOpen,
   isValid,
+  requestInProgress,
 }) {
   let linkDirection;
   let linkSubtitle;
@@ -76,11 +70,11 @@ function EntranceWindow({
         <InfoMessage message={message} />
         <button
           className={`entrance-window__reg-button page__link ${
-            !isValid && "entrance-window__reg-button_inactive"
+            (!isValid || requestInProgress) && "entrance-window__reg-button_inactive"
           }`}
           id={buttonId}
           onClick={buttonAction}
-          disabled={!isValid}
+          disabled={!isValid || requestInProgress}
         >
           {buttonTitle}
         </button>

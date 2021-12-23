@@ -1,9 +1,9 @@
 import "./Login.css";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import EntranceWindow from "../EntranceWindow/EntranceWindow";
 import useFormValidation from "../../hooks/useFormValidation";
 
-function Login({ authorizationUser, isLoginMessage }) {
+function Login({ authorizationUser, isLoginMessage, loginInProgress }) {
   const { values, errors, isValid, handleChange, resetForm } =
     useFormValidation();
 
@@ -27,6 +27,7 @@ function Login({ authorizationUser, isLoginMessage }) {
         errors={errors}
         isValid={isValid}
         onLogin={handleSubmitLogin}
+        requestInProgress={loginInProgress}
       >
         <div className="entrance-window__input-container">
           <label className="entrance-window__label">E-mail</label>
@@ -37,6 +38,7 @@ function Login({ authorizationUser, isLoginMessage }) {
             onChange={handleChange}
             required
             className="entrance-window__text entrance-window__text_input"
+            disabled={loginInProgress}
           ></input>
           <div className="entrance-window__breakline"></div>
           <span className="entrance-window__error-message">
@@ -54,6 +56,7 @@ function Login({ authorizationUser, isLoginMessage }) {
             className={`entrance-window__text entrance-window__text_input ${
               isLoginMessage && "entrance-window__text_error"
             }`}
+            disabled={loginInProgress}
           ></input>
           <div className="entrance-window__breakline"></div>
           <span className="entrance-window__error-message">

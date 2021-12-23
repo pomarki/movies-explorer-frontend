@@ -7,6 +7,7 @@ function ButtonContainer({
   handleUpdateUser,
   handleUpdateForm,
   isValid,
+  updateInProgress
 }) {
   return (
     <>
@@ -40,11 +41,11 @@ function ButtonContainer({
 
         <button
           className={`button-container__save-button page__link ${
-            !isValid && "button-container__save-button_type_inactive"
+            (!isValid || updateInProgress) && "button-container__save-button_type_inactive"
           }`}
           id="profile-save-button"
           onClick={handleUpdateUser}
-          disabled={!isValid}
+          disabled={!isValid || updateInProgress}
         >
           Сохранить
         </button>

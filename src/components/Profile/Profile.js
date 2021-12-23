@@ -5,7 +5,7 @@ import ButtonContainer from "./ButtonContainer/ButtonContainer";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import useFormValidation from "../../hooks/useFormValidation";
 
-function Profile({ handleLogout, updateUser, isUpdateMessage }) {
+function Profile({ handleLogout, updateUser, isUpdateMessage, updateInProgress }) {
   const currentUser = useContext(CurrentUserContext);
   const { values, errors, isValid, handleChange, resetForm } =
     useFormValidation();
@@ -46,6 +46,7 @@ function Profile({ handleLogout, updateUser, isUpdateMessage }) {
                 type="text"
                 value={values.name || currentUser.name}
                 onChange={handleChange}
+                disabled={updateInProgress}
                 placeholder="Имя"
                 required
                 minLength="2"
@@ -63,6 +64,7 @@ function Profile({ handleLogout, updateUser, isUpdateMessage }) {
                 type="email"
                 value={values.email || currentUser.email}
                 onChange={handleChange}
+                disabled={updateInProgress}
                 placeholder="email"
                 required
               ></input>
@@ -78,6 +80,7 @@ function Profile({ handleLogout, updateUser, isUpdateMessage }) {
             handleUpdateUser={handleUpdateUser}
             handleUpdateForm={handleUpdateForm}
             message={isUpdateMessage}
+            updateInProgress={updateInProgress}
           />
         </div>
       </section>

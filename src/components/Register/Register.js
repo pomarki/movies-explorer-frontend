@@ -3,7 +3,7 @@ import "./Register.css";
 import EntranceWindow from "../EntranceWindow/EntranceWindow";
 import useFormValidation from "../../hooks/useFormValidation";
 
-function Register({ registerUser, isRegisterMessage }) {
+function Register({ registerUser, isRegisterMessage, registerInProgress }) {
   const { values, errors, isValid, handleChange, resetForm } =
     useFormValidation();
 
@@ -31,6 +31,7 @@ function Register({ registerUser, isRegisterMessage }) {
         isValid={isValid}
         errors={errors}
         message={isRegisterMessage}
+        requestInProgress={registerInProgress}
       >
         <div className="entrance-window__input-container">
           <label className="entrance-window__label" htmlFor="register-user">
@@ -44,6 +45,7 @@ function Register({ registerUser, isRegisterMessage }) {
             minLength="2"
             value={values.name || ""}
             onChange={handleChange}
+            disabled={registerInProgress}
             className="entrance-window__text entrance-window__text_input register__input"
           ></input>
           <div className="entrance-window__breakline"></div>
@@ -62,6 +64,7 @@ function Register({ registerUser, isRegisterMessage }) {
             required
             value={values.email || ""}
             onChange={handleChange}
+            disabled={registerInProgress}
             className="entrance-window__text entrance-window__text_input register__input"
           ></input>
           <div className="entrance-window__breakline"></div>
@@ -80,6 +83,7 @@ function Register({ registerUser, isRegisterMessage }) {
             required
             value={values.password || ""}
             onChange={handleChange}
+            disabled={registerInProgress}
             className="entrance-window__text entrance-window__text_input register__input"
           ></input>
           <div className="entrance-window__breakline"></div>

@@ -46,6 +46,9 @@
   line-height: 1.21;
   letter-spacing: 0em;
   color: #3456f3;
+  border: 0;
+  background-color: #ffffff;
+  padding: 0;
 }
 
 @media screen and (max-width: 450px) {

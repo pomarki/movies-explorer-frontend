@@ -1,5 +1,5 @@
 import "./App.css";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Main from "../Main/Main";
@@ -9,7 +9,7 @@ import Profile from "../Profile/Profile";
 import Register from "../Register/Register";
 import Login from "../Login/Login";
 import PageNotFound from "../PageNotFound/PageNotFound";
-import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
+import ProtectedRoute from "../../hoc/ProtectedRoute";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import resMessages from "../../utils/response-messages";
 import * as auth from "../../utils/auth";
@@ -22,10 +22,12 @@ function App() {
   const [isUpdateMessage, setUpdateMessage] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
+  const [requestInProgress, setrequestInProgress] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
 
-  /*   useEffect(() => {
+  /*     useEffect(() => {
     if (loggedIn) {
       navigate("/movies", { replace: true });
     }
@@ -44,6 +46,7 @@ function App() {
           if (res) {
             setCurrentUser(res);
             setLoggedIn(true);
+            navigate(location);
           }
         })
         .catch((err) => {
@@ -71,13 +74,16 @@ function App() {
 
   function registerUser(name, password, email) {
     setRegisterMessage(resMessages.waitingForUpdate);
+    setrequestInProgress(true);
     auth
       .register(name, password, email)
       .then((response) => {
         setRegisterMessage(resMessages.successfulRegister);
+        setrequestInProgress(false);
         setTimeout(() => navigate("/signin", { replace: true }), 5000);
       })
       .catch((err) => {
+        setrequestInProgress(false);
         if (err.status === 400) {
           return messageTimer(
             resMessages.registrationError,
@@ -96,15 +102,18 @@ function App() {
 
   function authorizationUser(password, email) {
     setLoginMessage(resMessages.waitingForUpdate);
+    setrequestInProgress(true);
     auth
       .authorize(password, email)
       .then((token) => {
+        setrequestInProgress(false);
         if (token) {
           handleLogin();
           navigate("/movies", { replace: true });
         }
       })
       .catch((err) => {
+        setrequestInProgress(false);
         if (err.status === 401) {
           return messageTimer(resMessages.unauthorizedError, setLoginMessage);
         }
@@ -114,13 +123,16 @@ function App() {
 
   function updateUser(data) {
     setUpdateMessage(resMessages.waitingForUpdate);
+    setrequestInProgress(true);
     api
       .changeUserInfo(data)
       .then((newData) => {
+        setrequestInProgress(false);
         setCurrentUser(newData);
         messageTimer(resMessages.successfulUpdate, setUpdateMessage);
       })
       .catch((err) => {
+        setrequestInProgress(false);
         if (err.status === 400) {
           return messageTimer(resMessages.registrationError, setUpdateMessage);
         }
@@ -156,24 +168,34 @@ function App() {
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
         <Routes>
-          <Route exact path="/" element={<Main isOpen={true} />} />
+          <Route path="/" element={<Main isOpen={true} loggedIn={loggedIn} />} />
           <Route
             path="/movies"
             element={
-              <ProtectedRoute>
+              <ProtectedRoute loggedIn={loggedIn}>
                 <Movies isOpen={true} />
               </ProtectedRoute>
             }
           />
-          <Route path="/saved-movies" element={<SavedMovies isOpen={true} />} />
+          <Route
+            path="/saved-movies"
+            element={
+              <ProtectedRoute loggedIn={loggedIn}>
+                <SavedMovies isOpen={true} />
+              </ProtectedRoute>
+            }
+          />
           <Route
             path="/profile"
             element={
-              <Profile
-                handleLogout={handleLogout}
-                updateUser={updateUser}
-                isUpdateMessage={isUpdateMessage}
-              />
+              <ProtectedRoute loggedIn={loggedIn}>
+                <Profile
+                  handleLogout={handleLogout}
+                  updateUser={updateUser}
+                  isUpdateMessage={isUpdateMessage}
+                  updateInProgress={requestInProgress}
+                />
+              </ProtectedRoute>
             }
           />
           <Route
@@ -182,6 +204,7 @@ function App() {
               <Register
                 registerUser={registerUser}
                 isRegisterMessage={isRegisterMessage}
+                registerInProgress={requestInProgress}
               />
             }
           />
@@ -191,6 +214,7 @@ function App() {
               <Login
                 authorizationUser={authorizationUser}
                 isLoginMessage={isLoginMessage}
+                loginInProgress={requestInProgress}
               />
             }
           />

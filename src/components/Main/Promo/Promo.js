@@ -2,7 +2,10 @@ import React from "react";
 import "./Promo.css";
 import { Link } from "react-router-dom";
 
-function Promo(props) {
+function Promo({ loggedIn }) {
+  let linkDirection;
+  loggedIn === true ? (linkDirection = "/movies") : (linkDirection = "/signin");
+
   return (
     <header className="promo page__section">
       <div className="promo__top">
@@ -13,7 +16,7 @@ function Promo(props) {
           <Link to="/signup" className="promo__link page__link">
             Регистрация
           </Link>
-          <Link to="/signin">
+          <Link to={linkDirection}>
             <button
               type="button"
               className="promo__authorization-button page__link"
