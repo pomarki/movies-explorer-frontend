@@ -1,0 +1,4 @@
+const noImage =
+"https://ibnkhaldun.org/wp-content/uploads/2018/10/tier-mit-x-als-anfangsbuchstabe-frisch-tier-mit-x-forum-of-tier-mit-x-als-anfangsbuchstabe.jpg";
+
+export default noImage;

@@ -1,11 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./Promo.css";
 import { Link } from "react-router-dom";
+/* import { CurrentUserContext } from "../../contexts/CurrentUserContext"; */
 
-function Promo({ loggedIn }) {
-  let linkDirection;
-  loggedIn === true ? (linkDirection = "/movies") : (linkDirection = "/signin");
-
+function Promo() {
   return (
     <header className="promo page__section">
       <div className="promo__top">
@@ -16,7 +14,7 @@ function Promo({ loggedIn }) {
           <Link to="/signup" className="promo__link page__link">
             Регистрация
           </Link>
-          <Link to={linkDirection}>
+          <Link to="/movies">
             <button
               type="button"
               className="promo__authorization-button page__link"

@@ -14,6 +14,7 @@ import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import resMessages from "../../utils/response-messages";
 import * as auth from "../../utils/auth";
 import api from "../../utils/MainApi";
+import getInitialMovies from "../../utils/getInitialMovies";
 import Preloader from "../Preloader/Preloader";
 
 function App() {
@@ -22,23 +23,36 @@ function App() {
   const [isUpdateMessage, setUpdateMessage] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
-  const [requestInProgress, setrequestInProgress] = useState(false);
+  const [requestInProgress, setRequestInProgress] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+
+  /* const [initialMovies, setInitialMovies] = useState([]); */
+
   const navigate = useNavigate();
   const location = useLocation();
 
-  /*     useEffect(() => {
+  useEffect(() => {
     if (loggedIn) {
-      navigate("/movies", { replace: true });
+      getInitialMovies();
     }
-  }, [navigate, loggedIn]); */
+  }, [loggedIn]);
 
   useEffect(() => {
     tokenCheck();
   }, []);
 
+  useEffect(() => {
+    if (loggedIn) {
+      Promise.all([api.getUserInfo()])
+        .then(([userDate]) => {
+          setCurrentUser(userDate);
+        })
+        .catch((err) => console.log(err));
+    }
+  }, [loggedIn]);
+
   function tokenCheck() {
-    const jwt = localStorage.getItem("_id");
+    const jwt = localStorage.getItem("jwt");
     if (jwt) {
       auth
         .getUser(jwt)
@@ -50,8 +64,7 @@ function App() {
           }
         })
         .catch((err) => {
-          console.log(`вот такая ошибка:${err} ${jwt}`);
-          localStorage.removeItem("token");
+          localStorage.removeItem("jwt");
           navigate("/", { replace: true });
         });
     }
@@ -62,7 +75,8 @@ function App() {
     setLoginMessage("");
   }
   function handleLogout() {
-    localStorage.removeItem("_id");
+    localStorage.removeItem("jwt");
+    localStorage.removeItem("beatMovies");
     setCurrentUser({});
     setLoggedIn(false);
     navigate("/signin", { replace: true });
@@ -74,16 +88,16 @@ function App() {
 
   function registerUser(name, password, email) {
     setRegisterMessage(resMessages.waitingForUpdate);
-    setrequestInProgress(true);
+    setRequestInProgress(true);
     auth
       .register(name, password, email)
       .then((response) => {
         setRegisterMessage(resMessages.successfulRegister);
-        setrequestInProgress(false);
+        setRequestInProgress(false);
         setTimeout(() => navigate("/signin", { replace: true }), 5000);
       })
       .catch((err) => {
-        setrequestInProgress(false);
+        setRequestInProgress(false);
         if (err.status === 400) {
           return messageTimer(
             resMessages.registrationError,
@@ -102,18 +116,18 @@ function App() {
 
   function authorizationUser(password, email) {
     setLoginMessage(resMessages.waitingForUpdate);
-    setrequestInProgress(true);
+    setRequestInProgress(true);
     auth
       .authorize(password, email)
       .then((token) => {
-        setrequestInProgress(false);
+        setRequestInProgress(false);
         if (token) {
           handleLogin();
           navigate("/movies", { replace: true });
         }
       })
       .catch((err) => {
-        setrequestInProgress(false);
+        setRequestInProgress(false);
         if (err.status === 401) {
           return messageTimer(resMessages.unauthorizedError, setLoginMessage);
         }
@@ -123,16 +137,16 @@ function App() {
 
   function updateUser(data) {
     setUpdateMessage(resMessages.waitingForUpdate);
-    setrequestInProgress(true);
+    setRequestInProgress(true);
     api
       .changeUserInfo(data)
       .then((newData) => {
-        setrequestInProgress(false);
+        setRequestInProgress(false);
         setCurrentUser(newData);
         messageTimer(resMessages.successfulUpdate, setUpdateMessage);
       })
       .catch((err) => {
-        setrequestInProgress(false);
+        setRequestInProgress(false);
         if (err.status === 400) {
           return messageTimer(resMessages.registrationError, setUpdateMessage);
         }
@@ -143,32 +157,14 @@ function App() {
       });
   }
 
-  useEffect(() => {
-    if (loggedIn) {
-      const promises = [api.getUserInfo()];
-      Promise.all(promises)
-        .then((result) => {
-          setCurrentUser(result[0]);
-
-          /*          setCards(
-            result[1].cards.map((card) => ({
-              name: card.name,
-              link: card.link,
-              likes: card.likes,
-              cardId: card._id,
-              userId: card.owner,
-            }))
-          ); */
-        })
-        .catch((err) => console.log(err));
-    }
-  }, [loggedIn]);
-
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
         <Routes>
-          <Route path="/" element={<Main isOpen={true} loggedIn={loggedIn} />} />
+          <Route
+            path="/"
+            element={<Main isOpen={true} loggedIn={loggedIn} />}
+          />
           <Route
             path="/movies"
             element={

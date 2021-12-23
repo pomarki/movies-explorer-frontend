@@ -5,7 +5,12 @@ import ButtonContainer from "./ButtonContainer/ButtonContainer";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import useFormValidation from "../../hooks/useFormValidation";
 
-function Profile({ handleLogout, updateUser, isUpdateMessage, updateInProgress }) {
+function Profile({
+  handleLogout,
+  updateUser,
+  isUpdateMessage,
+  updateInProgress,
+}) {
   const currentUser = useContext(CurrentUserContext);
   const { values, errors, isValid, handleChange, resetForm } =
     useFormValidation();
@@ -69,9 +74,7 @@ function Profile({ handleLogout, updateUser, isUpdateMessage, updateInProgress }
                 required
               ></input>
             </div>
-            <span className="profile__error-message">
-            {errors.email || ""}
-          </span>
+            <span className="profile__error-message">{errors.email || ""}</span>
           </form>
           <ButtonContainer
             type={!isUpdateFormOpen}

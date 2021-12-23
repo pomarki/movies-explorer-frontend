@@ -23,7 +23,7 @@ export class Api {
     return fetch(`${this._address}/users/me`, {
       method: "GET",
       headers: {
-        authorization: `Bearer ${localStorage.getItem('_id')}`
+        authorization: `Bearer ${localStorage.getItem('jwt')}`
       },
     }).then(this._checkResponse);
   }
@@ -32,7 +32,7 @@ export class Api {
     return fetch(`${this._address}/users/me`, {
       method: "PATCH",
       headers: {
-        authorization: `Bearer ${localStorage.getItem('_id')}`,
+        authorization: `Bearer ${localStorage.getItem('jwt')}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
