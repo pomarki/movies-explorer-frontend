@@ -1,7 +1,14 @@
 import "./MoviesCardList.css";
 import MoviesCard from "../MoviesCard/MoviesCard";
 
-function MoviesCardList({ isOpen, movies, listTypeSaved }) {
+function MoviesCardList({
+  isOpen,
+  movies,
+  listTypeSaved,
+  onLike,
+  likedMovies,
+}) {
+
   return (
     <section
       className={`movies-card-list ${
@@ -15,11 +22,17 @@ function MoviesCardList({ isOpen, movies, listTypeSaved }) {
             card={card}
             cardId={card.movieId}
             listTypeSaved={listTypeSaved}
+            onLike={onLike}
+            likedMovies={likedMovies}
           />
         ))}
       </ul>
       <div className="movies-card-list__button-container">
-        <button className={`movies-card-list__more-button page__link ${listTypeSaved && "movies-card-list__more-button_type_inactive"}`}>
+        <button
+          className={`movies-card-list__more-button page__link ${
+            listTypeSaved && "movies-card-list__more-button_type_inactive"
+          }`}
+        >
           Ещё
         </button>
       </div>

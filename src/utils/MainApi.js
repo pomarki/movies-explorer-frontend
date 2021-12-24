@@ -10,7 +10,7 @@ export class Api {
     }
     return response.json();
   }
-/* 
+  /* 
   getInitialCards() {
     return fetch(`${this._address}/cards`, {
         headers: {
@@ -23,16 +23,16 @@ export class Api {
     return fetch(`${this._address}/users/me`, {
       method: "GET",
       headers: {
-        authorization: `Bearer ${localStorage.getItem('jwt')}`
+        authorization: `Bearer ${localStorage.getItem("jwt")}`,
       },
     }).then(this._checkResponse);
   }
- 
+
   changeUserInfo(data) {
     return fetch(`${this._address}/users/me`, {
       method: "PATCH",
       headers: {
-        authorization: `Bearer ${localStorage.getItem('jwt')}`,
+        authorization: `Bearer ${localStorage.getItem("jwt")}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
@@ -41,21 +41,31 @@ export class Api {
       }),
     }).then(this._checkResponse);
   }
-/*
-  sendNewCard(data) {
-    return fetch(`${this._address}/cards`, {
+
+  chooseNewMovie(movie) {
+    return fetch(`${this._address}/movies`, {
       method: "POST",
       headers: {
-        authorization: `Bearer ${localStorage.getItem('_id')}`,
+        authorization: `Bearer ${localStorage.getItem("jwt")}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        name: data.name,
-        link: data.link,
+        country: movie.country,
+        director: movie.director,
+        duration: movie.duration,
+        year: movie.year,
+        description: movie.description,
+        image: movie.image,
+        trailer: movie.trailer,
+        thumbnail: movie.thumbnail,
+        movieId: movie.movieId,
+        nameRU: movie.nameRU,
+        nameEN: movie.nameEN,
       }),
     }).then(this._checkResponse);
   }
 
+  /*
   removeCard(id) {
     return fetch(`${this._address}/cards/${id}`, {
       method: "DELETE",
@@ -67,17 +77,18 @@ export class Api {
         ? Promise.resolve("success")
         : Promise.reject(`Ошибка ${response.status}`)
     );
-  }
+  } */
 
-  changeLikeCardStatus(id, isLiked) {
+  /*   changeLikeCardStatus(id, isLiked) {
     return fetch(`${this._address}/cards/${id}/likes`, {
       method: isLiked ? "PUT" : "DELETE",
       headers: {
         authorization: `Bearer ${localStorage.getItem('_id')}`,
       },
     }).then(this._checkResponse);
-  }
+  } */
 
+  /*
   sendNewAvatar(avatar) {
     return fetch(`${this._address}/users/me/avatar`, {
       method: "PATCH",

@@ -12,7 +12,7 @@ function SearchForm({ onSubmit }) {
 
   function emptyForm() {
     setIsvalid(false);
-    setFilm("Нужно ввести ключевое слово!");
+    setFilm("Нужно ввести ключевое слово");
     setTimeout(() => {setFilm(""); setIsvalid(true)}, 2000);
   }
 

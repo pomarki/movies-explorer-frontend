@@ -15,7 +15,7 @@ import resMessages from "../../utils/response-messages";
 import * as auth from "../../utils/auth";
 import api from "../../utils/MainApi";
 import movies from "../../utils/MoviesApi";
-import getInitialMovies from "../../utils/getInitialMovies";
+import { getInitialMovies } from "../../utils/utils";
 import Preloader from "../Preloader/Preloader";
 
 function App() {
@@ -29,6 +29,8 @@ function App() {
 
   const [initialMovies, setInitialMovies] = useState([]);
   const [initialFiltredMovies, setInitialFiltredMovies] = useState([]);
+
+  const [savedMovies, setSavedMovies] = useState([]);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -167,7 +169,7 @@ function App() {
         unifiedWord(movie.director).includes(keyword)
       );
     });
-/*     if (result.length === 0) {
+    /*     if (result.length === 0) {
       console.log("нет фильмов")
       return re
     } */
@@ -179,6 +181,14 @@ function App() {
     setInitialFiltredMovies(searchArray);
   }
 
+  function likeMovie(movie) {
+    api
+      .chooseNewMovie(movie)
+      .then((newMovie) => {
+        setSavedMovies([...savedMovies, newMovie.movie]);
+      })
+      .catch((err) => console.log(err));
+  }
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -192,7 +202,13 @@ function App() {
             path="/movies"
             element={
               <ProtectedRoute loggedIn={loggedIn}>
-                <Movies isOpen={true} filtredMovies={initialFiltredMovies} onSubmit={submitSearchMovies} />
+                <Movies
+                  isOpen={true}
+                  filtredMovies={initialFiltredMovies}
+                  savedMovies={savedMovies}
+                  onSubmit={submitSearchMovies}
+                  onLike={likeMovie}
+                />
               </ProtectedRoute>
             }
           />
@@ -200,7 +216,7 @@ function App() {
             path="/saved-movies"
             element={
               <ProtectedRoute loggedIn={loggedIn}>
-                <SavedMovies isOpen={true} />
+                <SavedMovies isOpen={true} savedMovies={savedMovies} />
               </ProtectedRoute>
             }
           />

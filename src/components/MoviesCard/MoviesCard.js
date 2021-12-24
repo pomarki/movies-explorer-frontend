@@ -2,12 +2,23 @@ import "./MoviesCard.css";
 import { useState } from "react";
 import { timeConverter } from "../../utils/utils";
 
-function MoviesCard({ card, listTypeSaved, cardId }) {
+function MoviesCard({
+  card,
+  listTypeSaved,
+  onLike,
+  cardId,
+  isLiked,
+  likedMovies,
+}) {
+
+  /* const [like, setLike] = useState(likedMovies.includes(card.movieId, 0)) */
+
   let nameRU = card?.nameRU;
   let imgUrl = card?.image;
   let duration = timeConverter(card.duration);
   let buttonType;
   let cardClick;
+  let isCardLike;
 
   listTypeSaved === true
     ? (buttonType = "movies-card__delete-icon")
@@ -15,9 +26,23 @@ function MoviesCard({ card, listTypeSaved, cardId }) {
 
   listTypeSaved === true ? (cardClick = null) : (cardClick = handleCardLike);
 
-  const [isCardLike, setCardLike] = useState(false);
+ /*  let isCardLike = likedMovies.includes(card.movieId, 0); */
+  
+
   function handleCardLike() {
-    setCardLike(!isCardLike);
+    onLike({
+      country: card.country,
+      director: card.director,
+      duration: card.duration,
+      year: card.year,
+      description: card.description,
+      image: card.image,
+      trailer: card.trailer,
+      thumbnail: card.thumbnail,
+      movieId: card.movieId,
+      nameRU: card.nameRU,
+      nameEN: card.nameEN,
+    });
   }
 
   return (
