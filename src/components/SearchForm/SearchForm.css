@@ -51,7 +51,7 @@
 }
 
 .search-form__input:focus {
-  border-bottom: 1px dotted #CBCBCB;
+  border-bottom: 1px dotted #cbcbcb;
 }
 
 .search-form__button {
@@ -60,6 +60,14 @@
   background: center no-repeat #3456f3 url(../../images/icon__find-white.svg);
   border: 0;
   border-radius: 48px;
+}
+
+.search-form__button_inactive {
+  background-color: #e5e5e5;
+}
+
+.search-form__button_inactive:hover {
+  cursor: default;
 }
 
 .search-form__break-line {

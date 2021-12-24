@@ -11,9 +11,9 @@ function MoviesCardList({ isOpen, movies, listTypeSaved }) {
       <ul className="movies-card-list__container">
         {movies.map(({ id, ...card }) => (
           <MoviesCard
-            key={id}
+            key={card.movieId}
             card={card}
-            cardId={id}
+            cardId={card.movieId}
             listTypeSaved={listTypeSaved}
           />
         ))}

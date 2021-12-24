@@ -3,17 +3,17 @@ import Header from "../Header/Header";
 import SearchForm from "../SearchForm/SearchForm";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import Footer from "../Footer/Footer";
-import { initialMovies } from "../../consts/initial-movies";
 
-function Movies({ isOpen }) {
+
+function Movies({ isOpen, filtredMovies, onSubmit }) {
   return (
     <>
       <Header />
       <main className={`movies page__section ${isOpen && "movies_opened"}`}>
-        <SearchForm />
+        <SearchForm onSubmit={onSubmit} />
         <MoviesCardList
           isOpen={true}
-          movies={initialMovies}
+          movies={filtredMovies}
           listTypeSaved={false}
         />
       </main>

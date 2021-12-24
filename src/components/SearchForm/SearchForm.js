@@ -1,7 +1,30 @@
 import "./SearchForm.css";
+import { useState } from "react";
 import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
 
-function SearchForm(props) {
+function SearchForm({ onSubmit }) {
+  const [film, setFilm] = useState("");
+  const [isValid, setIsvalid] = useState(true);
+
+  function handleCangeFilm(e) {
+    setFilm(e.target.value);
+  }
+
+  function emptyForm() {
+    setIsvalid(false);
+    setFilm("Нужно ввести ключевое слово!");
+    setTimeout(() => {setFilm(""); setIsvalid(true)}, 2000);
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    if (film === "") {
+      emptyForm();
+      return;
+    }
+    onSubmit(film);
+  }
+
   return (
     <section className="search-form page__section">
       <div className="search-form__container">
@@ -10,14 +33,19 @@ function SearchForm(props) {
           <input
             className="search-form__input"
             required
+            disabled={!isValid}
             id="find-film"
             type="text"
             placeholder="Фильм"
+            value={film}
+            onChange={handleCangeFilm}
           ></input>
           <div className="search-form__find-block">
             <button
-              className="search-form__button page__link"
+              className={`search-form__button page__link ${!isValid && "search-form__button_inactive"}`}
               type="button"
+              onClick={handleSubmit}
+              disabled={!isValid}
             ></button>
             <div className="search-form__break-line"></div>
             <div className="search-form__filter-container search-form__filter-container_type_in">
@@ -26,7 +54,7 @@ function SearchForm(props) {
           </div>
         </div>
         <div className="search-form__filter-container search-form__filter-container_type_out">
-        <FilterCheckbox />
+          <FilterCheckbox />
         </div>
       </div>
     </section>

@@ -1,11 +1,10 @@
 import "./MoviesCard.css";
 import { useState } from "react";
-import { baseUrl } from "../../consts/base-URL";
 import { timeConverter } from "../../utils/utils";
 
-function MoviesCard({ card, cardId, listTypeSaved }) {
+function MoviesCard({ card, listTypeSaved, cardId }) {
   let nameRU = card?.nameRU;
-  let imgUrl = card?.image?.formats?.thumbnail?.url;
+  let imgUrl = card?.image;
   let duration = timeConverter(card.duration);
   let buttonType;
   let cardClick;
@@ -34,7 +33,7 @@ function MoviesCard({ card, cardId, listTypeSaved }) {
         ></button>
       </div>
 
-      <img src={`${baseUrl + imgUrl}`} alt={nameRU} className="movies-card__pic" />
+      <img src={`${imgUrl}`} alt={nameRU} className="movies-card__pic" />
     </li>
   );
 }

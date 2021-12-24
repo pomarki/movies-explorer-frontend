@@ -14,6 +14,7 @@ import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import resMessages from "../../utils/response-messages";
 import * as auth from "../../utils/auth";
 import api from "../../utils/MainApi";
+import movies from "../../utils/MoviesApi";
 import getInitialMovies from "../../utils/getInitialMovies";
 import Preloader from "../Preloader/Preloader";
 
@@ -26,16 +27,11 @@ function App() {
   const [requestInProgress, setRequestInProgress] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  /* const [initialMovies, setInitialMovies] = useState([]); */
+  const [initialMovies, setInitialMovies] = useState([]);
+  const [initialFiltredMovies, setInitialFiltredMovies] = useState([]);
 
   const navigate = useNavigate();
   const location = useLocation();
-
-  useEffect(() => {
-    if (loggedIn) {
-      getInitialMovies();
-    }
-  }, [loggedIn]);
 
   useEffect(() => {
     tokenCheck();
@@ -43,10 +39,12 @@ function App() {
 
   useEffect(() => {
     if (loggedIn) {
-      Promise.all([api.getUserInfo()])
-        .then(([userDate]) => {
+      Promise.all([api.getUserInfo(), movies()])
+        .then(([userDate, moviesDate]) => {
           setCurrentUser(userDate);
+          setInitialMovies(getInitialMovies(moviesDate));
         })
+
         .catch((err) => console.log(err));
     }
   }, [loggedIn]);
@@ -76,7 +74,6 @@ function App() {
   }
   function handleLogout() {
     localStorage.removeItem("jwt");
-    localStorage.removeItem("beatMovies");
     setCurrentUser({});
     setLoggedIn(false);
     navigate("/signin", { replace: true });
@@ -157,6 +154,32 @@ function App() {
       });
   }
 
+  function searchMovies(moviesArrow, keyword) {
+    const unifiedWord = (word) => word.toLowerCase();
+
+    keyword = keyword.toLowerCase();
+
+    const result = moviesArrow.filter((movie) => {
+      return (
+        unifiedWord(movie.nameRU).includes(keyword) ||
+        unifiedWord(movie.nameEN).includes(keyword) ||
+        unifiedWord(movie.description).includes(keyword) ||
+        unifiedWord(movie.director).includes(keyword)
+      );
+    });
+/*     if (result.length === 0) {
+      console.log("нет фильмов")
+      return re
+    } */
+    return result;
+  }
+
+  function submitSearchMovies(keyword) {
+    const searchArray = searchMovies(initialMovies, keyword);
+    setInitialFiltredMovies(searchArray);
+  }
+
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
@@ -169,7 +192,7 @@ function App() {
             path="/movies"
             element={
               <ProtectedRoute loggedIn={loggedIn}>
-                <Movies isOpen={true} />
+                <Movies isOpen={true} filtredMovies={initialFiltredMovies} onSubmit={submitSearchMovies} />
               </ProtectedRoute>
             }
           />
