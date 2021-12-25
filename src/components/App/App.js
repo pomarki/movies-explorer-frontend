@@ -78,12 +78,15 @@ function App() {
     setLoggedIn(true);
     setLoginMessage("");
   }
+
   function handleLogout() {
     localStorage.removeItem("jwt");
     setCurrentUser({});
     setLoggedIn(false);
+    setSavedMovies([]);
     navigate("/signin", { replace: true });
   }
+
   function messageTimer(message, messageSetter) {
     messageSetter(message);
     setTimeout(() => messageSetter(""), 5000);
@@ -201,7 +204,7 @@ function App() {
         setSavedMovies([...savedMovies, ...res.moviesDate]);
       })
       .catch((err) => console.log(err));
-  }
+  } 
 
   function removeUserMovie(id) {
     api
