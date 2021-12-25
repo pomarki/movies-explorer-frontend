@@ -14,9 +14,9 @@ import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import resMessages from "../../utils/response-messages";
 import * as auth from "../../utils/auth";
 import api from "../../utils/MainApi";
-import movies from "../../utils/MoviesApi";
 import { getInitialMovies } from "../../utils/utils";
 import Preloader from "../Preloader/Preloader";
+import movies from "../../utils/MoviesApi";
 
 function App() {
   const [isRegisterMessage, setRegisterMessage] = useState("");
@@ -36,20 +36,24 @@ function App() {
   const location = useLocation();
 
   useEffect(() => {
-    tokenCheck();
-  }, []);
-
-  useEffect(() => {
-    if (loggedIn) {
+    const jwt = localStorage.getItem("jwt");
+    if (!jwt) {
+      return;
+    } else {
       Promise.all([api.getUserInfo(), movies()])
         .then(([userDate, moviesDate]) => {
           setCurrentUser(userDate);
+          getSavedMovies();
           setInitialMovies(getInitialMovies(moviesDate));
         })
 
         .catch((err) => console.log(err));
     }
   }, [loggedIn]);
+
+  useEffect(() => {
+    tokenCheck();
+  }, []);
 
   function tokenCheck() {
     const jwt = localStorage.getItem("jwt");
@@ -159,7 +163,7 @@ function App() {
   function searchMovies(moviesArrow, keyword) {
     const unifiedWord = (word) => word.toLowerCase();
 
-    keyword = keyword.toLowerCase();
+    keyword = unifiedWord(keyword);
 
     const result = moviesArrow.filter((movie) => {
       return (
@@ -190,6 +194,24 @@ function App() {
       .catch((err) => console.log(err));
   }
 
+  function getSavedMovies() {
+    api
+      .getUserMovies()
+      .then((res) => {
+        setSavedMovies([...savedMovies, ...res.moviesDate]);
+      })
+      .catch((err) => console.log(err));
+  }
+
+  function removeUserMovie(id) {
+    api
+      .removeMovie(id)
+      .then((res) => {
+        getSavedMovies();
+      })
+      .catch((err) => console.log(err));
+  }
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
@@ -216,7 +238,11 @@ function App() {
             path="/saved-movies"
             element={
               <ProtectedRoute loggedIn={loggedIn}>
-                <SavedMovies isOpen={true} savedMovies={savedMovies} />
+                <SavedMovies
+                  isOpen={true}
+                  savedMovies={savedMovies}
+                  removeUserMovie={removeUserMovie}
+                />
               </ProtectedRoute>
             }
           />

@@ -10,14 +10,14 @@ export class Api {
     }
     return response.json();
   }
-  /* 
-  getInitialCards() {
-    return fetch(`${this._address}/cards`, {
+  
+  getUserMovies() {
+    return fetch(`${this._address}/movies`, {
         headers: {
-        authorization: `Bearer ${localStorage.getItem('_id')}`
+        authorization: `Bearer ${localStorage.getItem('jwt')}`
       },
     }).then(this._checkResponse);
-  } */
+  }
 
   getUserInfo() {
     return fetch(`${this._address}/users/me`, {
@@ -65,19 +65,19 @@ export class Api {
     }).then(this._checkResponse);
   }
 
-  /*
-  removeCard(id) {
-    return fetch(`${this._address}/cards/${id}`, {
+  
+  removeMovie(id) {
+    return fetch(`${this._address}/movies/${id}`, {
       method: "DELETE",
       headers: {
-        authorization: `Bearer ${localStorage.getItem('_id')}`,
+        authorization: `Bearer ${localStorage.getItem('jwt')}`,
       },
     }).then((response) =>
       response.ok
         ? Promise.resolve("success")
         : Promise.reject(`Ошибка ${response.status}`)
     );
-  } */
+  }
 
   /*   changeLikeCardStatus(id, isLiked) {
     return fetch(`${this._address}/cards/${id}/likes`, {

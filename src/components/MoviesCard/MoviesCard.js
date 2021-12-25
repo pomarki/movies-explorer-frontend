@@ -6,6 +6,7 @@ function MoviesCard({
   card,
   listTypeSaved,
   onLike,
+  removeUserMovie,
   cardId,
   isLiked,
   likedMovies,
@@ -24,12 +25,12 @@ function MoviesCard({
     ? (buttonType = "movies-card__delete-icon")
     : (buttonType = "movies-card__like-ikon");
 
-  listTypeSaved === true ? (cardClick = null) : (cardClick = handleCardLike);
+  listTypeSaved === true ? (cardClick = handleMovieRemove) : (cardClick = handleMovieLike);
 
  /*  let isCardLike = likedMovies.includes(card.movieId, 0); */
   
 
-  function handleCardLike() {
+  function handleMovieLike() {
     onLike({
       country: card.country,
       director: card.director,
@@ -44,6 +45,10 @@ function MoviesCard({
       nameEN: card.nameEN,
     });
   }
+function handleMovieRemove() {
+  removeUserMovie(card._id);
+}
+
 
   return (
     <li className="movies-card">
