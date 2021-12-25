@@ -5,7 +5,6 @@ import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import Footer from "../Footer/Footer";
 
 function Movies({ isOpen, filtredMovies, savedMovies, onSubmit, onLike }) {
-
   function comparisonArrows(allMovies, myMovies) {
     let allIdArrow = [];
     let allIdMy = [];

@@ -43,7 +43,7 @@ function App() {
       Promise.all([api.getUserInfo(), movies()])
         .then(([userDate, moviesDate]) => {
           setCurrentUser(userDate);
-          getSavedMovies();
+          getSavedMovies(); // юзер логинится - в стейт падают сохоанённые фильмы из Api
           setInitialMovies(getInitialMovies(moviesDate));
         })
 
@@ -68,7 +68,7 @@ function App() {
           }
         })
         .catch((err) => {
-          localStorage.removeItem("jwt");
+          /* localStorage.removeItem("jwt"); */
           navigate("/", { replace: true });
         });
     }
@@ -201,16 +201,16 @@ function App() {
     api
       .getUserMovies()
       .then((res) => {
-        setSavedMovies([...savedMovies, ...res.moviesDate]);
+        setSavedMovies([...res.moviesDate]);
       })
       .catch((err) => console.log(err));
-  } 
+  }
 
   function removeUserMovie(id) {
     api
       .removeMovie(id)
       .then((res) => {
-        getSavedMovies();
+        setSavedMovies((state) => state.filter((item) => item._id !== id));
       })
       .catch((err) => console.log(err));
   }
@@ -244,7 +244,7 @@ function App() {
                 <SavedMovies
                   isOpen={true}
                   savedMovies={savedMovies}
-                  removeUserMovie={removeUserMovie}
+                  onDelete={removeUserMovie}
                 />
               </ProtectedRoute>
             }

@@ -6,29 +6,28 @@ function MoviesCard({
   card,
   listTypeSaved,
   onLike,
-  removeUserMovie,
+  onDelete,
   cardId,
   isLiked,
   likedMovies,
 }) {
 
-  /* const [like, setLike] = useState(likedMovies.includes(card.movieId, 0)) */
-
+  let isCardLike;
   let nameRU = card?.nameRU;
   let imgUrl = card?.image;
   let duration = timeConverter(card.duration);
   let buttonType;
   let cardClick;
-  let isCardLike;
 
   listTypeSaved === true
     ? (buttonType = "movies-card__delete-icon")
     : (buttonType = "movies-card__like-ikon");
 
-  listTypeSaved === true ? (cardClick = handleMovieRemove) : (cardClick = handleMovieLike);
+  listTypeSaved === true
+    ? (cardClick = handleMovieRemove)
+    : (cardClick = handleMovieLike);
 
- /*  let isCardLike = likedMovies.includes(card.movieId, 0); */
-  
+    listTypeSaved === true ? isCardLike = "" : isCardLike = likedMovies.find((item) => item.movieId === card.movieId);  
 
   function handleMovieLike() {
     onLike({
@@ -45,10 +44,9 @@ function MoviesCard({
       nameEN: card.nameEN,
     });
   }
-function handleMovieRemove() {
-  removeUserMovie(card._id);
-}
-
+  function handleMovieRemove() {
+    onDelete(card._id);
+  }
 
   return (
     <li className="movies-card">

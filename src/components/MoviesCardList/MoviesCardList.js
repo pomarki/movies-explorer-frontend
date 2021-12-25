@@ -7,7 +7,7 @@ function MoviesCardList({
   listTypeSaved,
   onLike,
   likedMovies,
-  removeUserMovie,
+  onDelete,
 }) {
 
   return (
@@ -25,7 +25,7 @@ function MoviesCardList({
             listTypeSaved={listTypeSaved}
             onLike={onLike}
             likedMovies={likedMovies}
-            removeUserMovie={removeUserMovie}
+            onDelete={onDelete}
           />
         ))}
       </ul>

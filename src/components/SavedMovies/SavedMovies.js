@@ -4,7 +4,7 @@ import SearchForm from "../SearchForm/SearchForm";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import Footer from "../Footer/Footer";
 
-function SavedMovies({ isOpen, savedMovies, removeUserMovie }) {
+function SavedMovies({ isOpen, savedMovies, onDelete }) {
   return (
     <>
       <Header />
@@ -18,7 +18,7 @@ function SavedMovies({ isOpen, savedMovies, removeUserMovie }) {
           isOpen={true}
           movies={savedMovies}
           listTypeSaved={true}
-          removeUserMovie={removeUserMovie}
+          onDelete={onDelete}
         />
       </main>
       <Footer isOpen={true} />
