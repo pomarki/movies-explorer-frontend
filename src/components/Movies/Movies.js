@@ -4,7 +4,16 @@ import SearchForm from "../SearchForm/SearchForm";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import Footer from "../Footer/Footer";
 
-function Movies({ isOpen, filtredMovies, savedMovies, onSubmit, onLike, onDelete }) {
+function Movies({
+  isOpen,
+  filtredMovies,
+  savedMovies,
+  onSubmit,
+  onLike,
+  onDelete,
+  isDurationFilter,
+  buttonState
+}) {
   function comparisonArrows(allMovies, myMovies) {
     let allIdArrow = [];
     let allIdMy = [];
@@ -41,7 +50,7 @@ function Movies({ isOpen, filtredMovies, savedMovies, onSubmit, onLike, onDelete
     <>
       <Header />
       <main className={`movies page__section ${isOpen && "movies_opened"}`}>
-        <SearchForm onSubmit={onSubmit} />
+        <SearchForm onSubmit={onSubmit} onFilter={isDurationFilter} buttonState={buttonState} />
         <MoviesCardList
           isOpen={true}
           movies={filtredMovies}

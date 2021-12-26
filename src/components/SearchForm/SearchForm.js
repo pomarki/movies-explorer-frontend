@@ -2,7 +2,7 @@ import "./SearchForm.css";
 import { useState } from "react";
 import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
 
-function SearchForm({ onSubmit }) {
+function SearchForm({ onSubmit, onFilter, buttonState }) {
   const [film, setFilm] = useState("");
   const [isValid, setIsvalid] = useState(true);
 
@@ -13,7 +13,10 @@ function SearchForm({ onSubmit }) {
   function emptyForm() {
     setIsvalid(false);
     setFilm("Нужно ввести ключевое слово");
-    setTimeout(() => {setFilm(""); setIsvalid(true)}, 2000);
+    setTimeout(() => {
+      setFilm("");
+      setIsvalid(true);
+    }, 2000);
   }
 
   function handleSubmit(e) {
@@ -24,6 +27,9 @@ function SearchForm({ onSubmit }) {
     }
     onSubmit(film);
   }
+
+
+
 
   return (
     <section className="search-form page__section">
@@ -42,19 +48,21 @@ function SearchForm({ onSubmit }) {
           ></input>
           <div className="search-form__find-block">
             <button
-              className={`search-form__button page__link ${!isValid && "search-form__button_inactive"}`}
+              className={`search-form__button page__link ${
+                !isValid && "search-form__button_inactive"
+              }`}
               type="button"
               onClick={handleSubmit}
               disabled={!isValid}
             ></button>
             <div className="search-form__break-line"></div>
             <div className="search-form__filter-container search-form__filter-container_type_in">
-              <FilterCheckbox />
+              <FilterCheckbox onFilter={onFilter} buttonState={buttonState} />
             </div>
           </div>
         </div>
         <div className="search-form__filter-container search-form__filter-container_type_out">
-          <FilterCheckbox />
+          <FilterCheckbox onFilter={onFilter} buttonState={buttonState}/>
         </div>
       </div>
     </section>

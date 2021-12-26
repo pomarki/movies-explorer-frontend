@@ -47,5 +47,10 @@ const getInitialMovies = (data) => {
     return moviesArrow;
 };
 
-export { timeConverter, getInitialMovies };
+const messageTimer = (message, messageSetter) => {
+  messageSetter(message);
+  setTimeout(() => messageSetter(""), 5000);
+}
+
+export { timeConverter, getInitialMovies, messageTimer };
 

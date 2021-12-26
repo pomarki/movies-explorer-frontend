@@ -55,6 +55,13 @@
   display: flex;
 }
 
+.movies-card-list__error-message {
+  padding: 0;
+  width: 60%;
+  color: #FF3055;
+  text-align: center;
+}
+
 @media screen and (max-width: 1190px) {
   .movies-card-list__container {
     box-sizing: border-box;

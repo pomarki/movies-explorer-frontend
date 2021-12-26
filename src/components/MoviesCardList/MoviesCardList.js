@@ -1,5 +1,6 @@
 import "./MoviesCardList.css";
 import MoviesCard from "../MoviesCard/MoviesCard";
+import InfoMessage from "../InfoMessage/InfoMessage";
 
 function MoviesCardList({
   isOpen,
@@ -9,7 +10,6 @@ function MoviesCardList({
   likedMovies,
   onDelete,
 }) {
-
   return (
     <section
       className={`movies-card-list ${
@@ -30,8 +30,9 @@ function MoviesCardList({
         ))}
       </ul>
       <div className="movies-card-list__button-container">
+        <InfoMessage />
         <button
-          className={`movies-card-list__more-button page__link ${
+          className={`movies-card-list__more-button page__link movies-card-list__more-button_type_inactive ${
             listTypeSaved && "movies-card-list__more-button_type_inactive"
           }`}
         >

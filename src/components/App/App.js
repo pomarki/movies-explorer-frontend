@@ -17,20 +17,26 @@ import api from "../../utils/MainApi";
 import { getInitialMovies } from "../../utils/utils";
 import Preloader from "../Preloader/Preloader";
 import movies from "../../utils/MoviesApi";
+import { messageTimer } from "../../utils/utils";
 
 function App() {
+  // переменные user
+
   const [isRegisterMessage, setRegisterMessage] = useState("");
   const [isLoginMessage, setLoginMessage] = useState("");
   const [isUpdateMessage, setUpdateMessage] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
   const [requestInProgress, setRequestInProgress] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  /* const [isLoading, setIsLoading] = useState(false); */
 
+  // переменные Movies
+
+  const [shortMoviesButton, setShortMoviesButton] = useState(false); // кнопка дополнительной фильтрации короткометражек
   const [initialMovies, setInitialMovies] = useState([]);
   const [initialFiltredMovies, setInitialFiltredMovies] = useState([]);
-
   const [savedMovies, setSavedMovies] = useState([]);
+  
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -43,7 +49,7 @@ function App() {
       Promise.all([api.getUserInfo(), movies()])
         .then(([userDate, moviesDate]) => {
           setCurrentUser(userDate);
-          getSavedMovies(); 
+          getSavedMovies();
           setInitialMovies(getInitialMovies(moviesDate));
         })
 
@@ -84,12 +90,7 @@ function App() {
     setCurrentUser({});
     setLoggedIn(false);
     setSavedMovies([]);
-    navigate("/signin", { replace: true });
-  }
-
-  function messageTimer(message, messageSetter) {
-    messageSetter(message);
-    setTimeout(() => messageSetter(""), 5000);
+    navigate("/", { replace: true });
   }
 
   function registerUser(name, password, email) {
@@ -164,28 +165,35 @@ function App() {
   }
 
   function searchMovies(moviesArrow, keyword) {
+    
     const unifiedWord = (word) => word.toLowerCase();
-
     keyword = unifiedWord(keyword);
-
-    const result = moviesArrow.filter((movie) => {
+    let result = moviesArrow.filter((movie) => {
       return (
         unifiedWord(movie.nameRU).includes(keyword) ||
         unifiedWord(movie.nameEN).includes(keyword) ||
-        unifiedWord(movie.description).includes(keyword) ||
-        unifiedWord(movie.director).includes(keyword)
+        unifiedWord(movie.description).includes(keyword)
       );
     });
-    /*     if (result.length === 0) {
-      console.log("нет фильмов")
-      return re
-    } */
+    if (shortMoviesButton) {
+    result = result.filter((movie) => movie.duration <= 40);}
+
     return result;
   }
 
+  function filterMoviesBuDuretion(moviesArrow, value) {
+    let result = moviesArrow.filter((movie) => movie.duration <= value);
+    return result;
+  }
+
+  function submitFilterMoviesBuDuration() {
+    const searchArrow = filterMoviesBuDuretion(initialFiltredMovies, 40);
+    setInitialFiltredMovies(searchArrow);
+  }
+
   function submitSearchMovies(keyword) {
-    const searchArray = searchMovies(initialMovies, keyword);
-    setInitialFiltredMovies(searchArray);
+    const searchArrow = searchMovies(initialMovies, keyword);
+    setInitialFiltredMovies(searchArrow);
   }
 
   function likeMovie(movie) {
@@ -215,6 +223,10 @@ function App() {
       .catch((err) => console.log(err));
   }
 
+  function handleTurnDurationButton() {
+    setShortMoviesButton(!shortMoviesButton);
+  }
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
@@ -229,11 +241,14 @@ function App() {
               <ProtectedRoute loggedIn={loggedIn}>
                 <Movies
                   isOpen={true}
+                  isDurationFilter={handleTurnDurationButton}
                   filtredMovies={initialFiltredMovies}
                   savedMovies={savedMovies}
                   onSubmit={submitSearchMovies}
+                  onFilter={submitFilterMoviesBuDuration}
                   onLike={likeMovie}
                   onDelete={removeUserMovie}
+                  buttonState={shortMoviesButton}
                 />
               </ProtectedRoute>
             }

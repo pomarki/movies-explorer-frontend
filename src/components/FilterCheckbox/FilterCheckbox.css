@@ -10,6 +10,7 @@
 .filter-checkbox__button {
   width: 36px;
   height: 20px;
+  border: 0;
   border-radius: 20px;
   background-color: #2be080;
   display: flex;
