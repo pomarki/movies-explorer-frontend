@@ -1,5 +1,5 @@
 import "./MoviesCard.css";
-import { useState } from "react";
+
 import { timeConverter } from "../../utils/utils";
 
 function MoviesCard({
@@ -11,23 +11,14 @@ function MoviesCard({
   isLiked,
   likedMovies,
 }) {
-
-  let isCardLike;
+  let isCardLike = false;
   let nameRU = card?.nameRU;
   let imgUrl = card?.image;
   let duration = timeConverter(card.duration);
-  let buttonType;
-  let cardClick;
 
   listTypeSaved === true
-    ? (buttonType = "movies-card__delete-icon")
-    : (buttonType = "movies-card__like-ikon");
-
-  listTypeSaved === true
-    ? (cardClick = handleMovieRemove)
-    : (cardClick = handleMovieLike);
-
-    listTypeSaved === true ? isCardLike = "" : isCardLike = likedMovies.find((item) => item.movieId === card.movieId);  
+    ? (isCardLike = false)
+    : (isCardLike = likedMovies.find((item) => item.movieId === card.movieId));
 
   function handleMovieLike() {
     onLike({
@@ -48,15 +39,37 @@ function MoviesCard({
     onDelete(card._id);
   }
 
+  function handleMovieDislike() {
+    onDelete(getLikedmovieId(card, likedMovies));
+  }
+
+  function getLikedmovieId(movieCard, likedMoviesArrow) {
+    let id = movieCard.movieId;
+    let currentArr = likedMoviesArrow.filter((item) => item.movieId === id);
+    return currentArr[0]._id;
+  }
+
   return (
     <li className="movies-card">
       <div className="movies-card__info">
         <p className="movies-card__title">{nameRU}</p>
         <p className="movies-card__duration">{duration}</p>
         <button
-          onClick={cardClick}
-          className={`page__link movies-card__button ${buttonType} ${
-            isCardLike && "movies-card__like-ikon_type_active"
+          onClick={handleMovieLike}
+          className={`page__link movies-card__button movies-card__like-ikon ${
+            (listTypeSaved || isCardLike) && "movies-card__button_invisible"
+          }`}
+        ></button>
+        <button
+          onClick={handleMovieDislike}
+          className={`page__link movies-card__button movies-card__like-ikon movies-card__like-ikon_type_active ${
+            (listTypeSaved || !isCardLike) && "movies-card__button_invisible"
+          } `}
+        ></button>
+        <button
+          onClick={handleMovieRemove}
+          className={`page__link movies-card__button movies-card__delete-icon ${
+            !listTypeSaved && "movies-card__button_invisible"
           }`}
         ></button>
       </div>

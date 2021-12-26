@@ -49,6 +49,10 @@
   margin: 0 0 0 22px;
 }
 
+.movies-card__button_invisible {
+  display: none;
+}
+
 .movies-card__like-ikon {
   width: 14px;
   height: 12px;

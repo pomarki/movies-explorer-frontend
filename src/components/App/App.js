@@ -43,7 +43,7 @@ function App() {
       Promise.all([api.getUserInfo(), movies()])
         .then(([userDate, moviesDate]) => {
           setCurrentUser(userDate);
-          getSavedMovies(); // юзер логинится - в стейт падают сохоанённые фильмы из Api
+          getSavedMovies(); 
           setInitialMovies(getInitialMovies(moviesDate));
         })
 
@@ -233,6 +233,7 @@ function App() {
                   savedMovies={savedMovies}
                   onSubmit={submitSearchMovies}
                   onLike={likeMovie}
+                  onDelete={removeUserMovie}
                 />
               </ProtectedRoute>
             }

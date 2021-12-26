@@ -4,7 +4,7 @@ import SearchForm from "../SearchForm/SearchForm";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import Footer from "../Footer/Footer";
 
-function Movies({ isOpen, filtredMovies, savedMovies, onSubmit, onLike }) {
+function Movies({ isOpen, filtredMovies, savedMovies, onSubmit, onLike, onDelete }) {
   function comparisonArrows(allMovies, myMovies) {
     let allIdArrow = [];
     let allIdMy = [];
@@ -47,6 +47,7 @@ function Movies({ isOpen, filtredMovies, savedMovies, onSubmit, onLike }) {
           movies={filtredMovies}
           listTypeSaved={false}
           onLike={onLike}
+          onDelete={onDelete}
           likedMovies={different}
         />
       </main>
