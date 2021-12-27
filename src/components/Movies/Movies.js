@@ -4,6 +4,7 @@ import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import Footer from "../Footer/Footer";
 
 function Movies({
+  message,
   filtredMovies,
   savedMovies,
   onSubmit,
@@ -12,7 +13,7 @@ function Movies({
   isDurationFilter,
   buttonState,
   isLoading,
-  setSearchInProgress={setSearchInProgress}
+  setSearchInProgress = { setSearchInProgress },
 }) {
   function comparisonArrows(filterArr, savedArr) {
     let result = [];
@@ -40,6 +41,7 @@ function Movies({
           setSearchInProgress={setSearchInProgress}
         />
         <MoviesCardList
+          message={message}
           isLoading={isLoading}
           isOpen={true}
           movies={filtredMovies}

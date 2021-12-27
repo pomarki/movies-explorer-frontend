@@ -23,7 +23,7 @@ function App() {
   const [isRegisterMessage, setRegisterMessage] = useState("");
   const [isLoginMessage, setLoginMessage] = useState("");
   const [isUpdateMessage, setUpdateMessage] = useState("");
- 
+
   const [loggedIn, setLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
   const [requestInProgress, setRequestInProgress] = useState(false);
@@ -36,6 +36,7 @@ function App() {
   const [initialMovies, setInitialMovies] = useState([]);
   const [searchResult, setSearchResult] = useState([]);
   const [savedMovies, setSavedMovies] = useState([]);
+  const [searchMessage, setSearchMessage] = useState("");
   const [searchQuery, setsearchQuery] = useState([]);
 
   const navigate = useNavigate();
@@ -57,7 +58,7 @@ function App() {
     }
   }, [loggedIn]);
 
-  useEffect(() => {
+  /*   useEffect(() => {
     const movies = JSON.parse(localStorage.getItem("allMovies"));
     if (movies) {
       setInitialMovies(movies);
@@ -68,7 +69,7 @@ function App() {
     } else {
       getInitialMovies();
     }
-  }, [loggedIn]);
+  }, [loggedIn]); */
 
   useEffect(() => {
     tokenCheck();
@@ -101,9 +102,11 @@ function App() {
   function handleLogout() {
     localStorage.removeItem("jwt");
     localStorage.removeItem("allMovies");
+    localStorage.removeItem("searchResult");
     setCurrentUser({});
     setLoggedIn(false);
     setSavedMovies([]);
+    setSearchResult([]);
     navigate("/", { replace: true });
   }
 
@@ -236,15 +239,10 @@ function App() {
       );
     });
 
-    if (moviesArrow.length === 0) {
-
+    if (result.length === 0) {
+      messageTimer("По вашему запросу ничего не найдено", setSearchMessage);
     }
-
-    if (shortToggle) {
-      return result.filter((movie) => movie.duration <= 40);
-    } else {
-      return result;
-    }
+    localStorage.setItem("searchResult", JSON.stringify(result));
   }
 
   function filterMoviesBuDuretion(moviesArrow, value) {
@@ -258,13 +256,14 @@ function App() {
   }
 
   function submitSearchMovies(keyword) {
-    const searchArrow = searchMovies(initialMovies, keyword);
+    searchMovies(initialMovies, keyword);
 
-    setSearchResult(searchArrow);
-    localStorage.setItem(
-      "searchResult",
-      JSON.stringify(searchMovies(initialMovies, keyword))
-    );
+    const searchArrow = JSON.parse(localStorage.getItem("searchResult"));
+    if (shortToggle) {
+      setSearchResult(searchArrow.filter((movie) => movie.duration <= 40));
+    } else {
+      setSearchResult(searchArrow);
+    }
   }
 
   function likeMovie(movie) {
@@ -294,8 +293,20 @@ function App() {
       .catch((err) => console.log(err));
   }
 
-  function handleTurnDurationButton() {
-    setShortToggle(!shortToggle);
+  function handleToggleButton() {
+    if (searchResult.length !== 0) {
+      const movies = JSON.parse(localStorage.getItem("searchResult"));
+      if (!shortToggle) {
+        movies.filter((movie) => movie.duration <= 40);
+        setSearchResult(movies.filter((movie) => movie.duration <= 40));
+        setShortToggle(!shortToggle);
+      } else {
+        setSearchResult(movies);
+        setShortToggle(!shortToggle);
+      }
+    } else {
+      setShortToggle(!shortToggle);
+    }
   }
 
   return (
@@ -311,7 +322,8 @@ function App() {
             element={
               <ProtectedRoute loggedIn={loggedIn}>
                 <Movies
-                  isDurationFilter={handleTurnDurationButton}
+                  message={searchMessage}
+                  isDurationFilter={handleToggleButton}
                   filtredMovies={searchResult}
                   savedMovies={savedMovies}
                   onSubmit={submitSearchMovies}
@@ -330,6 +342,7 @@ function App() {
             element={
               <ProtectedRoute loggedIn={loggedIn}>
                 <SavedMovies
+                  message={searchMessage}
                   isOpen={true}
                   savedMovies={savedMovies}
                   onDelete={removeUserMovie}

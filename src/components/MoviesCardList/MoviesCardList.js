@@ -4,6 +4,7 @@ import InfoMessage from "../InfoMessage/InfoMessage";
 import Preloader from "../Preloader/Preloader";
 
 function MoviesCardList({
+  message,
   isOpen,
   movies,
   listTypeSaved,
@@ -18,8 +19,12 @@ function MoviesCardList({
         isOpen && "movies-card-list_opened"
       } page__section`}
     >
-      <Preloader isLoading={isLoading} />
-      <ul className={`movies-card-list__container ${!isLoading && "movies-card-list__container_visible"}`}>
+      {isLoading && <Preloader />}
+      <ul
+        className={`movies-card-list__container ${
+          !isLoading && "movies-card-list__container_visible"
+        }`}
+      >
         {movies.map(({ id, ...card }) => (
           <MoviesCard
             key={card.movieId}
@@ -33,7 +38,7 @@ function MoviesCardList({
         ))}
       </ul>
       <div className="movies-card-list__button-container">
-        {/* <InfoMessage message={"БЛА-БЛА-БЛА"}/> */}
+        {!isLoading && <InfoMessage message={message} />}
         <button
           className={`movies-card-list__more-button page__link movies-card-list__more-button_type_inactive ${
             listTypeSaved && "movies-card-list__more-button_type_inactive"

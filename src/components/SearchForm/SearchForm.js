@@ -26,11 +26,7 @@ function SearchForm({ onSubmit, onFilter, buttonState, setSearchInProgress }) {
       return;
     }
     onSubmit(film);
-    setSearchInProgress(true);
   }
-
-
-
 
   return (
     <section className="search-form page__section">
@@ -63,7 +59,7 @@ function SearchForm({ onSubmit, onFilter, buttonState, setSearchInProgress }) {
           </div>
         </div>
         <div className="search-form__filter-container search-form__filter-container_type_out">
-          <FilterCheckbox onFilter={onFilter} buttonState={buttonState}/>
+          <FilterCheckbox onFilter={onFilter} buttonState={buttonState} />
         </div>
       </div>
     </section>
