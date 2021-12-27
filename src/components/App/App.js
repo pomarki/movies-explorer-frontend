@@ -18,8 +18,6 @@ import movies from "../../utils/MoviesApi";
 import { messageTimer } from "../../utils/utils";
 
 function App() {
-  // переменные user
-
   const [isRegisterMessage, setRegisterMessage] = useState("");
   const [isLoginMessage, setLoginMessage] = useState("");
   const [isUpdateMessage, setUpdateMessage] = useState("");
@@ -29,9 +27,6 @@ function App() {
   const [requestInProgress, setRequestInProgress] = useState(false);
   const [searchInProgress, setSearchInProgress] = useState(false);
 
-  /* const [isLoading, setIsLoading] = useState(false); */
-
-  // хранить в Local Storage
   const [shortToggle, setShortToggle] = useState(false);
   const [initialMovies, setInitialMovies] = useState([]);
   const [searchResult, setSearchResult] = useState([]);
@@ -226,8 +221,6 @@ function App() {
   }
 
   function searchMovies(moviesArrow, keyword) {
-    setTimeout(() => setSearchInProgress(false), 1000);
-
     const unifiedWord = (word) => word.toLowerCase();
     keyword = unifiedWord(keyword);
 
@@ -256,9 +249,12 @@ function App() {
   }
 
   function submitSearchMovies(keyword) {
+    setSearchInProgress(true);
+    setTimeout(() => setSearchInProgress(false), 1000);
     searchMovies(initialMovies, keyword);
 
     const searchArrow = JSON.parse(localStorage.getItem("searchResult"));
+
     if (shortToggle) {
       setSearchResult(searchArrow.filter((movie) => movie.duration <= 40));
     } else {
@@ -294,14 +290,27 @@ function App() {
   }
 
   function handleToggleButton() {
-    if (searchResult.length !== 0) {
-      const movies = JSON.parse(localStorage.getItem("searchResult"));
+    let moviesArr = JSON.parse(localStorage.getItem("searchResult"));
+
+    if (moviesArr === null) {
+      moviesArr = [];
+    }
+
+    if ( moviesArr.length !== 0) {
       if (!shortToggle) {
-        movies.filter((movie) => movie.duration <= 40);
-        setSearchResult(movies.filter((movie) => movie.duration <= 40));
-        setShortToggle(!shortToggle);
+        moviesArr.filter((movie) => movie.duration <= 40);
+
+        if (moviesArr.length === 0) {
+          messageTimer(
+            "Короткометражных фильмов по этому запросу нет",
+            setSearchMessage
+          );
+        } else {
+          setSearchResult(moviesArr.filter((movie) => movie.duration <= 40));
+          setShortToggle(!shortToggle);
+        }
       } else {
-        setSearchResult(movies);
+        setSearchResult(moviesArr);
         setShortToggle(!shortToggle);
       }
     } else {
