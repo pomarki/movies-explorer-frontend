@@ -1,5 +1,3 @@
-import movies from "./MoviesApi";
-
 function getInitialMovies(data) {
   const baseURL = "https://api.nomoreparties.co";
   const notFoundImage =
@@ -7,7 +5,7 @@ function getInitialMovies(data) {
   const noDate = "нет данных";
   const noTrailer = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
    
-      const moviesArrow = data.map((item) => {
+      const moviesArray = data.map((item) => {
         const thumbnail = item.image.formats?.small?.url
           ? baseURL + item.image.formats?.small?.url
           : notFoundImage;
@@ -36,7 +34,8 @@ function getInitialMovies(data) {
           nameEN: nameEN,
         };
       });
-    return moviesArrow;
+      /* localStorage.setItem("movies", JSON.stringify(moviesArray)); */
+      return moviesArray;
 }
     
     

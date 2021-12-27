@@ -14,7 +14,7 @@ import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import resMessages from "../../utils/response-messages";
 import * as auth from "../../utils/auth";
 import api from "../../utils/MainApi";
-import { getInitialMovies } from "../../utils/utils";
+/* import { getInitialMovies } from "../../utils/utils"; */
 import Preloader from "../Preloader/Preloader";
 import movies from "../../utils/MoviesApi";
 import { messageTimer } from "../../utils/utils";
@@ -30,13 +30,18 @@ function App() {
   const [requestInProgress, setRequestInProgress] = useState(false);
   /* const [isLoading, setIsLoading] = useState(false); */
 
-  // переменные Movies
-
+  // хранить в Local Storage
   const [shortMoviesButton, setShortMoviesButton] = useState(false); // кнопка дополнительной фильтрации короткометражек
   const [initialMovies, setInitialMovies] = useState([]);
   const [initialFiltredMovies, setInitialFiltredMovies] = useState([]);
   const [savedMovies, setSavedMovies] = useState([]);
+  const [searchQuery, setsearchQuery] = useState([]);
+
+
   
+
+
+
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -46,11 +51,11 @@ function App() {
     if (!jwt) {
       return;
     } else {
-      Promise.all([api.getUserInfo(), movies()])
+      Promise.all([api.getUserInfo(), getInitialMovies()])
         .then(([userDate, moviesDate]) => {
           setCurrentUser(userDate);
           getSavedMovies();
-          setInitialMovies(getInitialMovies(moviesDate));
+          setInitialMovies(moviesDate);
         })
 
         .catch((err) => console.log(err));
@@ -87,6 +92,7 @@ function App() {
 
   function handleLogout() {
     localStorage.removeItem("jwt");
+    localStorage.removeItem("allMovies");
     setCurrentUser({});
     setLoggedIn(false);
     setSavedMovies([]);
@@ -164,10 +170,54 @@ function App() {
       });
   }
 
+  function getInitialMovies() {
+    const baseURL = "https://api.nomoreparties.co";
+    const notFoundImage =
+      "https://ic.pics.livejournal.com/pomarki/910249/22199/22199_900.png";
+    const noDate = "нет данных";
+    const noTrailer = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
+
+    movies()
+      .then((data) => {
+        const moviesArray = data.map((item) => {
+          const thumbnail = item.image.formats?.small?.url
+            ? baseURL + item.image.formats?.small?.url
+            : notFoundImage;
+          const image = item.image.formats?.thumbnail?.url
+            ? baseURL + item.image.formats?.thumbnail?.url
+            : notFoundImage;
+          const country = item.country ? item.country : noDate;
+          const director = item.director ? item.director : noDate;
+          const duration = item.duration ? item.duration : 0;
+          const year = item.year ? item.year : 0;
+          const description = item.description ? item.description : noDate;
+          const trailerLink = item.trailerLink ? item.trailerLink : noTrailer;
+          const nameRU = item.nameRU ? item.nameRU : item.nameEN;
+          const nameEN = item.nameEN ? item.nameEN : noDate;
+          return {
+            country: country,
+            director: director,
+            duration: duration,
+            year: year,
+            description: description,
+            image: image,
+            trailer: trailerLink,
+            thumbnail: thumbnail,
+            movieId: item.id,
+            nameRU: nameRU,
+            nameEN: nameEN,
+          };
+        });
+        localStorage.setItem("allMovies", JSON.stringify(moviesArray));
+      })
+      .catch((err) => console.log(err));
+  }
+
   function searchMovies(moviesArrow, keyword) {
-    
     const unifiedWord = (word) => word.toLowerCase();
+
     keyword = unifiedWord(keyword);
+
     let result = moviesArrow.filter((movie) => {
       return (
         unifiedWord(movie.nameRU).includes(keyword) ||
@@ -175,10 +225,12 @@ function App() {
         unifiedWord(movie.description).includes(keyword)
       );
     });
-    if (shortMoviesButton) {
-    result = result.filter((movie) => movie.duration <= 40);}
 
-    return result;
+    if (shortMoviesButton) {
+      return result.filter((movie) => movie.duration <= 40);
+    } else {
+      return result;
+    }
   }
 
   function filterMoviesBuDuretion(moviesArrow, value) {

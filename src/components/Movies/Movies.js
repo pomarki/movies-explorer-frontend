@@ -15,17 +15,7 @@ function Movies({
   buttonState
 }) {
   function comparisonArrows(allMovies, myMovies) {
-    let allIdArrow = [];
-    let allIdMy = [];
     let result = [];
-
-    allMovies.forEach((element) => {
-      allIdArrow.push(element.movieId);
-    });
-    myMovies.forEach((element) => {
-      allIdMy.push(element.movieId);
-    });
-
     let map = allMovies.reduce((acc, i) => {
       acc[i] = acc[i] ? acc[i] + 1 : 1;
       return acc;
