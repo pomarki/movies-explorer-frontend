@@ -14,8 +14,6 @@ import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import resMessages from "../../utils/response-messages";
 import * as auth from "../../utils/auth";
 import api from "../../utils/MainApi";
-/* import { getInitialMovies } from "../../utils/utils"; */
-import Preloader from "../Preloader/Preloader";
 import movies from "../../utils/MoviesApi";
 import { messageTimer } from "../../utils/utils";
 
@@ -25,23 +23,20 @@ function App() {
   const [isRegisterMessage, setRegisterMessage] = useState("");
   const [isLoginMessage, setLoginMessage] = useState("");
   const [isUpdateMessage, setUpdateMessage] = useState("");
+ 
   const [loggedIn, setLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
   const [requestInProgress, setRequestInProgress] = useState(false);
+  const [searchInProgress, setSearchInProgress] = useState(false);
+
   /* const [isLoading, setIsLoading] = useState(false); */
 
   // хранить в Local Storage
-  const [shortMoviesButton, setShortMoviesButton] = useState(false); // кнопка дополнительной фильтрации короткометражек
+  const [shortToggle, setShortToggle] = useState(false);
   const [initialMovies, setInitialMovies] = useState([]);
-  const [initialFiltredMovies, setInitialFiltredMovies] = useState([]);
+  const [searchResult, setSearchResult] = useState([]);
   const [savedMovies, setSavedMovies] = useState([]);
   const [searchQuery, setsearchQuery] = useState([]);
-
-
-  
-
-
-
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -59,6 +54,19 @@ function App() {
         })
 
         .catch((err) => console.log(err));
+    }
+  }, [loggedIn]);
+
+  useEffect(() => {
+    const movies = JSON.parse(localStorage.getItem("allMovies"));
+    if (movies) {
+      setInitialMovies(movies);
+      const searchResult = JSON.parse(localStorage.getItem("searchResult"));
+      if (searchResult) {
+        setInitialMovies(searchResult);
+      }
+    } else {
+      getInitialMovies();
     }
   }, [loggedIn]);
 
@@ -209,13 +217,15 @@ function App() {
           };
         });
         localStorage.setItem("allMovies", JSON.stringify(moviesArray));
+        setInitialMovies(moviesArray);
       })
       .catch((err) => console.log(err));
   }
 
   function searchMovies(moviesArrow, keyword) {
-    const unifiedWord = (word) => word.toLowerCase();
+    setTimeout(() => setSearchInProgress(false), 1000);
 
+    const unifiedWord = (word) => word.toLowerCase();
     keyword = unifiedWord(keyword);
 
     let result = moviesArrow.filter((movie) => {
@@ -226,7 +236,11 @@ function App() {
       );
     });
 
-    if (shortMoviesButton) {
+    if (moviesArrow.length === 0) {
+
+    }
+
+    if (shortToggle) {
       return result.filter((movie) => movie.duration <= 40);
     } else {
       return result;
@@ -239,13 +253,18 @@ function App() {
   }
 
   function submitFilterMoviesBuDuration() {
-    const searchArrow = filterMoviesBuDuretion(initialFiltredMovies, 40);
-    setInitialFiltredMovies(searchArrow);
+    const searchArrow = filterMoviesBuDuretion(searchResult, 40);
+    setSearchResult(searchArrow);
   }
 
   function submitSearchMovies(keyword) {
     const searchArrow = searchMovies(initialMovies, keyword);
-    setInitialFiltredMovies(searchArrow);
+
+    setSearchResult(searchArrow);
+    localStorage.setItem(
+      "searchResult",
+      JSON.stringify(searchMovies(initialMovies, keyword))
+    );
   }
 
   function likeMovie(movie) {
@@ -276,7 +295,7 @@ function App() {
   }
 
   function handleTurnDurationButton() {
-    setShortMoviesButton(!shortMoviesButton);
+    setShortToggle(!shortToggle);
   }
 
   return (
@@ -292,15 +311,16 @@ function App() {
             element={
               <ProtectedRoute loggedIn={loggedIn}>
                 <Movies
-                  isOpen={true}
                   isDurationFilter={handleTurnDurationButton}
-                  filtredMovies={initialFiltredMovies}
+                  filtredMovies={searchResult}
                   savedMovies={savedMovies}
                   onSubmit={submitSearchMovies}
                   onFilter={submitFilterMoviesBuDuration}
                   onLike={likeMovie}
                   onDelete={removeUserMovie}
-                  buttonState={shortMoviesButton}
+                  buttonState={shortToggle}
+                  isLoading={searchInProgress}
+                  setSearchInProgress={setSearchInProgress}
                 />
               </ProtectedRoute>
             }

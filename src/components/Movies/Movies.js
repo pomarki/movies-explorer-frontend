@@ -1,33 +1,26 @@
-import "./Movies.css";
 import Header from "../Header/Header";
 import SearchForm from "../SearchForm/SearchForm";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import Footer from "../Footer/Footer";
 
 function Movies({
-  isOpen,
   filtredMovies,
   savedMovies,
   onSubmit,
   onLike,
   onDelete,
   isDurationFilter,
-  buttonState
+  buttonState,
+  isLoading,
+  setSearchInProgress={setSearchInProgress}
 }) {
-  function comparisonArrows(allMovies, myMovies) {
+  function comparisonArrows(filterArr, savedArr) {
     let result = [];
-    let map = allMovies.reduce((acc, i) => {
-      acc[i] = acc[i] ? acc[i] + 1 : 1;
-      return acc;
-    }, {});
-
-    for (let i = 0; i < myMovies.length; i++) {
-      const current = myMovies[i];
-      let count = map[current];
-
-      if (count && count > 0) {
-        result.push(current);
-        map[current] -= 1;
+    for (let i = 0; i < savedArr.length; i++) {
+      for (let j = 0; j < filterArr.length; j++) {
+        if (savedArr[i].movieId === filterArr[j].movieId) {
+          result.push(savedArr[i]);
+        }
       }
     }
 
@@ -39,9 +32,15 @@ function Movies({
   return (
     <>
       <Header />
-      <main className={`movies page__section ${isOpen && "movies_opened"}`}>
-        <SearchForm onSubmit={onSubmit} onFilter={isDurationFilter} buttonState={buttonState} />
+      <main className="page__section">
+        <SearchForm
+          onSubmit={onSubmit}
+          onFilter={isDurationFilter}
+          buttonState={buttonState}
+          setSearchInProgress={setSearchInProgress}
+        />
         <MoviesCardList
+          isLoading={isLoading}
           isOpen={true}
           movies={filtredMovies}
           listTypeSaved={false}

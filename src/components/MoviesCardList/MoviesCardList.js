@@ -1,6 +1,7 @@
 import "./MoviesCardList.css";
 import MoviesCard from "../MoviesCard/MoviesCard";
 import InfoMessage from "../InfoMessage/InfoMessage";
+import Preloader from "../Preloader/Preloader";
 
 function MoviesCardList({
   isOpen,
@@ -9,6 +10,7 @@ function MoviesCardList({
   onLike,
   likedMovies,
   onDelete,
+  isLoading,
 }) {
   return (
     <section
@@ -16,7 +18,8 @@ function MoviesCardList({
         isOpen && "movies-card-list_opened"
       } page__section`}
     >
-      <ul className="movies-card-list__container">
+      <Preloader isLoading={isLoading} />
+      <ul className={`movies-card-list__container ${!isLoading && "movies-card-list__container_visible"}`}>
         {movies.map(({ id, ...card }) => (
           <MoviesCard
             key={card.movieId}
@@ -30,7 +33,7 @@ function MoviesCardList({
         ))}
       </ul>
       <div className="movies-card-list__button-container">
-        <InfoMessage />
+        {/* <InfoMessage message={"БЛА-БЛА-БЛА"}/> */}
         <button
           className={`movies-card-list__more-button page__link movies-card-list__more-button_type_inactive ${
             listTypeSaved && "movies-card-list__more-button_type_inactive"
