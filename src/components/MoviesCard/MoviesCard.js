@@ -2,15 +2,7 @@ import "./MoviesCard.css";
 
 import { timeConverter } from "../../utils/utils";
 
-function MoviesCard({
-  card,
-  listTypeSaved,
-  onLike,
-  onDelete,
-  cardId,
-  isLiked,
-  likedMovies,
-}) {
+function MoviesCard({ card, listTypeSaved, onLike, onDelete, likedMovies }) {
   let isCardLike = false;
   let nameRU = card?.nameRU;
   let imgUrl = card?.image;

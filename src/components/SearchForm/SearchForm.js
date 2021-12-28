@@ -2,7 +2,7 @@ import "./SearchForm.css";
 import { useState } from "react";
 import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
 
-function SearchForm({ onSubmit, onFilter, buttonState, setSearchInProgress }) {
+function SearchForm({ onSubmit, onFilter, buttonState }) {
   const [film, setFilm] = useState("");
   const [isValid, setIsvalid] = useState(true);
 

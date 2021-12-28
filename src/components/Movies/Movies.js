@@ -13,10 +13,13 @@ function Movies({
   isDurationFilter,
   buttonState,
   isLoading,
-  setSearchInProgress = { setSearchInProgress },
 }) {
+
+
   function comparisonArrows(filterArr, savedArr) {
     let result = [];
+    
+
     for (let i = 0; i < savedArr.length; i++) {
       for (let j = 0; j < filterArr.length; j++) {
         if (savedArr[i].movieId === filterArr[j].movieId) {
@@ -38,7 +41,6 @@ function Movies({
           onSubmit={onSubmit}
           onFilter={isDurationFilter}
           buttonState={buttonState}
-          setSearchInProgress={setSearchInProgress}
         />
         <MoviesCardList
           message={message}
