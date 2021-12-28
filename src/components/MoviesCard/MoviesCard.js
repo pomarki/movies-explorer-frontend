@@ -15,6 +15,7 @@ function MoviesCard({
   let nameRU = card?.nameRU;
   let imgUrl = card?.image;
   let duration = timeConverter(card.duration);
+  let trailer = card?.trailer;
 
   listTypeSaved === true
     ? (isCardLike = false)
@@ -74,7 +75,9 @@ function MoviesCard({
         ></button>
       </div>
 
-      <img src={`${imgUrl}`} alt={nameRU} className="movies-card__pic" />
+      <a href={trailer} target="_blank" rel="noopener noreferrer">
+        <img src={`${imgUrl}`} alt={nameRU} className="movies-card__pic" />
+      </a>
     </li>
   );
 }

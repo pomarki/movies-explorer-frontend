@@ -38,7 +38,7 @@ function MoviesCardList({
         ))}
       </ul>
       <div className="movies-card-list__button-container">
-        {!isLoading && <InfoMessage message={message} />}
+        {!isLoading && <InfoMessage message={message} type={"search"} />}
         <button
           className={`movies-card-list__more-button page__link movies-card-list__more-button_type_inactive ${
             listTypeSaved && "movies-card-list__more-button_type_inactive"

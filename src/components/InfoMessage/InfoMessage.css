@@ -9,6 +9,11 @@
   text-align: center;
 }
 
+.info-message__text_search {
+  color: #a0a0a0;
+  font-size: 18px;
+}
+
 .info-message__container {
   display: flex;
   flex-direction: column;
@@ -16,4 +21,3 @@
   justify-content: center;
   height: 30px;
 }
-

@@ -221,7 +221,9 @@ function App() {
   }
 
   function searchMovies(moviesArrow, keyword) {
+
     const unifiedWord = (word) => word.toLowerCase();
+
     keyword = unifiedWord(keyword);
 
     let result = moviesArrow.filter((movie) => {
@@ -233,19 +235,19 @@ function App() {
     });
 
     if (result.length === 0) {
-      messageTimer("По вашему запросу ничего не найдено", setSearchMessage);
+      setSearchMessage("Фильмов по вашему запросу не найдено.");
     }
+
+    const shortMoviesArr = result.filter((movie) => movie.duration <= 40);
+    
+    if (shortToggle && shortMoviesArr.length === 0) {
+      setSearchMessage(
+        "Короткометражных фильмов по вашему запросу не найдено."
+      );
+    }
+
     localStorage.setItem("searchResult", JSON.stringify(result));
-  }
-
-  function filterMoviesBuDuretion(moviesArrow, value) {
-    let result = moviesArrow.filter((movie) => movie.duration <= value);
-    return result;
-  }
-
-  function submitFilterMoviesBuDuration() {
-    const searchArrow = filterMoviesBuDuretion(searchResult, 40);
-    setSearchResult(searchArrow);
+    localStorage.setItem("searchResultShort", JSON.stringify(shortMoviesArr));
   }
 
   function submitSearchMovies(keyword) {
@@ -290,25 +292,26 @@ function App() {
   }
 
   function handleToggleButton() {
+    setSearchMessage("");
     let moviesArr = JSON.parse(localStorage.getItem("searchResult"));
 
     if (moviesArr === null) {
       moviesArr = [];
     }
 
-    if ( moviesArr.length !== 0) {
-      if (!shortToggle) {
-        moviesArr.filter((movie) => movie.duration <= 40);
+    let shortMoviesArr = JSON.parse(localStorage.getItem("searchResultShort"));
 
-        if (moviesArr.length === 0) {
-          messageTimer(
-            "Короткометражных фильмов по этому запросу нет",
-            setSearchMessage
-          );
-        } else {
-          setSearchResult(moviesArr.filter((movie) => movie.duration <= 40));
-          setShortToggle(!shortToggle);
-        }
+    if (moviesArr.length !== 0) {
+
+      if (shortMoviesArr.length === 0 && !shortToggle) {
+        setSearchMessage(
+          "Короткометражных фильмов по вашему запросу не найдено."
+        );
+      }
+
+      if (!shortToggle) {
+        setSearchResult(shortMoviesArr);
+        setShortToggle(!shortToggle);
       } else {
         setSearchResult(moviesArr);
         setShortToggle(!shortToggle);
@@ -336,7 +339,6 @@ function App() {
                   filtredMovies={searchResult}
                   savedMovies={savedMovies}
                   onSubmit={submitSearchMovies}
-                  onFilter={submitFilterMoviesBuDuration}
                   onLike={likeMovie}
                   onDelete={removeUserMovie}
                   buttonState={shortToggle}
