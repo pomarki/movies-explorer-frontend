@@ -14,11 +14,8 @@ function Movies({
   buttonState,
   isLoading,
 }) {
-
-
   function comparisonArrows(filterArr, savedArr) {
     let result = [];
-    
 
     for (let i = 0; i < savedArr.length; i++) {
       for (let j = 0; j < filterArr.length; j++) {
@@ -41,9 +38,10 @@ function Movies({
           onSubmit={onSubmit}
           onFilter={isDurationFilter}
           buttonState={buttonState}
+          isLoading={isLoading}
+          message={message}
         />
         <MoviesCardList
-          message={message}
           isLoading={isLoading}
           isOpen={true}
           movies={filtredMovies}

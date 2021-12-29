@@ -1,7 +1,7 @@
 import "./MoviesCardList.css";
-import MoviesCard from "../MoviesCard/MoviesCard";
-import InfoMessage from "../InfoMessage/InfoMessage";
+import MoviesCardBlock from "../MoviesCardBlock/MoviesCardBlock";
 import Preloader from "../Preloader/Preloader";
+import { useState, useEffect } from "react";
 
 function MoviesCardList({
   message,
@@ -13,6 +13,42 @@ function MoviesCardList({
   onDelete,
   isLoading,
 }) {
+  const [activeBlockId, setActiveBlockId] = useState(0);
+  const [lastBlock, setLastBlock] = useState(false);
+
+  const screenWidth = window.innerWidth;
+  let chunk;
+  screenWidth > 320 ? (chunk = 7) : (chunk = 5);
+
+  useEffect(() => {
+    setActiveBlockId(0);
+    setLastBlock(false);
+  }, [isLoading]);
+
+  function cutArray(array, divider) {
+    let result = [];
+    let iterations;
+    array.length % divider === 0
+      ? (iterations = array.length / divider)
+      : (iterations = Math.floor(array.length / divider) + 1);
+
+    for (let i = 0; i < iterations; i++) {
+      let arr = array.slice(i * divider, i * divider + divider);
+      result.push({ id: i, block: arr });
+    }
+
+    return result;
+  }
+
+  let preparedArr = cutArray(movies, chunk);
+
+  function handleClick() {
+    setActiveBlockId(activeBlockId + 1);
+    if (activeBlockId === preparedArr.length - 2) {
+      setLastBlock(true);
+    }
+  }
+
   return (
     <section
       className={`movies-card-list ${
@@ -25,11 +61,12 @@ function MoviesCardList({
           !isLoading && "movies-card-list__container_visible"
         }`}
       >
-        {movies.map(({ id, ...card }) => (
-          <MoviesCard
-            key={card.movieId}
-            card={card}
-            cardId={card.movieId}
+        {preparedArr.map(({ id, ...block }) => (
+          <MoviesCardBlock
+            key={id}
+            blockId={id}
+            block={block}
+            activeBlock={activeBlockId}
             listTypeSaved={listTypeSaved}
             onLike={onLike}
             likedMovies={likedMovies}
@@ -38,11 +75,11 @@ function MoviesCardList({
         ))}
       </ul>
       <div className="movies-card-list__button-container">
-        {!isLoading && <InfoMessage message={message} type={"search"} />}
         <button
-          className={`movies-card-list__more-button page__link movies-card-list__more-button_type_inactive ${
-            listTypeSaved && "movies-card-list__more-button_type_inactive"
+          className={`movies-card-list__more-button page__link ${
+            lastBlock && "movies-card-list__more-button_type_inactive"
           }`}
+          onClick={handleClick}
         >
           Ещё
         </button>

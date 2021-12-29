@@ -1,8 +1,9 @@
 import "./SearchForm.css";
 import { useState } from "react";
 import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
+import InfoMessage from "../InfoMessage/InfoMessage";
 
-function SearchForm({ onSubmit, onFilter, buttonState }) {
+function SearchForm({ onSubmit, onFilter, buttonState, isLoading, message }) {
   const [film, setFilm] = useState("");
   const [isValid, setIsvalid] = useState(true);
 
@@ -52,6 +53,7 @@ function SearchForm({ onSubmit, onFilter, buttonState }) {
               onClick={handleSubmit}
               disabled={!isValid}
             ></button>
+            
             <div className="search-form__break-line"></div>
             <div className="search-form__filter-container search-form__filter-container_type_in">
               <FilterCheckbox onFilter={onFilter} buttonState={buttonState} />
@@ -61,6 +63,7 @@ function SearchForm({ onSubmit, onFilter, buttonState }) {
         <div className="search-form__filter-container search-form__filter-container_type_out">
           <FilterCheckbox onFilter={onFilter} buttonState={buttonState} />
         </div>
+        {!isLoading && <InfoMessage message={message} type={"search"} />}
       </div>
     </section>
   );
