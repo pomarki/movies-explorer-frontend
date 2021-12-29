@@ -1,0 +1,8 @@
+.movies-block {
+    display: none;
+    background-color: tomato;
+  }
+  
+  .movies-block_active {
+    display: block;
+  }
