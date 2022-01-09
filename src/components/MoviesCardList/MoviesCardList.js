@@ -15,15 +15,33 @@ function MoviesCardList({
 }) {
   const [activeBlockId, setActiveBlockId] = useState(0);
   const [lastBlock, setLastBlock] = useState(false);
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+  const [chunk, setChunk] = useState(5);
+  const [preparedArr, setPreparedArr] = useState([]);
 
-  const screenWidth = window.innerWidth;
-  let chunk;
-  screenWidth > 320 ? (chunk = 7) : (chunk = 5);
+  const handleChunk = (scale) => {
+    if (scale > 321) {
+      setChunk(7);
+    } else {
+      setChunk(5);
+    }
+  };
+
+  const handleWindowResize = () => {
+    setScreenWidth(window.innerWidth);
+  };
 
   useEffect(() => {
     setActiveBlockId(0);
     setLastBlock(false);
   }, [isLoading]);
+
+  useEffect(() => {
+    window.addEventListener("resize", handleWindowResize);
+    handleChunk(window.innerWidth);
+    setPreparedArr(cutArray(movies, chunk));
+    window.removeEventListener("resize", handleWindowResize);
+  }, [screenWidth]);
 
   function cutArray(array, divider) {
     let result = [];
@@ -39,8 +57,6 @@ function MoviesCardList({
 
     return result;
   }
-
-  let preparedArr = cutArray(movies, chunk);
 
   function handleClick() {
     setActiveBlockId(activeBlockId + 1);
@@ -81,7 +97,7 @@ function MoviesCardList({
           }`}
           onClick={handleClick}
         >
-          Ещё
+          Ещё {screenWidth}
         </button>
       </div>
     </section>
