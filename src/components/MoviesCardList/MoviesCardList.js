@@ -1,5 +1,5 @@
 import "./MoviesCardList.css";
-import MoviesCardBlock from "../MoviesCardBlock/MoviesCardBlock";
+import MoviesCard from "../MoviesCard/MoviesCard";
 import Preloader from "../Preloader/Preloader";
 import { useState, useEffect } from "react";
 
@@ -14,61 +14,77 @@ function MoviesCardList({
   onDelete,
   isLoading,
 }) {
-  const [activeBlockId, setActiveBlockId] = useState(0);
-  const [lastBlock, setLastBlock] = useState(false);
-  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
-  const [chunk, setChunk] = useState(7);
-  const [preparedArr, setPreparedArr] = useState([]);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [blockSize, setBlockSize] = useState(window.innerWidth > 321 ? 7 : 5);
+  const [lastRenderedIndex, setLastRenderedIndex] = useState(0);
+  const [searchResult, setSearchResult] = useState([]);
+  const [activeButton, setActiveButton] = useState(() =>
+    searchResult.length > blockSize ? true : false
+  );
+  const [moviesList, setMoviesList] = useState(() =>
+    sliceMoviesArray(blockSize, 0, searchResult)
+  );
+  
 
-  const handleChunk = (scale) => {
+  // синхронизируй стейт movies!
+
+  const changeBlockSize = (scale) => {
     if (scale > 321) {
-      setChunk(7);
+      return setBlockSize(7);
     } else {
-      setChunk(5);
+      return setBlockSize(5);
     }
   };
 
   const handleWindowResize = () => {
-    setScreenWidth(window.innerWidth);
+    setWindowWidth(window.innerWidth);
   };
 
+useEffect(() => {
+  setSearchResult(movies);
+}, [movies]);
+
+
+
   useEffect(() => {
-    setActiveBlockId(0);
-    setLastBlock(false);
+    setActiveButton(false);
   }, [isLoading]);
 
   useEffect(() => {
     window.addEventListener("resize", handleWindowResize);
-
     return () => window.removeEventListener("resize", handleWindowResize);
   }, []);
 
   useEffect(() => {
-    setPreparedArr(cutArray(movies, chunk));
-    handleChunk(window.innerWidth);
-  }, [movies, chunk]);
+    changeBlockSize(windowWidth);
+  }, [windowWidth]);
 
-  function cutArray(array, divider) {
-    let result = [];
-    let iterations;
-    array.length % divider === 0
-      ? (iterations = array.length / divider)
-      : (iterations = Math.floor(array.length / divider) + 1);
+  function sliceMoviesArray(chunk, firstIndex, movies) {
+    let result;
+    let lastIndex = firstIndex + chunk;
 
-    for (let i = 0; i < iterations; i++) {
-      let arr = array.slice(i * divider, i * divider + divider);
-      result.push({ id: i, block: arr });
+    setActiveButton(true);
+
+    if (movies.length === 0) {
+      result = [];
+      setActiveButton(false);
+      return result;
     }
+
+    if (lastIndex > movies.length) {
+      lastIndex = movies.length;
+      setActiveButton(false);
+    }
+
+    result = movies.slice(firstIndex, lastIndex);
+    setLastRenderedIndex(lastIndex);
 
     return result;
   }
 
-  function handleClick() {
-    setActiveBlockId(activeBlockId + 1);
-    if (activeBlockId === preparedArr.length - 2) {
-      setLastBlock(true);
-    }
-  }
+  const addMoviesBlock = (block, list) => {
+    setMoviesList([...list, ...block]);
+  };
 
   return (
     <section
@@ -82,16 +98,14 @@ function MoviesCardList({
           !isLoading && "movies-card-list__container_visible"
         }`}
       >
-        {preparedArr.map(({ id, ...block }) => (
-          <MoviesCardBlock
-            key={id}
-            blockId={id}
-            block={block}
-            activeBlock={activeBlockId}
+        {moviesList.map(({ movieId, ...card }) => (
+          <MoviesCard
+            key={movieId}
+            card={card}
             listTypeSaved={listTypeSaved}
             onLike={onLike}
             savedMovies={savedMovies}
-            /* likedMovies={likedMovies} */
+            likedMovies={likedMovies}
             onDelete={onDelete}
           />
         ))}
@@ -99,11 +113,16 @@ function MoviesCardList({
       <div className="movies-card-list__button-container">
         <button
           className={`movies-card-list__more-button page__link ${
-            lastBlock && "movies-card-list__more-button_type_inactive"
+            !activeButton && "movies-card-list__more-button_type_inactive"
           }`}
-          onClick={handleClick}
+          onClick={() =>
+            addMoviesBlock(
+              sliceMoviesArray(blockSize, lastRenderedIndex, searchResult),
+              moviesList
+            )
+          }
         >
-          Ещё {screenWidth} {chunk}
+          Ещё
         </button>
       </div>
     </section>

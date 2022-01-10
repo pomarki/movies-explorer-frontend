@@ -33,7 +33,7 @@ function MoviesCardBlock({
 
   const different = comparisonArrows(block.block, savedMovies);
 
-  console.log(block.block)
+  console.log(different)
 
   return (
     <>
