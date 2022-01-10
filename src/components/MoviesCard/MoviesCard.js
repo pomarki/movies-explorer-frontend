@@ -34,6 +34,7 @@ function MoviesCard({ card, listTypeSaved, onLike, onDelete, likedMovies }) {
 
   function handleMovieDislike() {
     onDelete(getLikedmovieId(card, likedMovies));
+    console.log(likedMovies);
   }
 
   function getLikedmovieId(movieCard, likedMoviesArrow) {

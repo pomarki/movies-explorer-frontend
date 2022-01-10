@@ -14,7 +14,7 @@ function Movies({
   buttonState,
   isLoading,
 }) {
-  function comparisonArrows(filterArr, savedArr) {
+/*   function comparisonArrows(filterArr, savedArr) {
     let result = [];
 
     for (let i = 0; i < savedArr.length; i++) {
@@ -28,7 +28,7 @@ function Movies({
     return result;
   }
 
-  const different = comparisonArrows(filtredMovies, savedMovies);
+  const different = comparisonArrows(filtredMovies, savedMovies); */
 
   return (
     <>
@@ -48,7 +48,8 @@ function Movies({
           listTypeSaved={false}
           onLike={onLike}
           onDelete={onDelete}
-          likedMovies={different}
+          /* likedMovies={different} */
+          savedMovies={savedMovies}
         />
       </main>
       <Footer isOpen={true} />

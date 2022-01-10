@@ -7,6 +7,7 @@ function MoviesCardList({
   message,
   isOpen,
   movies,
+  savedMovies,
   listTypeSaved,
   onLike,
   likedMovies,
@@ -16,7 +17,7 @@ function MoviesCardList({
   const [activeBlockId, setActiveBlockId] = useState(0);
   const [lastBlock, setLastBlock] = useState(false);
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
-  const [chunk, setChunk] = useState(5);
+  const [chunk, setChunk] = useState(7);
   const [preparedArr, setPreparedArr] = useState([]);
 
   const handleChunk = (scale) => {
@@ -38,10 +39,14 @@ function MoviesCardList({
 
   useEffect(() => {
     window.addEventListener("resize", handleWindowResize);
-    handleChunk(window.innerWidth);
+
+    return () => window.removeEventListener("resize", handleWindowResize);
+  }, []);
+
+  useEffect(() => {
     setPreparedArr(cutArray(movies, chunk));
-    window.removeEventListener("resize", handleWindowResize);
-  }, [screenWidth]);
+    handleChunk(window.innerWidth);
+  }, [movies, chunk]);
 
   function cutArray(array, divider) {
     let result = [];
@@ -85,7 +90,8 @@ function MoviesCardList({
             activeBlock={activeBlockId}
             listTypeSaved={listTypeSaved}
             onLike={onLike}
-            likedMovies={likedMovies}
+            savedMovies={savedMovies}
+            /* likedMovies={likedMovies} */
             onDelete={onDelete}
           />
         ))}
@@ -97,7 +103,7 @@ function MoviesCardList({
           }`}
           onClick={handleClick}
         >
-          Ещё {screenWidth}
+          Ещё {screenWidth} {chunk}
         </button>
       </div>
     </section>
