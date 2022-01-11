@@ -18,7 +18,7 @@ function MoviesCardList({
   const [blockSize, setBlockSize] = useState(
     firstBlockSizeChoice(listTypeSaved)
   );
-  const [lastRenderedIndex, setLastRenderedIndex] = useState(0);
+  const [lastRenderedIndex, setLastRenderedIndex] = useState(0);   
   const [searchResult, setSearchResult] = useState([]);
   const [activeButton, setActiveButton] = useState(false);
   const [moviesList, setMoviesList] = useState([]);
@@ -54,9 +54,16 @@ function MoviesCardList({
   };
 
   useEffect(() => {
+
+    if (listTypeSaved) {
+
+      setMoviesList(movies);
+
+    } else {
+
     setSearchResult(movies);
     setActiveButton(movies.length > blockSize ? true : false);
-    setMoviesList(() => sliceMoviesArray(blockSize, 0, searchResult));
+    setMoviesList(() => sliceMoviesArray(blockSize, 0, searchResult));}
   }, [movies, blockSize, searchResult]);
 
   useEffect(() => {
