@@ -34,12 +34,12 @@ function MoviesCard({ card, listTypeSaved, onLike, onDelete, likedMovies }) {
 
   function handleMovieDislike() {
     onDelete(getLikedmovieId(card, likedMovies));
-    console.log(likedMovies);
   }
 
   function getLikedmovieId(movieCard, likedMoviesArrow) {
     let id = movieCard.movieId;
     let currentArr = likedMoviesArrow.filter((item) => item.movieId === id);
+
     return currentArr[0]._id;
   }
 
