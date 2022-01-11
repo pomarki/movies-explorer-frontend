@@ -31,7 +31,7 @@ function SavedMovies({
         <MoviesCardList
           message={message}
           isOpen={true}
-          /* movies={filtredMovies} */
+          filtredMovies={filtredMovies}
           movies={savedMovies}
           listTypeSaved={true}
           onDelete={onDelete}

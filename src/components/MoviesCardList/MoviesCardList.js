@@ -8,6 +8,7 @@ function MoviesCardList({
   isOpen,
   movies,
   savedMovies,
+  filtredMovies,
   listTypeSaved,
   onLike,
   likedMovies,
@@ -18,7 +19,7 @@ function MoviesCardList({
   const [blockSize, setBlockSize] = useState(
     firstBlockSizeChoice(listTypeSaved)
   );
-  const [lastRenderedIndex, setLastRenderedIndex] = useState(0);   
+  const [lastRenderedIndex, setLastRenderedIndex] = useState(0);
   const [searchResult, setSearchResult] = useState([]);
   const [activeButton, setActiveButton] = useState(false);
   const [moviesList, setMoviesList] = useState([]);
@@ -54,16 +55,13 @@ function MoviesCardList({
   };
 
   useEffect(() => {
-
     if (listTypeSaved) {
-
       setMoviesList(movies);
-
     } else {
-
-    setSearchResult(movies);
-    setActiveButton(movies.length > blockSize ? true : false);
-    setMoviesList(() => sliceMoviesArray(blockSize, 0, searchResult));}
+      setSearchResult(movies);
+      setActiveButton(movies.length > blockSize ? true : false);
+      setMoviesList(() => sliceMoviesArray(blockSize, 0, searchResult));
+    }
   }, [movies, blockSize, searchResult]);
 
   useEffect(() => {
@@ -129,7 +127,8 @@ function MoviesCardList({
       <div className="movies-card-list__button-container">
         <button
           className={`movies-card-list__more-button page__link ${
-            (!activeButton || listTypeSaved || isLoading) && "movies-card-list__more-button_type_inactive"
+            (!activeButton || listTypeSaved || isLoading) &&
+            "movies-card-list__more-button_type_inactive"
           }`}
           onClick={() =>
             addMoviesBlock(

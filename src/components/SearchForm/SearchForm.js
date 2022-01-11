@@ -7,11 +7,11 @@ function SearchForm({ onSubmit, onFilter, buttonState, isLoading, message }) {
   const [film, setFilm] = useState("");
   const [isValid, setIsvalid] = useState(true);
 
-  function handleCangeFilm(e) {
+  function handleChangeFilm(e) {
     setFilm(e.target.value);
   }
 
-  function emptyForm() {
+  function warnEmptyForm() {
     setIsvalid(false);
     setFilm("Нужно ввести ключевое слово");
     setTimeout(() => {
@@ -23,7 +23,7 @@ function SearchForm({ onSubmit, onFilter, buttonState, isLoading, message }) {
   function handleSubmit(e) {
     e.preventDefault();
     if (film === "") {
-      emptyForm();
+      warnEmptyForm();
       return;
     }
     onSubmit(film);
@@ -42,7 +42,7 @@ function SearchForm({ onSubmit, onFilter, buttonState, isLoading, message }) {
             type="text"
             placeholder="Фильм"
             value={film}
-            onChange={handleCangeFilm}
+            onChange={handleChangeFilm}
           ></input>
           <div className="search-form__find-block">
             <button
