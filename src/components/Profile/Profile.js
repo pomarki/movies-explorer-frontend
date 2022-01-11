@@ -15,21 +15,40 @@ function Profile({
   const { values, errors, isValid, handleChange, resetForm } =
     useFormValidation();
 
+    console.log(values.name, values.email)
+
+
   useEffect(() => {
-    resetForm();
-  }, [resetForm]);
+    resetForm({ name: currentUser.name, email: currentUser.email });
+  }, []);
 
   const [isUpdateFormOpen, setUpdateFormOpen] = useState(true);
+  // const [isValueOk, setIsValueOk] = useState(false);
 
   function handleUpdateForm() {
     setUpdateFormOpen(!isUpdateFormOpen);
   }
 
+/*   function checkValues() {
+    if (
+      currentUser.email === values.email &&
+      currentUser.name === values.name
+    ) {
+      setIsValueOk(false);
+    } else {
+      setIsValueOk(true);
+    }
+  } */
+
+/*   useEffect(() => {
+    checkValues();
+}, [handleChange]); */
+
   function handleUpdateUser(e) {
     e.preventDefault();
     updateUser({
-      name: values.name || currentUser.name,
-      email: values.email || currentUser.email,
+      name: values.name,
+      email: values.email,
     });
   }
 
@@ -49,7 +68,7 @@ function Profile({
                 name="name"
                 id="profile-name"
                 type="text"
-                value={values.name || currentUser.name}
+                value={values.name || ""}
                 onChange={handleChange}
                 disabled={updateInProgress}
                 placeholder="Имя"
@@ -67,7 +86,7 @@ function Profile({
                 id="profile-email"
                 name="email"
                 type="email"
-                value={values.email || currentUser.email}
+                value={values.email || ""}
                 onChange={handleChange}
                 disabled={updateInProgress}
                 placeholder="email"

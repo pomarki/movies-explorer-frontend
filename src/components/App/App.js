@@ -316,14 +316,13 @@ function App() {
       .catch((err) => console.log(err));
   }
 
-  function removeUserMovie(id) { // функция не удаляет фильм из стейта
+  function removeUserMovie(id) {
     api
       .removeMovie(id)
       .then((res) => {
           
           let moviesArray = JSON.parse(localStorage.getItem("savedMovies"));
           moviesArray = moviesArray.filter((item) => item._id !== id);
-          console.log(moviesArray, id)
           setsearchResultSaved(moviesArray); // оно мне надо?
           setSavedMovies(moviesArray);
         localStorage.setItem("savedMovies", JSON.stringify(moviesArray));
