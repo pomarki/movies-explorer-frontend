@@ -23,26 +23,26 @@ function Profile({
   }, []);
 
   const [isUpdateFormOpen, setUpdateFormOpen] = useState(true);
-  // const [isValueOk, setIsValueOk] = useState(false);
+  const [isValueNotChahged, setIsValueNotChahged] = useState(false);
 
   function handleUpdateForm() {
     setUpdateFormOpen(!isUpdateFormOpen);
   }
 
-/*   function checkValues() {
+  function checkValues() {
     if (
       currentUser.email === values.email &&
       currentUser.name === values.name
     ) {
-      setIsValueOk(false);
+      setIsValueNotChahged(false);
     } else {
-      setIsValueOk(true);
+      setIsValueNotChahged(true);
     }
-  } */
+  }
 
-/*   useEffect(() => {
+  useEffect(() => {
     checkValues();
-}, [handleChange]); */
+}, [handleChange]);
 
   function handleUpdateUser(e) {
     e.preventDefault();
@@ -97,7 +97,7 @@ function Profile({
           </form>
           <ButtonContainer
             type={!isUpdateFormOpen}
-            isValid={isValid}
+            isValid={isValid && isValueNotChahged}
             handleLogout={handleLogout}
             handleUpdateUser={handleUpdateUser}
             handleUpdateForm={handleUpdateForm}

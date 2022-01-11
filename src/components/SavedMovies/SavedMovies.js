@@ -9,6 +9,7 @@ function SavedMovies({
   onDelete,
   onSubmit,
   filtredMovies,
+  savedMovies,
   isDurationFilter,
   buttonState,
   message,
@@ -30,7 +31,8 @@ function SavedMovies({
         <MoviesCardList
           message={message}
           isOpen={true}
-          movies={filtredMovies}
+          /* movies={filtredMovies} */
+          movies={savedMovies}
           listTypeSaved={true}
           onDelete={onDelete}
           isLoading={isLoading}

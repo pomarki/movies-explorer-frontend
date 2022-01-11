@@ -15,19 +15,39 @@ function MoviesCardList({
   isLoading,
 }) {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-  const [blockSize, setBlockSize] = useState(window.innerWidth > 321 ? 7 : 5);
+  const [blockSize, setBlockSize] = useState(
+    firstBlockSizeChoice(listTypeSaved)
+  );
   const [lastRenderedIndex, setLastRenderedIndex] = useState(0);
   const [searchResult, setSearchResult] = useState([]);
   const [activeButton, setActiveButton] = useState(false);
   const [moviesList, setMoviesList] = useState([]);
 
   const changeBlockSize = (scale) => {
+    if (listTypeSaved) {
+      return setBlockSize(movies.length);
+    }
+
     if (scale > 321) {
       return setBlockSize(7);
     } else {
       return setBlockSize(5);
     }
   };
+
+  function firstBlockSizeChoice(type) {
+    let result;
+
+    if (type) {
+      result = movies.length;
+      console.log(movies.length);
+      return result;
+    } else {
+      window.innerWidth > 321 ? (result = 7) : (result = 5);
+      console.log(movies.length);
+      return result;
+    }
+  }
 
   const handleWindowResize = () => {
     setWindowWidth(window.innerWidth);
@@ -37,7 +57,6 @@ function MoviesCardList({
     setSearchResult(movies);
     setActiveButton(movies.length > blockSize ? true : false);
     setMoviesList(() => sliceMoviesArray(blockSize, 0, searchResult));
-    
   }, [movies, blockSize, searchResult]);
 
   useEffect(() => {
@@ -103,7 +122,7 @@ function MoviesCardList({
       <div className="movies-card-list__button-container">
         <button
           className={`movies-card-list__more-button page__link ${
-            !activeButton && "movies-card-list__more-button_type_inactive"
+            (!activeButton || listTypeSaved || isLoading) && "movies-card-list__more-button_type_inactive"
           }`}
           onClick={() =>
             addMoviesBlock(

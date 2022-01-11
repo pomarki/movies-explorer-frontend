@@ -33,7 +33,6 @@ function App() {
   const [savedMovies, setSavedMovies] = useState([]);
   const [searchResultSaved, setsearchResultSaved] = useState([]);
   const [searchMessage, setSearchMessage] = useState("");
-  const [searchQuery, setsearchQuery] = useState([]);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -213,6 +212,7 @@ function App() {
   }
 
   function searchMovies(moviesArrow, keyword) {
+    setSearchMessage("");
     const unifiedWord = (word) => word.toLowerCase();
     const path = location.pathname;
 
@@ -320,11 +320,9 @@ function App() {
     api
       .removeMovie(id)
       .then((res) => {
-          
-          let moviesArray = JSON.parse(localStorage.getItem("savedMovies"));
-          moviesArray = moviesArray.filter((item) => item._id !== id);
-          setsearchResultSaved(moviesArray); // оно мне надо?
-          setSavedMovies(moviesArray);
+        let moviesArray = JSON.parse(localStorage.getItem("savedMovies"));
+        moviesArray = moviesArray.filter((item) => item._id !== id);
+        setSavedMovies(moviesArray);
         localStorage.setItem("savedMovies", JSON.stringify(moviesArray));
       })
       .catch((err) => console.log(err));
@@ -425,8 +423,8 @@ function App() {
                 <SavedMovies
                   message={searchMessage}
                   isDurationFilter={handleToggleShortMovies}
-                  savedMovies={savedMovies}
                   filtredMovies={searchResultSaved}
+                  savedMovies={savedMovies}
                   isOpen={true}
                   onSubmit={submitSearchSavedMovies}
                   onDelete={removeUserMovie}
