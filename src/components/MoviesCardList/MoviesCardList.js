@@ -17,14 +17,11 @@ function MoviesCardList({
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [blockSize, setBlockSize] = useState(window.innerWidth > 321 ? 7 : 5);
   const [lastRenderedIndex, setLastRenderedIndex] = useState(0);
-  const [searchResult, setSearchResult] = useState([]);
-  const [activeButton, setActiveButton] = useState(() =>
-    searchResult.length > blockSize ? true : false
-  );
-  const [moviesList, setMoviesList] = useState(() =>
-    sliceMoviesArray(blockSize, 0, searchResult)
-  );
-  
+  const [searchResult, setSearchResult] = useState([]); // записываю результат поиска из movies
+  const [activeButton, setActiveButton] = useState(false);
+  const [moviesList, setMoviesList] = useState([]);
+
+  // let moviesList = [];
 
   // синхронизируй стейт movies!
 
@@ -40,15 +37,16 @@ function MoviesCardList({
     setWindowWidth(window.innerWidth);
   };
 
-useEffect(() => {
-  setSearchResult(movies);
-}, [movies]);
-
-
-
   useEffect(() => {
+    setSearchResult(movies);
+    setActiveButton(movies.length > blockSize ? true : false);
+    setMoviesList(() => sliceMoviesArray(blockSize, 0, searchResult));
+    
+  }, [movies, blockSize, searchResult]);
+
+/*   useEffect(() => {
     setActiveButton(false);
-  }, [isLoading]);
+  }, [isLoading]); */
 
   useEffect(() => {
     window.addEventListener("resize", handleWindowResize);
