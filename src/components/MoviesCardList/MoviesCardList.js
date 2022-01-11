@@ -17,13 +17,9 @@ function MoviesCardList({
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [blockSize, setBlockSize] = useState(window.innerWidth > 321 ? 7 : 5);
   const [lastRenderedIndex, setLastRenderedIndex] = useState(0);
-  const [searchResult, setSearchResult] = useState([]); // записываю результат поиска из movies
+  const [searchResult, setSearchResult] = useState([]);
   const [activeButton, setActiveButton] = useState(false);
   const [moviesList, setMoviesList] = useState([]);
-
-  // let moviesList = [];
-
-  // синхронизируй стейт movies!
 
   const changeBlockSize = (scale) => {
     if (scale > 321) {
@@ -43,10 +39,6 @@ function MoviesCardList({
     setMoviesList(() => sliceMoviesArray(blockSize, 0, searchResult));
     
   }, [movies, blockSize, searchResult]);
-
-/*   useEffect(() => {
-    setActiveButton(false);
-  }, [isLoading]); */
 
   useEffect(() => {
     window.addEventListener("resize", handleWindowResize);
@@ -96,9 +88,9 @@ function MoviesCardList({
           !isLoading && "movies-card-list__container_visible"
         }`}
       >
-        {moviesList.map(({ movieId, ...card }) => (
+        {moviesList.map((card) => (
           <MoviesCard
-            key={movieId}
+            key={card.movieId}
             card={card}
             listTypeSaved={listTypeSaved}
             onLike={onLike}
