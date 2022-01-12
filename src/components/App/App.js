@@ -31,7 +31,7 @@ function App() {
   const [initialMovies, setInitialMovies] = useState([]);
   const [searchResult, setSearchResult] = useState([]);
   const [savedMovies, setSavedMovies] = useState([]);
-  const [searchResultSaved, setsearchResultSaved] = useState([]);
+  const [searchResultSaved, setSearchResultSaved] = useState([]);
   const [searchMessage, setSearchMessage] = useState("");
 
   const navigate = useNavigate();
@@ -285,12 +285,13 @@ function App() {
     setTimeout(() => setSearchInProgress(false), 1000);
     searchMovies(savedMovies, keyword);
 
-    const searchArrow = JSON.parse(localStorage.getItem("searchResultSaved"));
+    //const searchArrow = JSON.parse(localStorage.getItem("searchResultSaved"));
+    const searchArrow = searchResultSaved;
 
     if (shortToggle) {
-      setsearchResultSaved(searchArrow.filter((movie) => movie.duration <= 40));
+      setSearchResultSaved(searchArrow.filter((movie) => movie.duration <= 40));
     } else {
-      setsearchResultSaved(searchArrow);
+      setSearchResultSaved(searchArrow);
     }
   }
 
@@ -358,10 +359,11 @@ function App() {
     }
   }
 
-  function handleToggleShortMovies() {
+  function handleToggleSavedMovies() {
     setSearchMessage("");
 
-    let moviesArr = JSON.parse(localStorage.getItem("searchResultSaved"));
+    // let moviesArr = JSON.parse(localStorage.getItem("searchResultSaved"));
+    let moviesArr = searchResultSaved;
 
     if (moviesArr === null) {
       moviesArr = [];
@@ -379,10 +381,10 @@ function App() {
       }
 
       if (!shortToggle) {
-        setsearchResultSaved(shortMoviesArr);
+        setSearchResultSaved(shortMoviesArr);
         setShortToggle(!shortToggle);
       } else {
-        setsearchResultSaved(moviesArr);
+        setSearchResultSaved(moviesArr);
         setShortToggle(!shortToggle);
       }
     } else {
@@ -422,7 +424,7 @@ function App() {
               <ProtectedRoute loggedIn={loggedIn}>
                 <SavedMovies
                   message={searchMessage}
-                  isDurationFilter={handleToggleShortMovies}
+                  isDurationFilter={handleToggleSavedMovies}
                   filtredMovies={searchResultSaved}
                   savedMovies={savedMovies}
                   isOpen={true}
