@@ -15,6 +15,16 @@ function SavedMovies({
   message,
   isLoading,
 }) {
+
+  let actualMoviesArr;
+
+    (message === "" && filtredMovies.length === 0) ? actualMoviesArr = savedMovies : actualMoviesArr = filtredMovies;
+
+
+  
+
+
+
   return (
     <>
       <Header />
@@ -27,12 +37,13 @@ function SavedMovies({
           onSubmit={onSubmit}
           onFilter={isDurationFilter}
           buttonState={buttonState}
+          message={message}
         />
         <MoviesCardList
           message={message}
           isOpen={true}
           filtredMovies={filtredMovies}
-          movies={savedMovies}
+          movies={actualMoviesArr} 
           listTypeSaved={true}
           onDelete={onDelete}
           isLoading={isLoading}
