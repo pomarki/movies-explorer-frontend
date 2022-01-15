@@ -32,6 +32,9 @@ function App() {
   const [searchResult, setSearchResult] = useState([]);
   const [savedMovies, setSavedMovies] = useState([]);
   const [searchResultSaved, setSearchResultSaved] = useState([]);
+  const [searchResultSavedShort, setSearchResultSavedShort] = useState([]); // добавил
+  const [firstSubmit, setFirstSubmit] = useState(true);
+
   const [searchMessage, setSearchMessage] = useState("");
 
   const navigate = useNavigate();
@@ -232,6 +235,8 @@ function App() {
 
     if (result.length === 0 && path === "/saved-movies") {
       setSearchMessage("Сохранённых фильмов по вашему запросу не найдено.");
+      //setSearchResultSaved([]); // добавил
+      //setSearchResultSavedShort([]); //добавил
     }
 
     const shortMoviesArr = result.filter((movie) => movie.duration <= 40);
@@ -250,6 +255,8 @@ function App() {
       setSearchMessage(
         "Сохранённых короткометражных фильмов по вашему запросу не найдено."
       );
+      //setSearchResultSaved([]); // добавил
+      //setSearchResultSavedShort([]); // добавил
     }
 
     if (path === "/movies") {
@@ -258,35 +265,43 @@ function App() {
     }
 
     if (path === "/saved-movies") {
-      localStorage.setItem("searchResultSaved", JSON.stringify(result));
-      localStorage.setItem(
-        "searchResultShortSaved",
-        JSON.stringify(shortMoviesArr)
-      );
+      localStorage.setItem("searchResultSaved", JSON.stringify(result)); // <- это все фильмы
+      //localStorage.setItem(
+      //  "searchResultShortSaved", // <- это короткометражки
+      //  JSON.stringify(shortMoviesArr)
+      //);
+      //setSearchResultSaved(result); // добавил
+      //setSearchResultSavedShort(shortMoviesArr);  // добавил
     }
   }
 
   function submitSearchMovies(keyword) {
     setSearchInProgress(true);
+    setSearchResult([]);
     setTimeout(() => setSearchInProgress(false), 1000);
     searchMovies(initialMovies, keyword);
 
-    const searchArrow = JSON.parse(localStorage.getItem("searchResult"));
+    const searchArrFull = JSON.parse(localStorage.getItem("searchResult"));
+    const searchArrShort = JSON.parse(
+      localStorage.getItem("searchResultShort")
+    ); // добавил
 
     if (shortToggle) {
-      setSearchResult(searchArrow.filter((movie) => movie.duration <= 40));
+      //setSearchResult(searchArrow.filter((movie) => movie.duration <= 40));
+      setSearchResult(searchArrShort); // добавил
     } else {
-      setSearchResult(searchArrow);
+      setSearchResult(searchArrFull);
     }
   }
 
   function submitSearchSavedMovies(keyword) {
+    setFirstSubmit(false);
     setSearchInProgress(true);
     setTimeout(() => setSearchInProgress(false), 1000);
     searchMovies(savedMovies, keyword);
 
-    //const searchArrow = JSON.parse(localStorage.getItem("searchResultSaved"));
-    const searchArrow = searchResultSaved;
+    const searchArrow = JSON.parse(localStorage.getItem("searchResultSaved"));
+    //const searchArrow = searchResultSaved;
 
     if (shortToggle) {
       setSearchResultSaved(searchArrow.filter((movie) => movie.duration <= 40));
@@ -360,18 +375,28 @@ function App() {
   }
 
   function handleToggleSavedMovies() {
+    // надо знать ищу я среди всех фильмов, или среди найденных
     setSearchMessage("");
 
     // let moviesArr = JSON.parse(localStorage.getItem("searchResultSaved"));
-    let moviesArr = searchResultSaved;
+    let moviesArr;
+    let shortMoviesArr;
+
+    if (firstSubmit) {
+      moviesArr = savedMovies;
+      shortMoviesArr = savedMovies.filter((movie) => movie.duration <= 40);
+    } else {
+      moviesArr = JSON.parse(localStorage.getItem("searchResultSaved"));
+      shortMoviesArr = moviesArr.filter((movie) => movie.duration <= 40);
+    }
 
     if (moviesArr === null) {
       moviesArr = [];
     }
 
-    let shortMoviesArr = JSON.parse(
-      localStorage.getItem("searchResultShortSaved")
-    );
+    //shortMoviesArr = JSON.parse(
+    //  localStorage.getItem("searchResultShortSaved")
+    //);
 
     if (moviesArr.length !== 0) {
       if (shortMoviesArr.length === 0 && !shortToggle) {

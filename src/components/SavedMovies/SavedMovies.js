@@ -15,15 +15,11 @@ function SavedMovies({
   message,
   isLoading,
 }) {
-
   let actualMoviesArr;
 
-    (message === "" && filtredMovies.length === 0) ? actualMoviesArr = savedMovies : actualMoviesArr = filtredMovies;
-
-
-  
-
-
+  message === "" && filtredMovies.length === 0
+    ? (actualMoviesArr = savedMovies)
+    : (actualMoviesArr = filtredMovies);
 
   return (
     <>
@@ -43,7 +39,7 @@ function SavedMovies({
           message={message}
           isOpen={true}
           filtredMovies={filtredMovies}
-          movies={actualMoviesArr} 
+          movies={actualMoviesArr}
           listTypeSaved={true}
           onDelete={onDelete}
           isLoading={isLoading}

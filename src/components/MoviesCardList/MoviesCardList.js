@@ -41,11 +41,11 @@ function MoviesCardList({
 
     if (type) {
       result = movies.length;
-      console.log(movies.length);
+
       return result;
     } else {
       window.innerWidth > 321 ? (result = 7) : (result = 5);
-      console.log(movies.length);
+
       return result;
     }
   }

@@ -53,7 +53,7 @@ function SearchForm({ onSubmit, onFilter, buttonState, isLoading, message }) {
               onClick={handleSubmit}
               disabled={!isValid}
             ></button>
-            
+
             <div className="search-form__break-line"></div>
             <div className="search-form__filter-container search-form__filter-container_type_in">
               <FilterCheckbox onFilter={onFilter} buttonState={buttonState} />
