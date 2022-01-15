@@ -71,11 +71,13 @@ export class Api {
       headers: {
         authorization: `Bearer ${localStorage.getItem("jwt")}`,
       },
-    }).then((response) =>
+    })
+/*     .then((response) =>
       response.ok
         ? Promise.resolve("success")
         : Promise.reject(`Ошибка ${response.status}`)
-    );
+    ); */
+    .then(this._checkResponse);
   }
 }
 

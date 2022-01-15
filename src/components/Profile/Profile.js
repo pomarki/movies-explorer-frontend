@@ -71,6 +71,7 @@ function Profile({
                 placeholder="Имя"
                 required
                 minLength="2"
+                maxLength="30"
               ></input>
             </div>
             <div className="profile__break_line"></div>

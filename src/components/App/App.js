@@ -15,6 +15,7 @@ import resMessages from "../../utils/response-messages";
 import * as auth from "../../utils/auth";
 import api from "../../utils/MainApi";
 import movies from "../../utils/MoviesApi";
+import LimitErrPopup from "../LimitErrPopup/LimitErrPopup";
 import { messageTimer } from "../../utils/utils";
 import { filterByDuration } from "../../utils/utils";
 import { shortDuration } from "../../consts/constants";
@@ -34,6 +35,7 @@ function App() {
   const [searchResultSaved, setSearchResultSaved] = useState([]);
   const [firstSubmit, setFirstSubmit] = useState(true);
   const [searchMessage, setSearchMessage] = useState("");
+  const [limitError, setLimitError] = useState(false);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -79,6 +81,10 @@ function App() {
   function handleLogin() {
     setLoggedIn(true);
     setLoginMessage("");
+  }
+
+  function handlePopupClose() {
+    setLimitError(false);
   }
 
   function handleLogout() {
@@ -300,7 +306,11 @@ function App() {
         setSavedMovies(moviesArray);
         localStorage.setItem("savedMovies", JSON.stringify(moviesArray));
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        if (err.status === 429) {
+          setLimitError(true);
+        }
+      });
   }
 
   function getSavedMovies() {
@@ -323,7 +333,11 @@ function App() {
         setSavedMovies(moviesArray);
         localStorage.setItem("savedMovies", JSON.stringify(moviesArray));
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        if (err.status === 429) {
+          setLimitError(true);
+        }
+      });
   }
 
   function handleToggleMovies() {
@@ -393,6 +407,11 @@ function App() {
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
+        <LimitErrPopup
+          user={currentUser.name}
+          isOpen={limitError}
+          onClose={handlePopupClose}
+        />
         <Routes>
           <Route
             path="/"
