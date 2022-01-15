@@ -10,11 +10,11 @@ export class Api {
     }
     return response.json();
   }
-  
+
   getUserMovies() {
     return fetch(`${this._address}/movies`, {
-        headers: {
-        authorization: `Bearer ${localStorage.getItem('jwt')}`
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("jwt")}`,
       },
     }).then(this._checkResponse);
   }
@@ -65,12 +65,11 @@ export class Api {
     }).then(this._checkResponse);
   }
 
-  
   removeMovie(id) {
     return fetch(`${this._address}/movies/${id}`, {
       method: "DELETE",
       headers: {
-        authorization: `Bearer ${localStorage.getItem('jwt')}`,
+        authorization: `Bearer ${localStorage.getItem("jwt")}`,
       },
     }).then((response) =>
       response.ok
@@ -78,29 +77,6 @@ export class Api {
         : Promise.reject(`Ошибка ${response.status}`)
     );
   }
-
-  /*   changeLikeCardStatus(id, isLiked) {
-    return fetch(`${this._address}/cards/${id}/likes`, {
-      method: isLiked ? "PUT" : "DELETE",
-      headers: {
-        authorization: `Bearer ${localStorage.getItem('_id')}`,
-      },
-    }).then(this._checkResponse);
-  } */
-
-  /*
-  sendNewAvatar(avatar) {
-    return fetch(`${this._address}/users/me/avatar`, {
-      method: "PATCH",
-      headers: {
-        authorization: `Bearer ${localStorage.getItem('_id')}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        avatar,
-      }),
-    }).then(this._checkResponse);
-  } */
 }
 
 const api = new Api({

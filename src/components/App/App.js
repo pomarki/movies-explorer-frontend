@@ -16,25 +16,23 @@ import * as auth from "../../utils/auth";
 import api from "../../utils/MainApi";
 import movies from "../../utils/MoviesApi";
 import { messageTimer } from "../../utils/utils";
+import { filterByDuration } from "../../utils/utils";
+import { shortDuration } from "../../consts/constants";
 
 function App() {
   const [isRegisterMessage, setRegisterMessage] = useState("");
   const [isLoginMessage, setLoginMessage] = useState("");
   const [isUpdateMessage, setUpdateMessage] = useState("");
-
   const [loggedIn, setLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
   const [requestInProgress, setRequestInProgress] = useState(false);
   const [searchInProgress, setSearchInProgress] = useState(false);
-
   const [shortToggle, setShortToggle] = useState(false);
   const [initialMovies, setInitialMovies] = useState([]);
   const [searchResult, setSearchResult] = useState([]);
   const [savedMovies, setSavedMovies] = useState([]);
   const [searchResultSaved, setSearchResultSaved] = useState([]);
-  const [searchResultSavedShort, setSearchResultSavedShort] = useState([]); // добавил
   const [firstSubmit, setFirstSubmit] = useState(true);
-
   const [searchMessage, setSearchMessage] = useState("");
 
   const navigate = useNavigate();
@@ -73,7 +71,6 @@ function App() {
           }
         })
         .catch((err) => {
-          /* localStorage.removeItem("jwt"); */
           navigate("/", { replace: true });
         });
     }
@@ -91,11 +88,12 @@ function App() {
     localStorage.removeItem("searchResult");
     localStorage.removeItem("searchResultShort");
     localStorage.removeItem("searchResultSaved");
-    localStorage.removeItem("searchResultShortSaved");
+
     setCurrentUser({});
     setLoggedIn(false);
     setSavedMovies([]);
     setSearchResult([]);
+    setSearchResultSaved([]);
     navigate("/", { replace: true });
   }
 
@@ -230,21 +228,17 @@ function App() {
     });
 
     if (result.length === 0 && path === "/movies") {
-      setSearchMessage("Фильмов по вашему запросу не найдено.");
+      setSearchMessage(resMessages.moviesNotFound);
     }
 
     if (result.length === 0 && path === "/saved-movies") {
-      setSearchMessage("Сохранённых фильмов по вашему запросу не найдено.");
-      //setSearchResultSaved([]); // добавил
-      //setSearchResultSavedShort([]); //добавил
+      setSearchMessage(resMessages.savedMoviesNotFound);
     }
 
-    const shortMoviesArr = result.filter((movie) => movie.duration <= 40);
+    const shortMoviesArr = filterByDuration(result, shortDuration);
 
     if (shortToggle && shortMoviesArr.length === 0 && path === "/movies") {
-      setSearchMessage(
-        "Короткометражных фильмов по вашему запросу не найдено."
-      );
+      setSearchMessage(resMessages.shortMoviesNotFound);
     }
 
     if (
@@ -252,11 +246,7 @@ function App() {
       shortMoviesArr.length === 0 &&
       path === "/saved-movies"
     ) {
-      setSearchMessage(
-        "Сохранённых короткометражных фильмов по вашему запросу не найдено."
-      );
-      //setSearchResultSaved([]); // добавил
-      //setSearchResultSavedShort([]); // добавил
+      setSearchMessage(resMessages.savedShortMoviesNotFound);
     }
 
     if (path === "/movies") {
@@ -265,13 +255,7 @@ function App() {
     }
 
     if (path === "/saved-movies") {
-      localStorage.setItem("searchResultSaved", JSON.stringify(result)); // <- это все фильмы
-      //localStorage.setItem(
-      //  "searchResultShortSaved", // <- это короткометражки
-      //  JSON.stringify(shortMoviesArr)
-      //);
-      //setSearchResultSaved(result); // добавил
-      //setSearchResultSavedShort(shortMoviesArr);  // добавил
+      localStorage.setItem("searchResultSaved", JSON.stringify(result));
     }
   }
 
@@ -284,11 +268,10 @@ function App() {
     const searchArrFull = JSON.parse(localStorage.getItem("searchResult"));
     const searchArrShort = JSON.parse(
       localStorage.getItem("searchResultShort")
-    ); // добавил
+    );
 
     if (shortToggle) {
-      //setSearchResult(searchArrow.filter((movie) => movie.duration <= 40));
-      setSearchResult(searchArrShort); // добавил
+      setSearchResult(searchArrShort);
     } else {
       setSearchResult(searchArrFull);
     }
@@ -301,10 +284,9 @@ function App() {
     searchMovies(savedMovies, keyword);
 
     const searchArrow = JSON.parse(localStorage.getItem("searchResultSaved"));
-    //const searchArrow = searchResultSaved;
 
     if (shortToggle) {
-      setSearchResultSaved(searchArrow.filter((movie) => movie.duration <= 40));
+      setSearchResultSaved(filterByDuration(searchArrow, shortDuration));
     } else {
       setSearchResultSaved(searchArrow);
     }
@@ -357,9 +339,7 @@ function App() {
 
     if (moviesArr.length !== 0) {
       if (shortMoviesArr.length === 0 && !shortToggle) {
-        setSearchMessage(
-          "Короткометражных фильмов по вашему запросу не найдено."
-        );
+        setSearchMessage(resMessages.shortMoviesNotFound);
       }
 
       if (!shortToggle) {
@@ -375,34 +355,27 @@ function App() {
   }
 
   function handleToggleSavedMovies() {
-    // надо знать ищу я среди всех фильмов, или среди найденных
     setSearchMessage("");
 
-    // let moviesArr = JSON.parse(localStorage.getItem("searchResultSaved"));
     let moviesArr;
     let shortMoviesArr;
 
     if (firstSubmit) {
       moviesArr = savedMovies;
-      shortMoviesArr = savedMovies.filter((movie) => movie.duration <= 40);
+      shortMoviesArr = filterByDuration(savedMovies, shortDuration);
     } else {
       moviesArr = JSON.parse(localStorage.getItem("searchResultSaved"));
-      shortMoviesArr = moviesArr.filter((movie) => movie.duration <= 40);
+
+      shortMoviesArr = filterByDuration(moviesArr, shortDuration);
     }
 
     if (moviesArr === null) {
       moviesArr = [];
     }
 
-    //shortMoviesArr = JSON.parse(
-    //  localStorage.getItem("searchResultShortSaved")
-    //);
-
     if (moviesArr.length !== 0) {
       if (shortMoviesArr.length === 0 && !shortToggle) {
-        setSearchMessage(
-          "Сохранённых короткометражных фильмов по вашему запросу не найдено."
-        );
+        setSearchMessage(resMessages.savedShortMoviesNotFound);
       }
 
       if (!shortToggle) {

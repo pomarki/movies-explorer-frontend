@@ -2,7 +2,7 @@ import React from "react";
 import "./AboutMe.css";
 import den from "../../../images/den.png";
 
-function AboutMe(props) {
+function AboutMe() {
   return (
     <section id="aboutMe" className="about-me page__section">
       <div className="about-me__title-container page__section-title-container">

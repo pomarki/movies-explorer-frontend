@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import "./Register.css";
 import EntranceWindow from "../EntranceWindow/EntranceWindow";
 import useFormValidation from "../../hooks/useFormValidation";

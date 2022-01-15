@@ -12,6 +12,10 @@ const resMessages = {
   successfulUpdate: "Вы успешно изменили данные пользователя!",
   successfulRegister: "Вы успешно зарегистрировались!",
   waitingForUpdate: "Ждите. Отправляем данные на сервер.",
+  moviesNotFound: "Фильмов по вашему запросу не найдено.",
+  savedMoviesNotFound: "Сохранённых фильмов по вашему запросу не найдено.",
+  shortMoviesNotFound: "Короткометражных фильмов по вашему запросу не найдено.",
+  savedShortMoviesNotFound: "Сохранённых короткометражных фильмов по вашему запросу не найдено.",
 };
 
 export default resMessages;

@@ -1,7 +1,5 @@
-import React, { useContext } from "react";
 import "./Promo.css";
 import { Link } from "react-router-dom";
-/* import { CurrentUserContext } from "../../contexts/CurrentUserContext"; */
 
 function Promo() {
   return (

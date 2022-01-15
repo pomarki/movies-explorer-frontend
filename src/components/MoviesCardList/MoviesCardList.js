@@ -2,13 +2,12 @@ import "./MoviesCardList.css";
 import MoviesCard from "../MoviesCard/MoviesCard";
 import Preloader from "../Preloader/Preloader";
 import { useState, useEffect } from "react";
+import { boxSizeS, boxSizeL } from "../../consts/constants";
 
 function MoviesCardList({
-  message,
   isOpen,
   movies,
   savedMovies,
-  filtredMovies,
   listTypeSaved,
   onLike,
   likedMovies,
@@ -30,9 +29,9 @@ function MoviesCardList({
     }
 
     if (scale > 321) {
-      return setBlockSize(7);
+      return setBlockSize(boxSizeL);
     } else {
-      return setBlockSize(5);
+      return setBlockSize(boxSizeS);
     }
   };
 
@@ -44,7 +43,7 @@ function MoviesCardList({
 
       return result;
     } else {
-      window.innerWidth > 321 ? (result = 7) : (result = 5);
+      window.innerWidth > 321 ? (result = boxSizeL) : (result = boxSizeS);
 
       return result;
     }

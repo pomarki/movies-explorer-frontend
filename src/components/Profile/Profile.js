@@ -15,9 +15,6 @@ function Profile({
   const { values, errors, isValid, handleChange, resetForm } =
     useFormValidation();
 
-    console.log(values.name, values.email)
-
-
   useEffect(() => {
     resetForm({ name: currentUser.name, email: currentUser.email });
   }, []);
@@ -42,7 +39,7 @@ function Profile({
 
   useEffect(() => {
     checkValues();
-}, [handleChange]);
+  }, [handleChange]);
 
   function handleUpdateUser(e) {
     e.preventDefault();
