@@ -59,6 +59,14 @@
   cursor: default;
 }
 
+.button-container__button_type_out-edit {
+  margin: 16px 0 0 0;
+}
+
+.button-container__save-button_type_edit {
+  margin: 20px 0 0 0;
+}
+
 .button-container__error-message {
   font-size: 11px;
   font-style: normal;
@@ -77,5 +85,10 @@
   .button-container__button {
     font-size: 12px;
     line-height: 1.25;
+  }
+  .button-container__save-button {
+    width: 260px;
+    height: 45px;
+    font-size: 12px;
   }
 }

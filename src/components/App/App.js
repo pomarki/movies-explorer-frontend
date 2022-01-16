@@ -111,7 +111,7 @@ function App() {
       .then((response) => {
         setRegisterMessage(resMessages.successfulRegister);
         setRequestInProgress(false);
-        setTimeout(() => navigate("/signin", { replace: true }), 5000);
+        setTimeout(() => navigate("/movies", { replace: true }), 5000); // change
       })
       .catch((err) => {
         setRequestInProgress(false);

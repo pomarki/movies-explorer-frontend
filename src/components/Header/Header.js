@@ -37,7 +37,7 @@ function Header({ promoType, isOpen }) {
         </div>
         <button
           id="header-navigation-button"
-          className="header__navigation-button page__link"
+          className={`header__navigation-button page__link ${promoType && "header__navigation-button_white"}`}
           onClick={handleNavigationOpen}
         ></button>
       </div>

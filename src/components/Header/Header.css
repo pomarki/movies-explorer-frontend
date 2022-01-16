@@ -41,6 +41,11 @@
   background-position-x: left;
 }
 
+.header__navigation-button_white {
+  background: url(../../images/icon_burger_white.svg);
+}
+
+
 @media screen and (max-width: 1190px) {
   .header {
     padding: 18px 30px 18px 30px;
