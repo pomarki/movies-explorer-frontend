@@ -60,3 +60,8 @@
   line-height: 1.38;
   border-bottom: 2px #000000 solid;
 }
+
+.small-panel__link_promo {
+  color: #ffffff;
+  text-decoration: none;
+}

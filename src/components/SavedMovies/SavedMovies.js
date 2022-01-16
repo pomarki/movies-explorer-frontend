@@ -23,7 +23,7 @@ function SavedMovies({
 
   return (
     <>
-      <Header />
+      <Header isOpen={true} />
       <main
         className={`saved-movies ${
           isOpen && "saved-movies_opened"

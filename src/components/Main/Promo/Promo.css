@@ -19,6 +19,7 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  
 }
 
 .promo__central {
@@ -38,6 +39,10 @@
   flex-direction: row;
   align-items: center;
   justify-content: flex-end;
+}
+
+.promo__authorization-container_inactive {
+  display: none;
 }
 
 .promo__link {

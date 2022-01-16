@@ -1,30 +1,30 @@
 {
   "files": {
-    "main.css": "/static/css/main.1429f155.chunk.css",
-    "main.js": "/static/js/main.3c283807.chunk.js",
-    "main.js.map": "/static/js/main.3c283807.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.cc9c95cc.js",
-    "runtime-main.js.map": "/static/js/runtime-main.cc9c95cc.js.map",
-    "static/js/2.84a1130a.chunk.js": "/static/js/2.84a1130a.chunk.js",
-    "static/js/2.84a1130a.chunk.js.map": "/static/js/2.84a1130a.chunk.js.map",
-    "static/js/3.3fb96605.chunk.js": "/static/js/3.3fb96605.chunk.js",
-    "static/js/3.3fb96605.chunk.js.map": "/static/js/3.3fb96605.chunk.js.map",
+    "main.css": "/static/css/main.c10b6b7d.chunk.css",
+    "main.js": "/static/js/main.1ecfacf5.chunk.js",
+    "main.js.map": "/static/js/main.1ecfacf5.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.f6554dc8.js",
+    "runtime-main.js.map": "/static/js/runtime-main.f6554dc8.js.map",
+    "static/js/2.85416e0a.chunk.js": "/static/js/2.85416e0a.chunk.js",
+    "static/js/2.85416e0a.chunk.js.map": "/static/js/2.85416e0a.chunk.js.map",
+    "static/js/3.b1d83486.chunk.js": "/static/js/3.b1d83486.chunk.js",
+    "static/js/3.b1d83486.chunk.js.map": "/static/js/3.b1d83486.chunk.js.map",
     "index.html": "/index.html",
-    "static/css/main.1429f155.chunk.css.map": "/static/css/main.1429f155.chunk.css.map",
-    "static/js/2.84a1130a.chunk.js.LICENSE.txt": "/static/js/2.84a1130a.chunk.js.LICENSE.txt",
-    "static/media/App.css": "/static/media/logo.9f51a2af.svg",
-    "static/media/Portfolio.css": "/static/media/arrow.2f133fb2.svg",
-    "static/media/Navigation.css": "/static/media/cross.80dfd5bd.svg",
-    "static/media/MoviesCard.css": "/static/media/like-icon-inactive.e78b4556.svg",
+    "static/css/main.c10b6b7d.chunk.css.map": "/static/css/main.c10b6b7d.chunk.css.map",
+    "static/js/2.85416e0a.chunk.js.LICENSE.txt": "/static/js/2.85416e0a.chunk.js.LICENSE.txt",
+    "static/media/App.css": "/static/media/logo.6872d14e.svg",
+    "static/media/Portfolio.css": "/static/media/arrow.093d837f.svg",
+    "static/media/Navigation.css": "/static/media/cross.09da0492.svg",
+    "static/media/MoviesCard.css": "/static/media/like-icon-inactive.06f92cf9.svg",
     "static/media/den.92debeae.png": "/static/media/den.92debeae.png",
-    "static/media/Header.css": "/static/media/icon__burger.08035af1.svg",
-    "static/media/SearchForm.css": "/static/media/icon__find-white.599d92b7.svg",
-    "static/media/Promo.css": "/static/media/pic__COLOR_landing-logo.48502063.svg"
+    "static/media/Header.css": "/static/media/icon__burger.fe889bf9.svg",
+    "static/media/SearchForm.css": "/static/media/icon__find-white.d0fb0728.svg",
+    "static/media/Promo.css": "/static/media/pic__COLOR_landing-logo.c2691b72.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.cc9c95cc.js",
-    "static/js/2.84a1130a.chunk.js",
-    "static/css/main.1429f155.chunk.css",
-    "static/js/main.3c283807.chunk.js"
+    "static/js/runtime-main.f6554dc8.js",
+    "static/js/2.85416e0a.chunk.js",
+    "static/css/main.c10b6b7d.chunk.css",
+    "static/js/main.1ecfacf5.chunk.js"
   ]
 }

@@ -33,7 +33,7 @@ function Movies({
 
   return (
     <>
-      <Header />
+      <Header isOpen={true}/>
       <main className="page__section">
         <SearchForm
           onSubmit={onSubmit}
