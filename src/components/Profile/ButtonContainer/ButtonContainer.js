@@ -40,7 +40,7 @@ function ButtonContainer({
         <p className="button-container__error-message">{message}</p>
 
         <button
-          className={`button-container__save-button button-container__save-button_type_edit page__link ${
+          className={`button-container__save-button page__link ${
             (!isValid || updateInProgress) &&
             "button-container__save-button_type_inactive"
           }`}
@@ -49,13 +49,6 @@ function ButtonContainer({
           disabled={!isValid || updateInProgress}
         >
           Сохранить
-        </button>
-        <button
-          className="button-container__button button-container__button_type_out button-container__button_type_out-edit page__link"
-          id="profile-out-button"
-          onClick={handleLogout}
-        >
-          Выйти из аккаунта
         </button>
       </div>
     </>

@@ -14,6 +14,7 @@ function Movies({
   isDurationFilter,
   buttonState,
   isLoading,
+  searchQuery,
 }) {
   function comparisonArrows(filterArr, savedArr) {
     let result = [];
@@ -41,6 +42,7 @@ function Movies({
           buttonState={buttonState}
           isLoading={isLoading}
           message={message}
+          searchQuery={searchQuery}
         />
         <MoviesCardList
           isLoading={isLoading}

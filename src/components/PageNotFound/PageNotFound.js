@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 function PageNotFound({ isOpen }) {
   const navigate = useNavigate();
-  const goBack = () => navigate(-1);
+  const goBack = () => navigate(-2);
 
   return (
     <section className={`page-not-found ${isOpen && "page-not-found_opened"}`}>

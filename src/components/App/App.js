@@ -36,6 +36,7 @@ function App() {
   const [firstSubmit, setFirstSubmit] = useState(true);
   const [searchMessage, setSearchMessage] = useState("");
   const [limitError, setLimitError] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -94,12 +95,15 @@ function App() {
     localStorage.removeItem("searchResult");
     localStorage.removeItem("searchResultShort");
     localStorage.removeItem("searchResultSaved");
+    localStorage.removeItem("keyword");
+    localStorage.removeItem("toggle");
 
     setCurrentUser({});
     setLoggedIn(false);
     setSavedMovies([]);
     setSearchResult([]);
     setSearchResultSaved([]);
+    setSearchQuery("");
     navigate("/", { replace: true });
   }
 
@@ -231,6 +235,11 @@ function App() {
 
   function searchMovies(moviesArrow, keyword) {
     setSearchMessage("");
+    setSearchQuery(keyword);
+
+    localStorage.setItem("keyword", JSON.stringify(keyword));
+
+
     const unifiedWord = (word) => word.toLowerCase();
     const path = location.pathname;
 
@@ -340,9 +349,13 @@ function App() {
       .removeMovie(id)
       .then((res) => {
         let moviesArray = JSON.parse(localStorage.getItem("savedMovies"));
+        let shortMoviesArray = JSON.parse(localStorage.getItem("searchResultSaved"));
+        shortMoviesArray = shortMoviesArray.filter((item) => item._id !== id);
         moviesArray = moviesArray.filter((item) => item._id !== id);
         setSavedMovies(moviesArray);
+        setSearchResultSaved(shortMoviesArray);
         localStorage.setItem("savedMovies", JSON.stringify(moviesArray));
+        localStorage.setItem("searchResultSaved", JSON.stringify(shortMoviesArray));
       })
       .catch((err) => {
         if (err.status === 429) {
@@ -377,6 +390,7 @@ function App() {
     } else {
       setShortToggle(!shortToggle);
     }
+    localStorage.setItem("toggle", JSON.stringify(shortToggle));
   }
 
   function handleToggleSavedMovies() {
@@ -442,6 +456,7 @@ function App() {
                   onDelete={removeUserMovie}
                   buttonState={shortToggle}
                   isLoading={searchInProgress}
+                  searchQuery={searchQuery}
                 />
               </ProtectedRoute>
             }

@@ -3,8 +3,8 @@ import { useState } from "react";
 import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
 import InfoMessage from "../InfoMessage/InfoMessage";
 
-function SearchForm({ onSubmit, onFilter, buttonState, isLoading, message }) {
-  const [film, setFilm] = useState("");
+function SearchForm({ onSubmit, onFilter, buttonState, isLoading, message, searchQuery }) {
+  const [film, setFilm] = useState(searchQuery || "");
   const [isValid, setIsvalid] = useState(true);
 
   function handleChangeFilm(e) {
