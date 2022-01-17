@@ -111,7 +111,18 @@ function App() {
       .then((response) => {
         setRegisterMessage(resMessages.successfulRegister);
         setRequestInProgress(false);
-        setTimeout(() => navigate("/movies", { replace: true }), 5000); // change
+
+        auth
+          .authorize(email, password)
+          .then((token) => {
+            if (token) {
+              handleLogin();
+              setTimeout(() => navigate("/movies", { replace: true }), 2000);
+            }
+          })
+          .catch((err) => {
+            console.log(err);
+          });
       })
       .catch((err) => {
         setRequestInProgress(false);
