@@ -4,7 +4,7 @@ import SmallNavigationPanel from "../SmallNavigationPanel/SmallNavigationPanel";
 import { Link } from "react-router-dom";
 import Navigation from "../Navigation/Navigation";
 
-function Header() {
+function Header({ promoType, isOpen }) {
   const [isPopupNavigationOpen, setStateNavigate] = useState(false);
 
   function handleNavigationOpen() {
@@ -16,7 +16,11 @@ function Header() {
   }
 
   return (
-    <header className="header page__section">
+    <header
+      className={`header page__section ${promoType && "header_type_promo"} ${
+        !isOpen && "header_type_inactive"
+      }`}
+    >
       <div className="header__container">
         <Link to="/">
           <div className="page__logo page__link"></div>
@@ -26,15 +30,21 @@ function Header() {
             isPopupNavigationOpen && "header__navigation-container_inactive"
           }`}
         >
-          <SmallNavigationPanel isOpen={!isPopupNavigationOpen} />
+          <SmallNavigationPanel
+            isOpen={!isPopupNavigationOpen}
+            promoType={promoType}
+          />
         </div>
         <button
           id="header-navigation-button"
-          className="header__navigation-button page__link"
+          className={`header__navigation-button page__link ${promoType && "header__navigation-button_white"}`}
           onClick={handleNavigationOpen}
         ></button>
       </div>
-      <Navigation isOpen={isPopupNavigationOpen} onClose={handleNavigationClose} />
+      <Navigation
+        isOpen={isPopupNavigationOpen}
+        onClose={handleNavigationClose}
+      />
     </header>
   );
 }

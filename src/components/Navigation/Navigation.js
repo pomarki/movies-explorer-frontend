@@ -2,6 +2,9 @@ import "./Navigation.css";
 import { NavLink } from "react-router-dom";
 
 function Navigation({ isOpen, onClose }) {
+  
+ 
+
   const setActive = ({ isActive }) =>
     isActive
       ? "navigation__link page__link navigation__link_actual"

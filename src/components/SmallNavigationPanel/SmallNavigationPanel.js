@@ -1,11 +1,15 @@
 import "./SmallNavigationPanel.css";
 import { NavLink } from "react-router-dom";
 
-function SmallNavigationPanel({ isOpen }) {
+function SmallNavigationPanel({ isOpen, promoType }) {
+
+  let linkClassName;
+
+  promoType ? (linkClassName = " small-panel__link_promo") : (linkClassName = "");
   const setActive = ({ isActive }) =>
     isActive
-      ? "small-panel__link page__link small-panel__link_actual"
-      : "small-panel__link page__link";
+      ? "small-panel__link page__link small-panel__link_actual" + linkClassName
+      : "small-panel__link page__link" + linkClassName
 
   return (
     <div className={`small-panel ${isOpen && "small-panel_opened"}`}>

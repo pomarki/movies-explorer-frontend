@@ -1,7 +1,14 @@
 import "./ButtonContainer.css";
-import errorMessages from "../../../utils/error-messages";
 
-function ButtonContainer({ type }) {
+function ButtonContainer({
+  type,
+  message,
+  handleLogout,
+  handleUpdateUser,
+  handleUpdateForm,
+  isValid,
+  updateInProgress,
+}) {
   return (
     <>
       <div
@@ -12,12 +19,14 @@ function ButtonContainer({ type }) {
         <button
           className="button-container__button button-container__button_type_edit page__link"
           id="profile-edit-button"
+          onClick={handleUpdateForm}
         >
           Редактировать
         </button>
         <button
           className="button-container__button button-container__button_type_out page__link"
           id="profile-out-button"
+          onClick={handleLogout}
         >
           Выйти из аккаунта
         </button>
@@ -28,11 +37,16 @@ function ButtonContainer({ type }) {
           !type && "button-container__type_inactive"
         }`}
       >
-        <p className="button-container__error-message">{errorMessages.updateProfileError}</p>
+        <p className="button-container__error-message">{message}</p>
 
         <button
-          className="button-container__save-button page__link"
+          className={`button-container__save-button page__link ${
+            (!isValid || updateInProgress) &&
+            "button-container__save-button_type_inactive"
+          }`}
           id="profile-save-button"
+          onClick={handleUpdateUser}
+          disabled={!isValid || updateInProgress}
         >
           Сохранить
         </button>

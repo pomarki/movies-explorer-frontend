@@ -1,7 +1,16 @@
 import "./EntranceWindow.css";
 import { Link } from "react-router-dom";
+import InfoMessage from "../InfoMessage/InfoMessage";
 
-function EntranceWindow({ name, children }) {
+function EntranceWindow({
+  windowType,
+  children,
+  message,
+  onLogin,
+  onRegister,
+  isValid,
+  requestInProgress,
+}) {
   let linkDirection;
   let linkSubtitle;
   let linkName;
@@ -9,48 +18,66 @@ function EntranceWindow({ name, children }) {
   let greeting;
   let buttonId;
   let loginContainer;
+  let buttonAction;
 
-  name === "register"
+  windowType === "register"
     ? (linkDirection = "/signin")
     : (linkDirection = "/signup");
 
-  name === "register"
+  windowType === "register"
     ? (linkSubtitle = "Уже зарегистрированы?")
     : (linkSubtitle = "Ещё не зарегистрированы?");
-  name === "register" ? (linkName = "Войти") : (linkName = "Регистрация");
+  windowType === "register" ? (linkName = "Войти") : (linkName = "Регистрация");
 
-  name === "register"
+  windowType === "register"
     ? (buttonTitle = "Зарегистрироваться")
     : (buttonTitle = "Войти");
 
-  name === "register"
+  windowType === "register"
     ? (greeting = "Добро пожаловать!")
     : (greeting = "Рады видеть!");
 
-  name === "register"
+  windowType === "register"
     ? (buttonId = "register-button")
     : (buttonId = "login-button");
 
-  name === "register"
+  windowType === "register"
     ? (loginContainer = false)
     : (loginContainer = true);
 
+  windowType === "register"
+    ? (buttonAction = onRegister)
+    : (buttonAction = onLogin);
+
   return (
-    <div className="entrance-window__container">
+    <form className="entrance-window__form">
       <Link to="/">
         <div className="page__logo page__link"></div>
       </Link>
       <p className="entrance-window__title">{greeting}</p>
-      <div className={`entrance-window__form-container ${loginContainer && "entrance-window__form-container_login"}`}>{children}</div>
-      <div className={`entrance-window__button-container ${loginContainer && "entrance-window__button-container_login"}`}>
-        <Link to="/movies">
-          <button
-            className="entrance-window__reg-button page__link"
-            id={buttonId}
-          >
-            {buttonTitle}
-          </button>
-        </Link>
+      <div
+        className={`entrance-window__form-container ${
+          loginContainer && "entrance-window__form-container_login"
+        }`}
+      >
+        {children}
+      </div>
+      <div
+        className={`entrance-window__button-container ${
+          loginContainer && "entrance-window__button-container_login"
+        }`}
+      >
+        <InfoMessage message={message} />
+        <button
+          className={`entrance-window__reg-button page__link ${
+            (!isValid || requestInProgress) && "entrance-window__reg-button_inactive"
+          }`}
+          id={buttonId}
+          onClick={buttonAction}
+          disabled={!isValid || requestInProgress}
+        >
+          {buttonTitle}
+        </button>
       </div>
       <div className="entrance-window__link-container">
         <p className="entrance-window__text entrance-window__text_subtitle">
@@ -63,7 +90,7 @@ function EntranceWindow({ name, children }) {
           {linkName}
         </Link>
       </div>
-    </div>
+    </form>
   );
 }
 

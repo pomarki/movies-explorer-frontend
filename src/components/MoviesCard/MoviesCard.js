@@ -1,24 +1,46 @@
 import "./MoviesCard.css";
-import { useState } from "react";
-import { baseUrl } from "../../consts/base-URL";
+
 import { timeConverter } from "../../utils/utils";
 
-function MoviesCard({ card, cardId, listTypeSaved }) {
+function MoviesCard({ card, listTypeSaved, onLike, onDelete, likedMovies }) {
+  let isCardLike = false;
   let nameRU = card?.nameRU;
-  let imgUrl = card?.image?.formats?.thumbnail?.url;
+  let imgUrl = card?.image;
   let duration = timeConverter(card.duration);
-  let buttonType;
-  let cardClick;
+  let trailer = card?.trailer;
 
   listTypeSaved === true
-    ? (buttonType = "movies-card__delete-icon")
-    : (buttonType = "movies-card__like-ikon");
+    ? (isCardLike = false)
+    : (isCardLike = likedMovies.find((item) => item.movieId === card.movieId));
 
-  listTypeSaved === true ? (cardClick = null) : (cardClick = handleCardLike);
+  function handleMovieLike() {
+    onLike({
+      country: card.country,
+      director: card.director,
+      duration: card.duration,
+      year: card.year,
+      description: card.description,
+      image: card.image,
+      trailer: card.trailer,
+      thumbnail: card.thumbnail,
+      movieId: card.movieId,
+      nameRU: card.nameRU,
+      nameEN: card.nameEN,
+    });
+  }
+  function handleMovieRemove() {
+    onDelete(card._id);
+  }
 
-  const [isCardLike, setCardLike] = useState(false);
-  function handleCardLike() {
-    setCardLike(!isCardLike);
+  function handleMovieDislike() {
+    onDelete(getLikedmovieId(card, likedMovies));
+  }
+
+  function getLikedmovieId(movieCard, likedMoviesArrow) {
+    let id = movieCard.movieId;
+    let currentArr = likedMoviesArrow.filter((item) => item.movieId === id);
+
+    return currentArr[0]._id;
   }
 
   return (
@@ -27,14 +49,28 @@ function MoviesCard({ card, cardId, listTypeSaved }) {
         <p className="movies-card__title">{nameRU}</p>
         <p className="movies-card__duration">{duration}</p>
         <button
-          onClick={cardClick}
-          className={`page__link movies-card__button ${buttonType} ${
-            isCardLike && "movies-card__like-ikon_type_active"
+          onClick={handleMovieLike}
+          className={`page__link movies-card__button movies-card__like-ikon ${
+            (listTypeSaved || isCardLike) && "movies-card__button_invisible"
+          }`}
+        ></button>
+        <button
+          onClick={handleMovieDislike}
+          className={`page__link movies-card__button movies-card__like-ikon movies-card__like-ikon_type_active ${
+            (listTypeSaved || !isCardLike) && "movies-card__button_invisible"
+          } `}
+        ></button>
+        <button
+          onClick={handleMovieRemove}
+          className={`page__link movies-card__button movies-card__delete-icon ${
+            !listTypeSaved && "movies-card__button_invisible"
           }`}
         ></button>
       </div>
 
-      <img src={`${baseUrl + imgUrl}`} alt={nameRU} className="movies-card__pic" />
+      <a href={trailer} target="_blank" rel="noopener noreferrer">
+        <img src={`${imgUrl}`} alt={nameRU} className="movies-card__pic" />
+      </a>
     </li>
   );
 }

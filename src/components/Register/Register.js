@@ -1,43 +1,96 @@
+import { useEffect } from "react";
 import "./Register.css";
 import EntranceWindow from "../EntranceWindow/EntranceWindow";
+import useFormValidation from "../../hooks/useFormValidation";
 
-function Register({ isOpen }) {
+function Register({ registerUser, isRegisterMessage, registerInProgress }) {
+  const { values, errors, isValid, handleChange, resetForm } =
+    useFormValidation();
+
+  useEffect(() => {
+    resetForm();
+  }, [resetForm]);
+
+  function handleSubmitRegister(e) {
+    e.preventDefault();
+    registerUser(
+      values.name,
+      values.password,
+      values.email,
+    );
+    resetForm();
+  }
+
   return (
-    <section
-      className={`register ${isOpen && "register_opened"} page__section`}
-    >
-      <EntranceWindow name="register">
-        <label className="entrance-window__label" htmlFor="register-user">
-          Имя
-        </label>
-        <input
-          type="text"
-          required
-          id="register-user"
-          className="entrance-window__text entrance-window__text_input register__input"
-        ></input>
-        <div className="entrance-window__breakline"></div>
-        <label className="entrance-window__label" htmlFor="register-email">
-          E-mail
-        </label>
-        <input
-          type="email"
-          id="register-email"
-          required
-          className="entrance-window__text entrance-window__text_input register__input"
-        ></input>
-        <div className="entrance-window__breakline"></div>
-        <label className="entrance-window__label" htmlFor="register-password">
-          Пароль
-        </label>
-        <input
-          type="password"
-          id="register-password"
-          required
-          className="entrance-window__text entrance-window__text_input register__input"
-        ></input>
-        <div className="entrance-window__breakline"></div>
-        <p className="entrance-window__error-message">Что-то пошло не так...</p>
+    <section className="register page__section">
+      <EntranceWindow
+        isRegisterOpen={true}
+        onRegister={handleSubmitRegister}
+        windowType="register"
+        values={values}
+        isValid={isValid}
+        errors={errors}
+        message={isRegisterMessage}
+        requestInProgress={registerInProgress}
+      >
+        <div className="entrance-window__input-container">
+          <label className="entrance-window__label" htmlFor="register-user">
+            Имя
+          </label>
+          <input
+            type="text"
+            name="name"
+            required
+            id="register-user"
+            minLength="2"
+            value={values.name || ""}
+            onChange={handleChange}
+            disabled={registerInProgress}
+            className="entrance-window__text entrance-window__text_input register__input"
+          ></input>
+          <div className="entrance-window__breakline"></div>
+          <span className="entrance-window__error-message">
+            {errors.name || ""}
+          </span>
+        </div>
+        <div className="entrance-window__input-container">
+          <label className="entrance-window__label" htmlFor="register-email">
+            E-mail
+          </label>
+          <input
+            type="email"
+            name="email"
+            id="register-email"
+            required
+            value={values.email || ""}
+            onChange={handleChange}
+            disabled={registerInProgress}
+            className="entrance-window__text entrance-window__text_input register__input"
+          ></input>
+          <div className="entrance-window__breakline"></div>
+          <span className="entrance-window__error-message">
+            {errors.email || ""}
+          </span>
+        </div>
+        <div className="entrance-window__input-container">
+          <label className="entrance-window__label" htmlFor="register-password">
+            Пароль
+          </label>
+          <input
+            name="password"
+            type="password"
+            id="register-password"
+            required
+            value={values.password || ""}
+            onChange={handleChange}
+            disabled={registerInProgress}
+            className="entrance-window__text entrance-window__text_input register__input"
+          ></input>
+          <div className="entrance-window__breakline"></div>
+          <span className="entrance-window__error-message">
+            {errors.password || ""}
+          </span>
+        </div>
       </EntranceWindow>
     </section>
   );

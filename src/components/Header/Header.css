@@ -6,6 +6,14 @@
   flex-grow: 0;
 }
 
+.header_type_promo {
+  background-color: #073042;
+}
+
+.header_type_inactive {
+  display: none;
+}
+
 .header__container {
   max-width: 1140px;
   width: 100%;
@@ -32,6 +40,11 @@
   background-position-y: bottom;
   background-position-x: left;
 }
+
+.header__navigation-button_white {
+  background: url(../../images/icon_burger_white.svg);
+}
+
 
 @media screen and (max-width: 1190px) {
   .header {

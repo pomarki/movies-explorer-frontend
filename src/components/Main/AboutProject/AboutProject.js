@@ -1,7 +1,7 @@
 import React from "react";
 import "./AboutProject.css";
 
-function AboutProject(props) {
+function AboutProject() {
   return (
     <section id="aboutProject" className="about-project page__section">
       <div className="about-project__title-container page__section-title-container">

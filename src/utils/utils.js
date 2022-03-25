@@ -8,15 +8,14 @@ const timeConverter = (timeVolume) => {
   return `${hours} ч ${min} м`;
 };
 
-/* const undefinedCheck = (value) => {
+const filterByDuration = (arr, value) => {
+  return arr = arr.filter((movie) => movie.duration <= value)
+}
 
-  if (typeof(value) === "undefined") {
-    
-  }
-  
-  return value;
+const messageTimer = (message, messageSetter) => {
+  messageSetter(message);
+  setTimeout(() => messageSetter(""), 5000);
+}
 
-} */
+export { timeConverter, filterByDuration, messageTimer };
 
-
-export { timeConverter };

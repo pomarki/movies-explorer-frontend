@@ -9,10 +9,10 @@ import AboutMe from "./AboutMe/AboutMe";
 import Portfolio from "./Portfolio/Portfolio";
 import Footer from "../Footer/Footer";
 
-function Main({ isOpen }) {
+function Main({ isOpen, loggedIn }) {
   return (
     <>
-      <Promo />
+      <Promo loggedIn={loggedIn} />
       <main className={`main ${isOpen && "main_opened"}`}>
         <NavTab />
         <AboutProject />

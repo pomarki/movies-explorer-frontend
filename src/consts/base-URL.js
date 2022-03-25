@@ -1,3 +1,1 @@
-const baseUrl = "https://api.nomoreparties.co";
-
-export {baseUrl};
+ export const baseUrl = "https://api.nomoreparties.co";

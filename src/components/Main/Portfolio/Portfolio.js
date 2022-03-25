@@ -1,7 +1,7 @@
 import React from "react";
 import "./Portfolio.css";
 
-function Portfolio(props) {
+function Portfolio() {
   return (
     <section className="portfolio page__section">
       <div className="portfolio__example-container">
